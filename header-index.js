@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 </div>
                             </div>
                         </div>
-                        <a href="#about" class="text-md">About</a>
+                        <a href="about.html" class="text-md">About</a>
                     </nav>
                     <button class="lg:hidden text-white" id="menu-btn">
                         <i class="fas fa-bars text-2xl"></i>
