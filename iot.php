@@ -175,22 +175,22 @@
     <div class="container relative w-full min-h-screen flex flex-col items-center justify-center perspective-[900px]">
         <div class="hi space-y-10">
             <div class="hi__cuboid">
-                <div class="face face--front"><p class="hi__word">FRONT</p></div>
-                <div class="face face--back"><p class="hi__word">FRONT</p></div>
-                <div class="face face--top"><p class="hi__word">FRONT</p></div>
-                <div class="face face--bottom"><p class="hi__word">FRONT</p></div>
+                <div class="face face--front"><p class="hi__word">IOT</p></div>
+                <div class="face face--back"><p class="hi__word">IOT</p></div>
+                <div class="face face--top"><p class="hi__word">IOT</p></div>
+                <div class="face face--bottom"><p class="hi__word">IOT</p></div>
             </div>
             <div class="hi__cuboid">
-                <div class="face face--front"><p class="hi__word">END</p></div>
-                <div class="face face--back"><p class="hi__word">END</p></div>
-                <div class="face face--top"><p class="hi__word">END</p></div>
-                <div class="face face--bottom"><p class="hi__word">END</p></div>
+                <div class="face face--front"><p class="hi__word">SMART</p></div>
+                <div class="face face--back"><p class="hi__word">SMART</p></div>
+                <div class="face face--top"><p class="hi__word">SMART</p></div>
+                <div class="face face--bottom"><p class="hi__word">SMART</p></div>
             </div>
             <div class="hi__cuboid">
-                <div class="face face--front"><p class="hi__word">PROJECTS</p></div>
-                <div class="face face--back"><p class="hi__word">PROJECTS</p></div>
-                <div class="face face--top"><p class="hi__word">PROJECTS</p></div>
-                <div class="face face--bottom"><p class="hi__word">PROJECTS</p></div>
+                <div class="face face--front"><p class="hi__word">SOLUTION</p></div>
+                <div class="face face--back"><p class="hi__word">SOLUTION</p></div>
+                <div class="face face--top"><p class="hi__word">SOLUTION</p></div>
+                <div class="face face--bottom"><p class="hi__word">SOLUTION</p></div>
             </div>
         </div>
         <div class="hi__base mt-10">
@@ -218,11 +218,11 @@
         });
     </script>
 
-    <?php
+<?php
 include 'dashboard/config.php';
 
 $projects = [];
-$result = $conn->query("SELECT * FROM system_projects ORDER BY created_at DESC");
+$result = $conn->query("SELECT * FROM iot_projects ORDER BY created_at DESC");
 if ($result) {
     while ($row = $result->fetch_assoc()) {
         $projects[] = $row;
@@ -231,21 +231,27 @@ if ($result) {
 ?>
 
 <section class="py-20 text-white text-center min-h-screen w-full flex flex-col items-center justify-center">
-    <div id="parallaxContainer" class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10 p-5 w-full lg:w-[85%] mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10 p-5 w-full lg:w-[85%] mx-auto">
         <?php foreach ($projects as $project): ?>
             <a href="<?= htmlspecialchars($project['link_url']) ?>" target="_blank"
                class="relative group w-full h-full rounded-[20px] overflow-hidden transition-transform duration-300">
-                <img src="dashboard/<?= htmlspecialchars($project['image_path']) ?>" alt="<?= htmlspecialchars($project['title']) ?>" class="w-full h-full object-cover rounded-[20px] group-hover:scale-105 transition-transform duration-500">
+               
+                <img src="dashboard/<?= htmlspecialchars($project['image_path']) ?>" 
+                     alt="<?= htmlspecialchars($project['title']) ?>" 
+                     class="w-full h-full object-cover rounded-[20px] group-hover:scale-105 transition-transform duration-500">
+
                 <div class="absolute inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <span class="text-white text-xl font-semibold relative">
                         <?= htmlspecialchars($project['title']) ?>
                         <span class="absolute left-0 bottom-[-4px] w-0 h-[2px] bg-white transition-all duration-500 group-hover:w-full"></span>
                     </span>
                 </div>
+
             </a>
         <?php endforeach; ?>
     </div>
 </section>
+
 
 
     <?php include 'footer.php';?>

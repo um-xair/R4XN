@@ -71,6 +71,12 @@ if (session_status() === PHP_SESSION_NONE) {
                 </svg>
                 <span class="link-label">System Design</span>
             </button>
+            <button onclick="window.location.href='manage-iot.php'" class="flex items-center gap-3 py-3 px-4 rounded-md hover:bg-[#2b2b2b] hover:text-white transition w-full text-white">
+                <svg class="w-6 h-6 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cpu-icon lucide-cpu">
+                    <path d="M12 20v2"/><path d="M12 2v2"/><path d="M17 20v2"/><path d="M17 2v2"/><path d="M2 12h2"/><path d="M2 17h2"/><path d="M2 7h2"/><path d="M20 12h2"/><path d="M20 17h2"/><path d="M20 7h2"/><path d="M7 20v2"/><path d="M7 2v2"/><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="8" y="8" width="8" height="8" rx="1"/>
+                </svg>
+                <span class="link-label">Iot Solution</span>
+            </button>
         </nav>
     </aside>
 </div>
