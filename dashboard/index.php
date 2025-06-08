@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </style>
 </head>
 <body class="bg-white flex items-center justify-center min-h-screen">
-    <div class="w-full max-w-lg px-4 py-6 sm:px-6 sm:py-8 mx-auto">
+    <div class="w-full max-w-[90%] lg:max-w-lg px-4 py-6 sm:px-6 sm:py-8 mx-auto">
         <form method="POST" class="bg-white p-8 rounded-xl space-y-6 border border-gray-200">
             <h2 class="text-3xl font-bold text-center">Welcome Back</h2>    
             <div>
@@ -81,9 +81,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="email" name="email" id="email" placeholder="Email" required class="border rounded-md px-4 py-3 w-full">
             </div>  
             <div>
-                <label for="password" class="block mb-1 font-medium">Password</label>
-                <input type="password" name="password" id="password" placeholder="Password" required class="border rounded-md px-4 py-3 w-full">
-            </div>  
+            	<label for="password" class="block mb-1 font-medium">Password</label>
+            	<div class="relative">
+            		<input type="password" name="password" id="password" placeholder="Password" required class="border rounded-md px-4 py-3 w-full pr-12">
+            		<button type="button" id="togglePassword" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 focus:outline-none">
+            			<i class="far fa-eye-slash"></i>
+            		</button>
+            	</div>
+            </div>
             <button type="submit" class="w-full bg-black text-white px-6 py-3 rounded-md">
                 Login
             </button>
@@ -93,6 +98,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div id="toast" class="fixed top-5 right-5 z-50 px-6 py-3 rounded-md shadow-lg text-white flex items-center gap-2bg-green-500 pointer-events-none opacity-0"></div>
 
     <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+
+        togglePassword.addEventListener('click', () => {
+        	const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        	passwordInput.setAttribute('type', type);
+        	togglePassword.innerHTML = type === 'password'
+        		? '<i class="far fa-eye-slash"></i>'
+        		: '<i class="far fa-eye"></i>';
+        });
+
+
         const toast = document.getElementById('toast');
 
         function showToast(message, type = 'success') {
