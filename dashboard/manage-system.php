@@ -1,60 +1,60 @@
 <?php
-include 'config.php'; // adjust path if needed
+    include 'config.php'; // adjust path if needed
 
-// Handle upload or update
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $action = $_POST['action'];
-    $title = $_POST['title'] ?? '';
-    $link_url = $_POST['link_url'] ?? '';
+    // Handle upload or update
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $action = $_POST['action'];
+        $title = $_POST['title'] ?? '';
+        $link_url = $_POST['link_url'] ?? '';
 
-    if ($action === 'upload' && $title && $link_url && !empty($_FILES['image']['tmp_name'])) {
-        // Upload new system project
-        $uploadDir = 'system/';
-        if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
-        $filename = time() . '_' . basename($_FILES['image']['name']);
-        $targetPath = $uploadDir . $filename;
-        move_uploaded_file($_FILES['image']['tmp_name'], $targetPath);
-        $stmt = $conn->prepare("INSERT INTO system_projects (title, link_url, image_path) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $title, $link_url, $targetPath);
-        $stmt->execute();
-        $stmt->close();
-        header("Location: " . $_SERVER['PHP_SELF']);
-        exit();
-    }
-    elseif ($action === 'update' && !empty($_POST['id']) && $title && $link_url) {
-        // Update existing project
-        $id = intval($_POST['id']);
-        $old = $conn->query("SELECT image_path FROM system_projects WHERE id = $id")->fetch_assoc();
-        $imagePath = $old['image_path'];
-        if (!empty($_FILES['image']['tmp_name'])) {
-            @unlink($imagePath);
+        if ($action === 'upload' && $title && $link_url && !empty($_FILES['image']['tmp_name'])) {
+            // Upload new system project
             $uploadDir = 'system/';
             if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
             $filename = time() . '_' . basename($_FILES['image']['name']);
             $targetPath = $uploadDir . $filename;
             move_uploaded_file($_FILES['image']['tmp_name'], $targetPath);
-            $imagePath = $targetPath;
+            $stmt = $conn->prepare("INSERT INTO system_projects (title, link_url, image_path) VALUES (?, ?, ?)");
+            $stmt->bind_param("sss", $title, $link_url, $targetPath);
+            $stmt->execute();
+            $stmt->close();
+            header("Location: " . $_SERVER['PHP_SELF']);
+            exit();
         }
-        $stmt = $conn->prepare("UPDATE system_projects SET title=?, link_url=?, image_path=? WHERE id=?");
-        $stmt->bind_param("sssi", $title, $link_url, $imagePath, $id);
-        $stmt->execute();
-        $stmt->close();
-        header("Location: " . $_SERVER['PHP_SELF']);
-        exit();
+        elseif ($action === 'update' && !empty($_POST['id']) && $title && $link_url) {
+            // Update existing project
+            $id = intval($_POST['id']);
+            $old = $conn->query("SELECT image_path FROM system_projects WHERE id = $id")->fetch_assoc();
+            $imagePath = $old['image_path'];
+            if (!empty($_FILES['image']['tmp_name'])) {
+                @unlink($imagePath);
+                $uploadDir = 'system/';
+                if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
+                $filename = time() . '_' . basename($_FILES['image']['name']);
+                $targetPath = $uploadDir . $filename;
+                move_uploaded_file($_FILES['image']['tmp_name'], $targetPath);
+                $imagePath = $targetPath;
+            }
+            $stmt = $conn->prepare("UPDATE system_projects SET title=?, link_url=?, image_path=? WHERE id=?");
+            $stmt->bind_param("sssi", $title, $link_url, $imagePath, $id);
+            $stmt->execute();
+            $stmt->close();
+            header("Location: " . $_SERVER['PHP_SELF']);
+            exit();
+        }
+        elseif ($action === 'delete' && !empty($_POST['id'])) {
+            $id = intval($_POST['id']);
+            $old = $conn->query("SELECT image_path FROM system_projects WHERE id = $id")->fetch_assoc();
+            @unlink($old['image_path']);
+            $conn->query("DELETE FROM system_projects WHERE id = $id");
+            header("Location: " . $_SERVER['PHP_SELF']);
+            exit();
+        }
     }
-    elseif ($action === 'delete' && !empty($_POST['id'])) {
-        $id = intval($_POST['id']);
-        $old = $conn->query("SELECT image_path FROM system_projects WHERE id = $id")->fetch_assoc();
-        @unlink($old['image_path']);
-        $conn->query("DELETE FROM system_projects WHERE id = $id");
-        header("Location: " . $_SERVER['PHP_SELF']);
-        exit();
-    }
-}
 
-// Fetch existing system projects
-$results = $conn->query("SELECT * FROM system_projects ORDER BY id DESC");
-$projects = $results ? $results->fetch_all(MYSQLI_ASSOC) : [];
+    // Fetch existing system projects
+    $results = $conn->query("SELECT * FROM system_projects ORDER BY id DESC");
+    $projects = $results ? $results->fetch_all(MYSQLI_ASSOC) : [];
 ?>
 
 <!DOCTYPE html>
@@ -150,7 +150,7 @@ $projects = $results ? $results->fetch_all(MYSQLI_ASSOC) : [];
                             <label class="block mb-1 font-medium">Link URL</label>
                             <input name="link_url" type="url" required class="border border-gray-300 rounded-md px-4 py-3 w-full">
                         </div>
-                        <div id="systemImageBox">
+                        <div>
                             <label for="systemImage" class="block mb-1 font-medium">Upload Image</label>
                             <label for="systemImage" class="cursor-pointer flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-md h-48 text-gray-400 transition hover:border-gray-400">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -162,10 +162,10 @@ $projects = $results ? $results->fetch_all(MYSQLI_ASSOC) : [];
                                 </svg>
                                 <span>Upload Image</span>
                             </label>
-                        </div>
-                        <input id="systemImage" type="file" name="image" accept="image/*" class="hidden" required>
-                        <div id="systemPreview" class="mt-4 hidden">
-                            <img id="systemImagePreview" src="" alt="Preview" class="w-full rounded">
+                            <input id="systemImage" type="file" name="image" accept="image/*" class="hidden" required>
+                            <div id="systemPreview" class="mt-4 hidden">
+                                <img id="systemImagePreview" src="" alt="Preview" class="w-full rounded">
+                            </div>
                         </div>
                         <div class="pt-4 flex justify-end">
                             <button type="submit" class="bg-black text-white px-6 py-3 rounded-md">Upload</button>
@@ -230,10 +230,7 @@ $projects = $results ? $results->fetch_all(MYSQLI_ASSOC) : [];
 
         </main>
 
-
     </div>
-
-    <div id="toast" class="fixed top-5 right-5 z-50 px-6 py-3 rounded-md shadow-lg text-white flex items-center gap-2 bg-green-500 pointer-events-none opacity-0"></div>
 
     <script>
         const sysModal = document.getElementById('systemModal');
@@ -287,7 +284,6 @@ $projects = $results ? $results->fetch_all(MYSQLI_ASSOC) : [];
         setupImgPreview('systemImage', 'systemImagePreview', 'systemPreview', 'systemImageBox'); // upload modal
         setupImgPreview('systemEditImageInput', 'systemEditImagePreview', 'systemEditPreview');  // edit modal
     </script>
-
 
 </body>
 </html>

@@ -1,39 +1,38 @@
 <?php
-session_start();
-require 'config.php';
+    session_start();
+    require 'config.php';
 
-// Handle delete
-if (isset($_GET['delete'])) {
-    $id = intval($_GET['delete']);
-    
-    // Get image path from DB
-    $stmt = $conn->prepare("SELECT image_path FROM project_images WHERE id = ?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $stmt->bind_result($path);
-    $stmt->fetch();
-    $stmt->close();
+    // Handle delete
+    if (isset($_GET['delete'])) {
+        $id = intval($_GET['delete']);
 
-    // Delete file from filesystem
-    if ($path && file_exists($path)) {
-        unlink($path);
+        // Get image path from DB
+        $stmt = $conn->prepare("SELECT image_path FROM project_images WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->bind_result($path);
+        $stmt->fetch();
+        $stmt->close();
+
+        // Delete file from filesystem
+        if ($path && file_exists($path)) {
+            unlink($path);
+        }
+
+        // Delete from DB
+        $stmt = $conn->prepare("DELETE FROM project_images WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->close();
+
+        header("Location: manage-project.php?deleted=1");
+        exit;
     }
 
-    // Delete from DB
-    $stmt = $conn->prepare("DELETE FROM project_images WHERE id = ?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $stmt->close();
-
-    header("Location: manage-project.php?deleted=1");
-    exit;
-}
-
-// Get images
-$result = $conn->query("SELECT * FROM project_images ORDER BY created_at DESC");
-$images = $result->fetch_all(MYSQLI_ASSOC);
+    // Get images
+    $result = $conn->query("SELECT * FROM project_images ORDER BY created_at DESC");
+    $images = $result->fetch_all(MYSQLI_ASSOC);
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

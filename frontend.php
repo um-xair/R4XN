@@ -219,34 +219,32 @@
     </script>
 
     <?php
-include 'dashboard/config.php';
+        include 'dashboard/config.php';
+        $projects = [];
+        $result = $conn->query("SELECT * FROM frontend_projects ORDER BY created_at DESC");
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $projects[] = $row;
+            }
+        }
+    ?>
 
-$projects = [];
-$result = $conn->query("SELECT * FROM system_projects ORDER BY created_at DESC");
-if ($result) {
-    while ($row = $result->fetch_assoc()) {
-        $projects[] = $row;
-    }
-}
-?>
-
-<section class="py-20 text-white text-center min-h-screen w-full flex flex-col items-center justify-center">
-    <div id="parallaxContainer" class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10 p-5 w-full lg:w-[85%] mx-auto">
-        <?php foreach ($projects as $project): ?>
-            <a href="<?= htmlspecialchars($project['link_url']) ?>" target="_blank"
-               class="relative group w-full h-full rounded-[20px] overflow-hidden transition-transform duration-300">
-                <img src="dashboard/<?= htmlspecialchars($project['image_path']) ?>" alt="<?= htmlspecialchars($project['title']) ?>" class="w-full h-full object-cover rounded-[20px] group-hover:scale-105 transition-transform duration-500">
-                <div class="absolute inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <span class="text-white text-xl font-semibold relative">
-                        <?= htmlspecialchars($project['title']) ?>
-                        <span class="absolute left-0 bottom-[-4px] w-0 h-[2px] bg-white transition-all duration-500 group-hover:w-full"></span>
-                    </span>
-                </div>
-            </a>
-        <?php endforeach; ?>
-    </div>
-</section>
-
+    <section class="py-20 text-white text-center min-h-screen w-full flex flex-col items-center justify-center">
+        <div id="parallaxContainer" class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10 p-5 w-full lg:w-[85%] mx-auto">
+            <?php foreach ($projects as $project): ?>
+                <a href="<?= htmlspecialchars($project['link_url']) ?>" target="_blank"
+                   class="relative group w-full h-full rounded-[20px] overflow-hidden transition-transform duration-300">
+                    <img src="dashboard/<?= htmlspecialchars($project['image_path']) ?>" alt="<?= htmlspecialchars($project['title']) ?>" class="w-full h-full object-cover rounded-[20px] group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <span class="text-white text-xl font-semibold relative">
+                            <?= htmlspecialchars($project['title']) ?>
+                            <span class="absolute left-0 bottom-[-4px] w-0 h-[2px] bg-white transition-all duration-500 group-hover:w-full"></span>
+                        </span>
+                    </div>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </section>
 
     <?php include 'footer.php';?>
 

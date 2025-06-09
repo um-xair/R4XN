@@ -1,40 +1,40 @@
 <?php
-include 'config.php'; // adjust path if needed
+    include 'config.php'; // adjust path if needed
 
-// Handle upload
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $title = $_POST['title'] ?? '';
-    $link_url = $_POST['link_url'] ?? '';
-    $image = $_FILES['image'];
+    // Handle upload
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $title = $_POST['title'] ?? '';
+        $link_url = $_POST['link_url'] ?? '';
+        $image = $_FILES['image'];
 
-    if ($title && $link_url && $image['tmp_name']) {
-        $uploadDir = 'frontend/';
-        $filename = time() . '_' . basename($image['name']);
-        $targetPath = $uploadDir . $filename;
+        if ($title && $link_url && $image['tmp_name']) {
+            $uploadDir = 'frontend/';
+            $filename = time() . '_' . basename($image['name']);
+            $targetPath = $uploadDir . $filename;
 
-        if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
+            if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
 
-        if (move_uploaded_file($image['tmp_name'], $targetPath)) {
-            $stmt = $conn->prepare("INSERT INTO frontend_projects (title, link_url, image_path) VALUES (?, ?, ?)");
-            $stmt->bind_param("sss", $title, $link_url, $targetPath);
-            $stmt->execute();
-            $stmt->close();
+            if (move_uploaded_file($image['tmp_name'], $targetPath)) {
+                $stmt = $conn->prepare("INSERT INTO frontend_projects (title, link_url, image_path) VALUES (?, ?, ?)");
+                $stmt->bind_param("sss", $title, $link_url, $targetPath);
+                $stmt->execute();
+                $stmt->close();
 
-            // Redirect to avoid resubmission
-            header("Location: " . $_SERVER['PHP_SELF']);
-            exit();
+                // Redirect to avoid resubmission
+                header("Location: " . $_SERVER['PHP_SELF']);
+                exit();
+            }
         }
     }
-}
 
-// Fetch existing entries
-$projects = [];
-$result = $conn->query("SELECT * FROM frontend_projects ORDER BY created_at DESC");
-if ($result) {
-    while ($row = $result->fetch_assoc()) {
-        $projects[] = $row;
+    // Fetch existing entries
+    $projects = [];
+    $result = $conn->query("SELECT * FROM frontend_projects ORDER BY created_at DESC");
+    if ($result) {
+        while ($row = $result->fetch_assoc()) {
+            $projects[] = $row;
+        }
     }
-}
 ?>
 
 <!DOCTYPE html>
@@ -83,7 +83,6 @@ if ($result) {
                             <a href="<?= htmlspecialchars($project['link_url']) ?>" target="_blank">
                                 <img src="<?= htmlspecialchars($project['image_path']) ?>" class="w-full h-full object-cover rounded-md" alt="">
                             </a>
-                    
                             <!-- Text Content -->
                             <div class="flex-grow py-4">
                                 <h3 class="text-lg font-semibold"><?= htmlspecialchars($project['title']) ?></h3>
@@ -91,7 +90,6 @@ if ($result) {
                                     <?= htmlspecialchars($project['link_url']) ?>
                                 </a>
                             </div>
-                    
                             <!-- Buttons -->
                             <div class="grid grid-cols-2 gap-2">
                                 <button type="button" onclick='openEditModal(<?= json_encode($project) ?>)' class="bg-black text-white py-3 rounded-md">
@@ -108,7 +106,6 @@ if ($result) {
                     <?php endforeach; ?>
                 </div>
             </div>
-                    
 
         </main>
 
@@ -133,7 +130,6 @@ if ($result) {
                     </div>
                     <div>
                         <label for="editImageInput" class="block mb-1 font-medium">Change Image (optional)</label>
-
                         <!-- Upload box -->
                         <label for="editImageInput" id="editUploadBox"
                             class="cursor-pointer flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-md h-48 text-gray-400 transition hover:border-gray-400">
@@ -146,16 +142,13 @@ if ($result) {
                             </svg>
                             <span class="text-sm font-medium">Upload Image Here (optional)</span>
                         </label>
-
                         <!-- Hidden file input -->
                         <input type="file" name="image" id="editImageInput" accept="image/*" class="hidden">
-
                         <!-- Preview -->
                         <div id="editPreviewContainer" class="mt-4 hidden">
                             <img id="editImagePreview" src="" alt="Preview" class="w-auto mx-auto rounded-md" />
                         </div>
                     </div>
-
                     <div class="pt-4 flex justify-end">
                         <button type="submit" class="bg-black text-white px-6 py-3 rounded-md">Update Project</button>
                     </div>
@@ -165,22 +158,31 @@ if ($result) {
 
         <script>
             function openEditModal(project) {
-            document.getElementById('editProjectId').value = project.id;
-            document.getElementById('editTitle').value = project.title;
-            document.getElementById('editLink').value = project.link_url;
-            
-            document.getElementById('editFrontendModal').classList.remove('hidden');
-        }
+                document.getElementById('editProjectId').value = project.id;
+                document.getElementById('editTitle').value = project.title;
+                document.getElementById('editLink').value = project.link_url;
 
-        function closeEditModal() {
-            document.getElementById('editFrontendModal').classList.add('hidden');
-        }
+                // Show current image preview
+                if (project.image_path) {
+                    document.getElementById('editImagePreview').src = project.image_path;
+                    document.getElementById('editPreviewContainer').classList.remove('hidden');
+                } else {
+                    document.getElementById('editImagePreview').src = '';
+                    document.getElementById('editPreviewContainer').classList.add('hidden');
+                }
 
-        const editFileInput = document.getElementById('editImageInput');
+                document.getElementById('editFrontendModal').classList.remove('hidden');
+            }
+
+            function closeEditModal() {
+                document.getElementById('editFrontendModal').classList.add('hidden');
+            }
+    
+            const editFileInput = document.getElementById('editImageInput');
             const editImagePreview = document.getElementById('editImagePreview');
             const editPreviewContainer = document.getElementById('editPreviewContainer');
             const editUploadBox = document.getElementById('editUploadBox');
-
+        
             editFileInput.addEventListener('change', () => {
                 const file = editFileInput.files[0];
                 if (file && file.type.startsWith('image/')) {
@@ -188,16 +190,17 @@ if ($result) {
                     reader.onload = e => {
                         editImagePreview.src = e.target.result;
                         editPreviewContainer.classList.remove('hidden');
-                        editUploadBox.classList.add('hidden');
+                        // Remove this line so upload box stays visible
+                        // editUploadBox.classList.add('hidden');
                     };
                     reader.readAsDataURL(file);
                 } else {
                     editPreviewContainer.classList.add('hidden');
                     editImagePreview.src = '';
-                    editUploadBox.classList.remove('hidden');
+                    // Remove this line so upload box stays visible
+                    // editUploadBox.classList.remove('hidden');
                 }
             });
-        
         </script>
 
         <!-- Modal -->
@@ -254,87 +257,59 @@ if ($result) {
                 </div>
             </div>
         </div>
-
     </div>
 
-    <div id="toast" class="fixed top-5 right-5 z-50 px-6 py-3 rounded-md shadow-lg text-white flex items-center gap-2 bg-green-500 pointer-events-none opacity-0"></div>
 
-<script>
-    // Modal open/close
-    const openBtn = document.getElementById('open-frontendmodal-btn');
-    const modal = document.getElementById('frontendmodal');
-    const closeBtn = document.getElementById('close-frontendmodal-btn');
+    <script>
+        // Modal open/close
+        const openBtn = document.getElementById('open-frontendmodal-btn');
+        const modal = document.getElementById('frontendmodal');
+        const closeBtn = document.getElementById('close-frontendmodal-btn');
 
-    openBtn.addEventListener('click', () => {
-        modal.classList.remove('hidden');
-        backdrop.classList.remove('hidden');
-    });
+        openBtn.addEventListener('click', () => {
+            modal.classList.remove('hidden');
+            backdrop.classList.remove('hidden');
+        });
 
-    closeBtn.addEventListener('click', () => {
-        modal.classList.add('hidden');
-        backdrop.classList.add('hidden');
-    });
+        closeBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+            backdrop.classList.add('hidden');
+        });
 
-    backdrop.addEventListener('click', () => {
-        modal.classList.add('hidden');
-        backdrop.classList.add('hidden');
-    });
+        backdrop.addEventListener('click', () => {
+            modal.classList.add('hidden');
+            backdrop.classList.add('hidden');
+        });
+    </script>
 
-    // Toast function (your existing code)
-    function showToast(message, type = 'success') {
-        const toast = document.getElementById('toast');
-        toast.textContent = message;
-
-        if (type === 'error') {
-            toast.classList.remove('bg-green-600', 'bg-green-500');
-            toast.classList.add('bg-red-600');
-        } else {
-            toast.classList.remove('bg-red-600');
-            toast.classList.add('bg-green-500');
-        }
-
-        toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-x-full');
-        toast.classList.add('opacity-100', 'pointer-events-auto');
-
-        setTimeout(() => {
-            toast.classList.remove('opacity-100', 'pointer-events-auto');
-            toast.classList.add('opacity-0', 'pointer-events-none', 'translate-x-full');
-        }, 3000);
-    }
-
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const modalFileInput = document.getElementById('frontendImageInput');
-    const modalImagePreview = document.getElementById('frontendImagePreview');
-    const modalPreviewContainer = document.getElementById('frontendPreviewContainer');
-    const replaceUploadBox = document.getElementById('frontendUploadBox');
-
-    if (modalFileInput) {
-        modalFileInput.addEventListener('change', () => {
-            const file = modalFileInput.files[0];
-
-            if (file && file.type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    modalImagePreview.src = e.target.result;
-                    modalPreviewContainer.classList.remove('hidden');
-                    replaceUploadBox.classList.add('hidden');
-                };
-                reader.readAsDataURL(file);
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modalFileInput = document.getElementById('frontendImageInput');
+            const modalImagePreview = document.getElementById('frontendImagePreview');
+            const modalPreviewContainer = document.getElementById('frontendPreviewContainer');
+            const replaceUploadBox = document.getElementById('frontendUploadBox');
+        
+            if (modalFileInput) {
+                modalFileInput.addEventListener('change', () => {
+                    const file = modalFileInput.files[0];
+                
+                    if (file && file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            modalImagePreview.src = e.target.result;
+                            modalPreviewContainer.classList.remove('hidden');
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        modalImagePreview.src = '';
+                        modalPreviewContainer.classList.add('hidden');
+                    }
+                });
             } else {
-                modalImagePreview.src = '';
-                modalPreviewContainer.classList.add('hidden');
-                replaceUploadBox.classList.remove('hidden');
+                console.error('Could not find modal file input for frontend modal.');
             }
         });
-    } else {
-        console.error('Could not find modal file input for frontend modal.');
-    }
-});
-</script>
-
+    </script>
 
 </body>
 </html>

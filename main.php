@@ -1,19 +1,19 @@
 <?php
-require 'dashboard/config.php';
+    require 'dashboard/config.php';
 
-$images = [];
-$result = $conn->query("SELECT image_path FROM project_images ORDER BY created_at DESC");
+    $images = [];
+    $result = $conn->query("SELECT image_path FROM project_images ORDER BY created_at DESC");
 
-while ($row = $result->fetch_assoc()) {
-    $images[] = $row['image_path'];
-}
+    while ($row = $result->fetch_assoc()) {
+        $images[] = $row['image_path'];
+    }
 
-// Get current project
-$stmt = $conn->prepare("SELECT image_path, link_url FROM current_project LIMIT 1");
-$stmt->execute();
-$stmt->bind_result($image_path, $link_url);
-$stmt->fetch();
-$stmt->close();
+    // Get current project
+    $stmt = $conn->prepare("SELECT image_path, link_url FROM current_project LIMIT 1");
+    $stmt->execute();
+    $stmt->bind_result($image_path, $link_url);
+    $stmt->fetch();
+    $stmt->close();
 ?>
 
 <!DOCTYPE html>
@@ -366,7 +366,7 @@ $stmt->close();
                         We create more than just websites—we design powerful, results-driven platforms that consistently deliver strong sales and marketing outcomes.
                     </p>
                 </div>
-                <img src="index-assets/laptop.png" alt="Website Showcase" class="bg-transparent mx-auto w-4/5 sm:w-3/5 h-auto">
+                <img src="assets/laptop.png" alt="Website Showcase" class="bg-transparent mx-auto w-4/5 sm:w-3/5 h-auto">
             </div>
             <div id="section-2" class="flex-1 min-w-full sm:min-w-[48%] md:basis-[48%] rounded-[30px] bg-[#121212] shadow-lg pb-10 md:pb-20 order-2">
                 <div class="px-6 pt-10 md:px-16 md:pt-20">
@@ -375,7 +375,7 @@ $stmt->close();
                         Our expertise in UX and user engagement ensures mobile applications that offer intuitive, smooth, and memorable user experiences.
                     </p>
                 </div>
-                <img src="index-assets/phone.png" alt="Mobile App Showcase" class="bg-transparent mx-auto w-4/5 sm:w-3/5 h-auto">
+                <img src="assets/phone.png" alt="Mobile App Showcase" class="bg-transparent mx-auto w-4/5 sm:w-3/5 h-auto">
             </div>
             <div id="section-3" class="flex-1 min-w-full sm:min-w-[48%] md:basis-[48%] rounded-[30px] bg-[#121212] shadow-lg pb-10 md:pb-20 order-3">
                 <div class="px-6 pt-10 md:px-16 md:pt-20">
@@ -384,7 +384,7 @@ $stmt->close();
                         From concept to execution, we handle your product’s development with precision—optimizing resources and ensuring smooth, scalable performance.
                     </p>
                 </div>
-                <img src="index-assets/development.png" alt="Development Showcase" class="bg-transparent mx-auto w-4/5 sm:w-3/5 h-auto">
+                <img src="assets/development.png" alt="Development Showcase" class="bg-transparent mx-auto w-4/5 sm:w-3/5 h-auto">
             </div>
             <div id="section-4" class="flex-1 min-w-full sm:min-w-[48%] md:basis-[48%] rounded-[30px] bg-[#121212] shadow-lg pb-10 md:pb-20 order-4">
                 <div class="px-6 pt-10 md:px-16 md:pt-20">
@@ -393,7 +393,7 @@ $stmt->close();
                         We design end-to-end strategies that turn innovative ideas into thriving digital products—driving market relevance and sustainable growth.
                     </p>
                 </div>
-                <img src="index-assets/strategy.png" alt="Strategy Showcase" class="bg-transparent mx-auto w-4/5 sm:w-3/5 h-auto">
+                <img src="assets/strategy.png" alt="Strategy Showcase" class="bg-transparent mx-auto w-4/5 sm:w-3/5 h-auto">
             </div>
         </div>        
     </section>
@@ -493,7 +493,7 @@ $stmt->close();
                 </div>
             </div>
             <div id="innovateImage" class="flex justify-center opacity-0 scale-75 translate-x-full">
-                <img src="index-assets/console.png" alt="Innovation Image"
+                <img src="assets/console.png" alt="Innovation Image"
                 class="w-full sm:w-4/5 max-w-md rounded-lg bg-transparent" />
             </div>
         </div>
