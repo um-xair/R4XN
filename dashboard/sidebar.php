@@ -11,7 +11,7 @@ if (session_status() === PHP_SESSION_NONE) {
                 <img src="../index-assets/r4xn-black.png" class="w-8 h-8" alt="Logo" />
                 <h1 id="sidebarTitle" class="text-xl font-bold text-white">R4XN</h1>
             </div>
-            <button id="mobileCloseBtn" class="lg:hidden p-1 ml-2 hover:bg-gray-700 rounded text-white">
+            <button id="mobileCloseBtn" class="lg:hidden p-1 ml-2 text-white">
                 <i class="fas fa-times text-lg"></i>
             </button>
         </div>
@@ -77,20 +77,34 @@ if (session_status() === PHP_SESSION_NONE) {
                 </svg>
                 <span class="link-label">Iot Solution</span>
             </button>
+            <form method="POST" action="logout.php" class="block lg:hidden w-full">
+                <button type="submit" class="flex items-center gap-3 py-3 px-4 rounded-md hover:bg-[#2b2b2b] hover:text-white transition w-full text-white">
+                    <svg class="w-6 h-6 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out">
+                        <path d="m16 17 5-5-5-5"/>
+                        <path d="M21 12H9"/>
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                    </svg>
+                    <span class="link-label">Logout</span>
+                </button>
+            </form>
         </nav>
     </aside>
 </div>
 
 <!-- Header -->
 <div id="mainContent" class="flex-1 flex flex-col min-w-0 transition-all duration-300">
-    <header class="flex items-center justify-between border-b border-gray-300 p-5 flex-wrap bg-[##F5F5FD]">
+    <header class="flex items-center justify-between border-b border-gray-300 p-5 flex-wrap bg-[#F5F5FD]">
+        
+        <!-- Left Section: Sidebar Toggles -->
         <div class="flex items-center gap-4">
+            <!-- Mobile Toggle -->
             <button id="toggleSidebar" class="lg:hidden">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>
 
+            <!-- Desktop Collapse -->
             <button id="collapseSidebarBtn" class="hidden lg:block transition">
                 <svg id="collapseSidebarIcon" class="w-6 h-6 transition-transform duration-300 text-black" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
                     <path d="M3 19V5" />
@@ -100,8 +114,9 @@ if (session_status() === PHP_SESSION_NONE) {
             </button>
         </div>
 
-        <div class="flex items-center gap-4">
-            <div onclick="window.location.href='profile.php'" class="flex items-center gap-3 cursor-pointer">
+        <!-- Right Section: User Info + Logout -->
+        <div class="flex flex-wrap items-center gap-4 justify-end w-full lg:w-auto mt-4 lg:mt-0">
+            <div onclick="window.location.href='profile.php'" class="flex items-center gap-3 cursor-pointer w-full sm:w-auto">
                 <img src="<?= htmlspecialchars($_SESSION['user_image'] ?: 'https://i.pinimg.com/736x/a2/61/ad/a261ad5056339af1980926d291cf4183.jpg') ?>"
                      class="w-12 h-12 rounded-full border-2 border-gray-400 object-cover" />
                 <div class="flex flex-col text-sm leading-tight">
@@ -109,16 +124,14 @@ if (session_status() === PHP_SESSION_NONE) {
                     <span class="text-gray-400 text-xs"><?= htmlspecialchars($_SESSION['user_email']) ?></span>
                 </div>
             </div>
-            <form method="POST" action="logout.php">
-                <button type="submit" class="px-6 py-3 bg-black text-white rounded-md">
+
+            <form method="POST" action="logout.php" class="w-full sm:w-auto hidden lg:block">
+                <button type="submit" class="w-full sm:w-auto px-6 py-2 bg-black text-white rounded-md text-sm">
                     Logout
                 </button>
             </form>
         </div>
     </header>
-
-
-
 
     <script>
         const sidebarWrapper = document.getElementById("sidebarWrapper");
