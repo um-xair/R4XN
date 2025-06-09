@@ -59,31 +59,33 @@
         </div>       
 
         <?php
-include 'dashboard/config.php';
-$devs = $conn->query("SELECT * FROM developers ORDER BY created_at DESC");
-?>
+            include 'dashboard/config.php';
+            $devs = $conn->query("SELECT * FROM developers ORDER BY created_at DESC");
+    
+            $counter = 1;
+        ?>
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl w-full">
-  <?php while ($d = $devs->fetch_assoc()): ?>
-    <div class="relative group rounded-[30px] overflow-hidden flex h-96 bg-cover bg-center" style="background-image: url('dashboard/<?= htmlspecialchars($d['image_path']) ?>');">
-      <div class="w-20 bg-black/60 p-4 flex flex-col justify-around items-center">
-        <?php foreach (str_split($d['name']) as $ch): ?>
-          <span class="customfont text-4xl font-extrabold"><?= htmlspecialchars($ch) ?></span>
-        <?php endforeach; ?>
-      </div>
-      <a href="<?= htmlspecialchars($d['link']) ?>" target="_blank"
-         class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black text-white px-6 py-3 rounded-full flex items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor"
-             stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M13 5H19V11"/>
-          <path d="M19 5L5 19"/>
-        </svg>
-        View Portfolio
-      </a>
-    </div>
-  <?php endwhile; ?>
-</div>
-
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl w-full">
+            <?php while ($d = $devs->fetch_assoc()): ?>
+                <div id="dev<?= $counter ?>" class="developer-card relative group rounded-[30px] overflow-hidden flex h-96 bg-cover bg-center" style="background-image: url('dashboard/<?= htmlspecialchars($d['image_path']) ?>');">
+                    <div class="w-20 bg-black/60 p-4 flex flex-col justify-around items-center">
+                        <?php foreach (str_split($d['name']) as $ch): ?>
+                            <span class="customfont text-4xl font-extrabold"><?= htmlspecialchars($ch) ?></span>
+                        <?php endforeach; ?>
+                    </div>
+                    <a href="<?= htmlspecialchars($d['link']) ?>" target="_blank"
+                         class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black text-white px-6 py-3 rounded-full flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor"
+                             stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M13 5H19V11"/>
+                            <path d="M19 5L5 19"/>
+                        </svg>
+                        View Portfolio
+                    </a>
+                </div>
+                <?php $counter++; ?>
+            <?php endwhile; ?>
+        </div>
     </section>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -103,21 +105,24 @@ $devs = $conn->query("SELECT * FROM developers ORDER BY created_at DESC");
           }
         );
 
-        ['#dev1', '#dev2'].forEach(id => {
-          gsap.fromTo(id, 
-            {autoAlpha: 0, y: 100, rotation: 15, scale: 0.8, skewY: 10}, 
-            {
-              autoAlpha: 1,
-              y: 0,
-              rotation: 0,
-              scale: 1,
-              skewY: 0,
-              ease: "power3.out",
-              duration: 1.2,
-              delay: 0.5
-            }
-          );
-        });
+        const devCount = <?= $devs->num_rows ?>; 
+
+        for (let i = 1; i <= devCount; i++) {
+            const id = '#dev' + i;
+            gsap.fromTo(id, 
+                {autoAlpha: 0, y: 100, rotation: 15, scale: 0.8, skewY: 10}, 
+                {
+                    autoAlpha: 1,
+                    y: 0,
+                    rotation: 0,
+                    scale: 1,
+                    skewY: 0,
+                    ease: "power3.out",
+                    duration: 1.2,
+                    delay: 0.5 * i  
+                }
+            );
+        }
     </script>
 
     <!-- Alpine.js CDN for interactivity -->

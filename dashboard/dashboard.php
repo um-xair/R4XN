@@ -43,7 +43,6 @@ if (!isset($_SESSION['user_id'])) {
 
             </main>
         </div>
-        <div id="toast" class="fixed top-5 right-5 text-white px-6 py-3 rounded-md shadow-lg opacity-0 pointer-events-none z-50 transition-transform duration-500 transform translate-x-full"></div>
     </div>
 
 </body>

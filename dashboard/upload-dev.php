@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     die('Failed to move uploaded file.');
   }
 
-  $image_path = 'dashboard/dev/' . $filename;
+  $image_path = 'dev/' . $filename;
 
   $stmt = $conn->prepare("INSERT INTO developers (name, link, image_path) VALUES (?, ?, ?)");
   $stmt->bind_param("sss", $name, $link, $image_path);
