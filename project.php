@@ -34,137 +34,11 @@
     pointer-events: none;
     z-index: -1;
     }
-    .fade-in {
-        animation: fadeIn 0.5s ease-in;
-    }
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
     ::-webkit-scrollbar {
         display: none;
     }
     html {
         scroll-behavior: smooth;
-    }
-    @keyframes floating {
-        0% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-        100% { transform: translateY(0); }
-    }
-    .container {
-        position: relative;
-        width: 100%;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        perspective: 900px;
-        visibility: hidden;
-    }
-    .hi {
-        position: relative;
-        z-index: 1;
-        text-transform: uppercase;
-        text-align: center;
-        transform-style: preserve-3d;
-    }
-    .hi__cuboid {
-        position: relative;
-        width: 500px;
-        height: 70px;
-        transform-style: preserve-3d;
-        margin: 30px 0;
-        transform: rotateX(20deg) rotateY(15deg); /* Unified rotation */
-        transition: transform 0.6s ease, width 0.6s ease, height 0.6s ease;
-    }
-    .face {
-        position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-        background: black;
-        border: 1px solid #5E5D5E;
-        transition: transform 0.6s ease, background 0.6s ease, color 0.6s ease;
-    }
-    .face--front {transform: translateZ(5px); background: black; color: white;}
-    .face--back {transform: translateZ(-65px) rotateX(180deg); background: black; color: white;}
-    .face--top {transform: rotateX(90deg) translateY(-30px) translateZ(35px); background: white; color: black;}
-    .face--bottom {transform: rotateX(-90deg) translateY(30px) translateZ(35px); background: white; color: black;
-    }
-    .hi__word {
-        margin: 0;
-        font-size: 90px;
-        line-height: 1;
-    }
-    .hi__base {
-        position: absolute;
-        z-index: 0;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 752px;
-        height: 250px;
-    }
-    .hi__base-plate {
-        width: 100%;
-        height: 100%;
-        background: black;
-        border: 1px solid #5E5D5E;
-    }
-    .hi__location {
-        position: absolute;
-        margin: 0;
-        font-size: 20px;
-    }
-    .hi__location--lat {
-        top: 50%;
-        left: 0;
-        transform: rotate(-90deg) translateX(10px);
-    }
-    .hi__location--long {
-        top: 50%;
-        right: 0;
-        transform: rotate(90deg) translateX(-10px);
-    }
-    @media (max-width: 1024px) {
-        .hi__cuboid {
-            width: 350px;
-            height: 55px;
-            transform: rotateX(20deg) rotateY(15deg);
-        }
-        .hi__word {
-            font-size: 60px;
-        }
-        .face--front {transform: translateZ(-1px);}
-        .face--back {transform: translateZ(-55px) rotateX(180deg);}
-        .face--top {transform: rotateX(90deg) translateY(-28px) translateZ(28px);}
-        .face--bottom {transform: rotateX(-90deg) translateY(28px) translateZ(28px);}
-    }
-    @media (max-width: 640px) {
-        .hi__cuboid {
-            width: 250px;
-            height: 45px;
-            transform: rotateX(20deg) rotateY(15deg);
-        }
-        .hi__word {
-            font-size: 45px;
-        }
-        .face--front {transform: translateZ(-1px);}
-        .face--back {transform: translateZ(-45px) rotateX(180deg);}
-        .face--top {transform: rotateX(90deg) translateY(-23px) translateZ(22px);}
-        .face--bottom {transform: rotateX(-90deg) translateY(23px) translateZ(23px);}
-        .hi__base {
-            width: 80%;
-            height: 200px;
-        }
     }
 </style>
 </head>
@@ -172,109 +46,82 @@
 
     <?php include 'header.php';?>
 
-    <div class="container relative w-full min-h-screen flex flex-col items-center justify-center perspective-[900px]">
-        <div class="hi space-y-10">
-            <div class="hi__cuboid">
-                <div class="face face--front"><p class="hi__word">FRONT</p></div>
-                <div class="face face--back"><p class="hi__word">FRONT</p></div>
-                <div class="face face--top"><p class="hi__word">FRONT</p></div>
-                <div class="face face--bottom"><p class="hi__word">FRONT</p></div>
-            </div>
-            <div class="hi__cuboid">
-                <div class="face face--front"><p class="hi__word">END</p></div>
-                <div class="face face--back"><p class="hi__word">END</p></div>
-                <div class="face face--top"><p class="hi__word">END</p></div>
-                <div class="face face--bottom"><p class="hi__word">END</p></div>
-            </div>
-            <div class="hi__cuboid">
-                <div class="face face--front"><p class="hi__word">PROJECTS</p></div>
-                <div class="face face--back"><p class="hi__word">PROJECTS</p></div>
-                <div class="face face--top"><p class="hi__word">PROJECTS</p></div>
-                <div class="face face--bottom"><p class="hi__word">PROJECTS</p></div>
-            </div>
-        </div>
-        <div class="hi__base mt-10">
-            <div class="hi__base-plate"></div>
-            <p class="hi__location hi__location--lat lg:block hidden">53.3454° N</p>
-            <p class="hi__location hi__location--long lg:block hidden">-6.3070° E</p>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelector('.container').style.visibility = 'visible';
-            const cuboids = document.querySelectorAll('.hi__cuboid');
-
-            cuboids.forEach((cuboid, i) => {
-                const delay = i * 0.2;
-                gsap.to(cuboid, {
-                    rotationX: -360,
-                    duration: 8,
-                    repeat: -1,
-                    ease: 'none',
-                    delay
-                });
-            });
-        });
-    </script>
-
-    <section class="py-20 text-white text-center min-h-screen w-full flex flex-col items-center justify-center">
-        <div id="parallaxContainer"
-             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10 p-5 w-full lg:w-[85%] mx-auto">
+    <!-- Link-wrapped cards with animation class -->
+    <section class="min-h-screen px-6 py-32 flex flex-col items-center justify-center text-white">
+        <h2 class="text-transparent bg-gradient-to-t from-gray-400 to-white bg-clip-text leading-tight font-bold text-8xl mb-16 text-center">
+            <div>Our Digital Showcase</div>
+        </h2>
+        <div id="projectCards" class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full">
+            <a href="frontend.php" class="group card-link">
+                <div class="flex flex-col bg-[#121212] p-10 space-y-8 rounded-3xl hover:bg-white hover:text-black transition duration-300 h-full">
+                    <span class="text-sm text-gray-400 mb-2 group-hover:text-black">/ 01</span>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 group-hover:stroke-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="17" cy="4" r="2"/>
+                            <path d="M15.59 5.41 5.41 15.59"/>
+                            <circle cx="4" cy="17" r="2"/>
+                            <path d="M12 22s-4-9-1.5-11.5S22 12 22 12"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-4xl font-bold group-hover:text-black">Frontend Projects</h3>
+                    <p class="text-gray-400 text-sm group-hover:text-black">Bringing ideas to life through engaging, user-first frontend experiences.</p>
+                </div>
+            </a>
+            <a href="system.php" class="group card-link">
+                <div class="flex flex-col bg-[#121212] p-10 space-y-8 rounded-3xl hover:bg-white hover:text-black transition duration-300 h-full">
+                    <span class="text-sm text-gray-400 mb-2 group-hover:text-black">/ 02</span>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 group-hover:stroke-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="18" height="12" x="3" y="4" rx="2" ry="2"/>
+                            <line x1="2" x2="22" y1="20" y2="20"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-4xl font-bold group-hover:text-black">UI/UX System Design</h3>
+                    <p class="text-gray-400 text-sm group-hover:text-black">Merging aesthetics with logic to deliver high-performing systems.</p>
+                </div>
+            </a>
+            <a href="iot.php" class="group card-link">
+                <div class="flex flex-col bg-[#121212] p-10 space-y-8 rounded-3xl hover:bg-white hover:text-black transition duration-300 h-full">
+                    <span class="text-sm text-gray-400 mb-2 group-hover:text-black">/ 03</span>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 group-hover:stroke-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 20v2"/><path d="M12 2v2"/><path d="M17 20v2"/><path d="M17 2v2"/><path d="M2 12h2"/><path d="M2 17h2"/><path d="M2 7h2"/><path d="M20 12h2"/><path d="M20 17h2"/><path d="M20 7h2"/><path d="M7 20v2"/><path d="M7 2v2"/>
+                            <rect x="4" y="4" width="16" height="16" rx="2"/>
+                            <rect x="8" y="8" width="8" height="8" rx="1"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-4xl font-bold group-hover:text-black">IoT Smart Solutions</h3>
+                    <p class="text-gray-400 text-sm group-hover:text-black">Connecting the physical and digital worlds through intelligent automation.</p>
+                </div>
+            </a>
         </div>
     </section>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script>
-        const products = [
-            { title: "Photography Portfolio", link: "https://r4xn.netlify.app/design/portfolio.html", thumbnail: "/project-assets/portfolio-main.png" },
-            { title: "Card Template Lab", link: "https://r4xn.netlify.app/card.html", thumbnail: "/project-assets/card-main.png" },
-            { title: "Travel Website", link: "https://r4xn.netlify.app/design/travel.html", thumbnail: "/project-assets/food-main.png" },
-            { title: "GradientX", link: "https://r4xn.netlify.app/gradient.html", thumbnail: "/project-assets/gradient-main.png" },
-            { title: "Website-Animation-Reveal-GSAP", link: "https://r4xn.netlify.app/design/animation-website.html", thumbnail: "/project-assets/web-main.png" },
-            { title: "Color Nest Studio", link: "https://r4xn.netlify.app/pallete.html", thumbnail: "/project-assets/pallete-main.png" },
-        ];
-
-        const parallaxContainer = document.getElementById("parallaxContainer");
-
-        products.forEach((product, index) => {
-            const item = document.createElement("a");
-            item.href = product.link;
-            item.className = `relative group w-full h-full rounded-[20px] overflow-hidden transition-transform duration-300 hover:scale-105 shadow-lg 
-                ${index % 2 === 0 ? 'animate-[floating_4s_infinite_ease-in-out]' : 'animate-[floating_6s_infinite_ease-in-out]'}`;
-            item.target = "_blank";
-            item.innerHTML = `
-                <img src="${product.thumbnail}" alt="${product.title}" class="w-full h-full object-cover rounded-[20px] group-hover:scale-110 transition-transform duration-500">
-                <div class="absolute inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <span class="text-white text-lg font-semibold relative">
-                        ${product.title}
-                        <span class="absolute left-0 bottom-[-4px] w-0 h-[2px] bg-white transition-all duration-500 group-hover:w-full"></span>
-                    </span>
-                </div>
-            `;
-            parallaxContainer.appendChild(item);
+        gsap.from("h2", {
+            opacity: 0,
+            y: -40,
+            duration: 1,
+            ease: "power3.out"
         });
 
-        document.addEventListener("mousemove", (event) => {
-            const { clientX, clientY } = event;
-            const centerX = window.innerWidth / 2;
-            const centerY = window.innerHeight / 2;
-
-            const deltaX = (clientX - centerX) * 0.01;
-            const deltaY = (clientY - centerY) * 0.01;
-
-            parallaxContainer.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+        gsap.from(".card-link", {
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            delay: 0.3,
+            stagger: 0.2,
+            ease: "power2.out"
         });
 
-        window.addEventListener("load", () => {
-            gsap.from("#parallaxContainer a", {
-                opacity: 0,
-                scale: 0.8,
-                stagger: 0.2,
-                duration: 1.5,
-                scrub: true,
-                ease: "power3.out",
-                delay: 1,
-            });
+        gsap.from(".card-link h3, .card-link p", {
+            opacity: 0,
+            y: 30,
+            duration: 1,
+            delay: 0.6,
+            stagger: 0.15,
+            ease: "power2.out"
         });
     </script>
 

@@ -1,4 +1,4 @@
-<header class="absolute md:top-10 left-0 w-full bg-[#1B1B1B] z-50 text-white bg-opacity-100 lg:bg-opacity-10 lg:backdrop-blur-md rounded-md">
+<header id="main-header" class="absolute md:top-10 left-0 w-full bg-[#1B1B1B] z-50 text-white bg-opacity-100 lg:bg-opacity-10 lg:backdrop-blur-md rounded-md">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         <a href="main.php" class="text-3xl font-bold">R4XN</a>
         <nav class="hidden md:flex space-x-10 items-center">
@@ -105,6 +105,25 @@
                 desktopResourcesMenu.classList.add("hidden");
                 desktopMenuOpen = false;
             }
+        });
+
+        let lastScroll = 0;
+        const header = document.getElementById('main-header');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+        
+            if (currentScroll > lastScroll && currentScroll > 50) {
+                // Scrolling down
+                header.classList.add('opacity-0');
+                header.classList.remove('opacity-100');
+            } else {
+                // Scrolling up
+                header.classList.add('opacity-100');
+                header.classList.remove('opacity-0');
+            }
+        
+            lastScroll = currentScroll;
         });
     </script>
 
