@@ -8,7 +8,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <aside id="sidebar" class="w-64 bg-[#080808] p-4 space-y-6 h-full transition-all duration-300 flex flex-col overflow-y-hidden hover:overflow-y-auto">
         <div class="flex items-center justify-between">
             <div class="flex items-center space-x-4 py-3">
-                <img src="../index-assets/r4xn-black.png" class="w-8 h-8" alt="Logo" />
+                <img src="../assets/r4xn-black.png" class="w-8 h-8" alt="Logo" />
                 <h1 id="sidebarTitle" class="text-xl font-bold text-white">R4XN</h1>
             </div>
             <button id="mobileCloseBtn" class="lg:hidden p-1 ml-2 text-white">
