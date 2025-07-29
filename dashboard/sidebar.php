@@ -77,6 +77,14 @@ if (session_status() === PHP_SESSION_NONE) {
                 </svg>
                 <span class="link-label">Iot Solution</span>
             </button>
+            <button onclick="window.location.href='manage-clients.php'" class="flex items-center gap-3 py-3 px-4 rounded-md hover:bg-[#2b2b2b] hover:text-white transition w-full text-white">
+                <svg class="w-6 h-6 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-round-icon lucide-users-round">
+                    <path d="M18 21a8 8 0 0 0-16 0"/>
+                    <circle cx="10" cy="8" r="5"/>
+                    <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/>
+                </svg>
+                <span class="link-label">Manage Clients</span>
+            </button>
             <form method="POST" action="logout.php" class="block lg:hidden w-full">
                 <button type="submit" class="flex items-center gap-3 py-3 px-4 rounded-md hover:bg-[#2b2b2b] hover:text-white transition w-full text-white">
                     <svg class="w-6 h-6 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out">

@@ -7,11 +7,12 @@
 
     require_once 'config.php'; 
 
-    $frontendCount = $systemCount = $iotCount = 0;
+    $frontendCount = $systemCount = $iotCount = $clientCount = 0;
 
     $frontendResult = $conn->query("SELECT COUNT(*) AS total FROM frontend_projects");
     $systemResult   = $conn->query("SELECT COUNT(*) AS total FROM system_projects");
     $iotResult      = $conn->query("SELECT COUNT(*) AS total FROM iot_projects");
+    $clientResult   = $conn->query("SELECT COUNT(*) AS total FROM clients");
 
     if ($frontendResult && $row = $frontendResult->fetch_assoc()) {
         $frontendCount = $row['total'];
@@ -21,6 +22,9 @@
     }
     if ($iotResult && $row = $iotResult->fetch_assoc()) {
         $iotCount = $row['total'];
+    }
+    if ($clientResult && $row = $clientResult->fetch_assoc()) {
+        $clientCount = $row['total'];
     }
 
     $totalProjects = $frontendCount + $systemCount + $iotCount;
@@ -85,7 +89,7 @@
                 </div>
 
                 <!-- Analytics Section -->
-                <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 mb-4">
+                <div class="grid grid-cols-1 sm:grid-cols-5 gap-2 mb-4">
                     <div class="bg-white p-4 rounded-md border flex items-stretch space-x-4">
                         <div class="bg-black text-white p-2 rounded-md flex items-center justify-center h-full aspect-square">
                             <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-monitor-cog-icon lucide-monitor-cog">
@@ -158,6 +162,20 @@
                         <div class="flex flex-col justify-center">
                             <p class="text-xs text-gray-400 mb-1">IoT Solution</p>
                             <h2 class="text-xl font-semibold"><?= $iotCount ?></h2>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-md border flex items-stretch space-x-4">
+                        <div class="bg-black text-white p-2 rounded-md flex items-center justify-center h-full aspect-square">
+                            <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users-icon lucide-users">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="m22 21-2-2"/>
+                                <path d="M16 16h.01"/>
+                            </svg>
+                        </div>
+                        <div class="flex flex-col justify-center">
+                            <p class="text-xs text-gray-400 mb-1">Total Clients</p>
+                            <h2 class="text-xl font-semibold"><?= $clientCount ?></h2>
                         </div>
                     </div>
                 </div>
