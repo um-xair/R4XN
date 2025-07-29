@@ -3,7 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>R4XN | Project</title>
+<title>R4XN IoT Solutions – Smart Automation & Connected Systems</title>
+<meta name="description" content="Build smarter with R4XN's IoT solutions—connecting physical devices and cloud systems for automation, monitoring, and optimization." />
+<meta name="keywords" content="IoT solutions, smart tech, automation, R4XN IoT, device integration, system monitoring, embedded systems, edge computing" />
+<link rel="canonical" href="https://r4xn.com/iot.php" />
+<meta property="og:title" content="IoT Smart Solutions – Powered by R4XN" />
+<meta property="og:description" content="Explore how R4XN bridges the digital and physical world with IoT platforms built for scale and real-time performance." />
+<meta property="og:url" content="https://r4xn.com/iot.php" />
+<meta property="og:image" content="https://r4xn.com/iot-preview.jpg" />
 <link rel="icon" href="assets/r4xn-black.png" type="image/png" sizes="32x32">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -12,30 +19,30 @@
         theme: {
             extend: {
                 fontFamily: {
-                    'outfit': ['Outfit', 'sans-serif']
+                    'clash': ['Clash Grotesk', 'sans-serif']
                 }
             }
         }
     }
 </script>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Grotesk:wght@200..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
 <style>
     body {
-        font-family: 'Outfit', sans-serif;
-        background-color: #080808;
+        font-family: 'Clash Grotesk', sans-serif;
+        background-color: #f4f4f4;
         margin: 0;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: white;
+        color: #111;
         overflow: auto;
     }
     body::before {
         --size: 45px;
-        --line: rgba(255, 255, 255, 0.115);
+        --line: rgba(0, 0, 0, 0.1);
         content: '';
         position: fixed;
         inset: 0;
@@ -45,6 +52,13 @@
         mask: linear-gradient(-15deg, transparent 50%, white);
         pointer-events: none;
         z-index: -1;
+    }
+    .dark body {
+        background-color: #080808;
+        color: white;
+    }
+    .dark body::before {
+        --line: rgba(255, 255, 255, 0.115);
     }
     .fade-in {
         animation: fadeIn 0.5s ease-in;
@@ -102,15 +116,22 @@
         justify-content: center;
         width: 100%;
         height: 100%;
-        background: black;
+        background: #f4f4f4;
         border: 1px solid #5E5D5E;
         transition: transform 0.6s ease, background 0.6s ease, color 0.6s ease;
     }
-    .face--front {transform: translateZ(5px); background: black; color: white;}
-    .face--back {transform: translateZ(-65px) rotateX(180deg); background: black; color: white;}
-    .face--top {transform: rotateX(90deg) translateY(-30px) translateZ(35px); background: white; color: black;}
-    .face--bottom {transform: rotateX(-90deg) translateY(30px) translateZ(35px); background: white; color: black;
+    .face--front {transform: translateZ(5px); background: #f4f4f4; color: #111;}
+    .face--back {transform: translateZ(-65px) rotateX(180deg); background: #f4f4f4; color: #111;}
+    .face--top {transform: rotateX(90deg) translateY(-30px) translateZ(35px); background: #111; color: #f4f4f4;}
+    .face--bottom {transform: rotateX(-90deg) translateY(30px) translateZ(35px); background: #111; color: #f4f4f4;}
+    .dark .face {
+        background: black;
+        color: white;
     }
+    .dark .face--front {background: black; color: white;}
+    .dark .face--back {background: black; color: white;}
+    .dark .face--top {background: white; color: black;}
+    .dark .face--bottom {background: white; color: black;}
     .hi__word {
         margin: 0;
         font-size: 90px;
@@ -128,13 +149,20 @@
     .hi__base-plate {
         width: 100%;
         height: 100%;
-        background: black;
+        background: #f4f4f4;
         border: 1px solid #5E5D5E;
+    }
+    .dark .hi__base-plate {
+        background: black;
     }
     .hi__location {
         position: absolute;
         margin: 0;
         font-size: 20px;
+        color: #111;
+    }
+    .dark .hi__location {
+        color: white;
     }
     .hi__location--lat {
         top: 50%;
@@ -180,7 +208,7 @@
     }
 </style>
 </head>
-<body class="font-[Outfit] bg-[#080808] m-0 flex flex-col items-center justify-start text-white overflow-auto">
+<body class="font-[Clash_Grotesk] bg-[#f4f4f4] dark:bg-[#080808] m-0 flex flex-col items-center justify-start text-black dark:text-white overflow-auto">
 
     <?php include 'header.php';?>
 
@@ -207,8 +235,8 @@
         </div>
         <div class="hi__base mt-10">
             <div class="hi__base-plate"></div>
-            <p class="hi__location hi__location--lat lg:block hidden">53.3454° N</p>
-            <p class="hi__location hi__location--long lg:block hidden">-6.3070° E</p>
+            <p class="hi__location hi__location--lat lg:block hidden">53.3454째 N</p>
+            <p class="hi__location hi__location--long lg:block hidden">-6.3070째 E</p>
         </div>
     </div>
 
@@ -231,7 +259,7 @@
     </script>
 
     <?php
-        include 'dashboard/config.php';
+        include 'erp.r4xn.com/config.php';
 
         $projects = [];
         $result = $conn->query("SELECT * FROM iot_projects ORDER BY created_at DESC");
@@ -242,13 +270,18 @@
         }
     ?>
 
-    <section class="py-20 text-white text-center min-h-screen w-full flex flex-col items-center justify-center">
+    <section class="py-20 text-black dark:text-white text-center min-h-screen w-full flex flex-col items-center justify-center">
+    <?php if (empty($projects)): ?>
+        <div class="text-gray-600 dark:text-gray-400 text-lg italic mt-10">
+            No IoT projects have been uploaded yet. Stay tuned!
+        </div>
+    <?php else: ?>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10 p-5 w-full lg:w-[85%] mx-auto">
             <?php foreach ($projects as $project): ?>
                 <a href="<?= htmlspecialchars($project['link_url']) ?>" target="_blank"
                    class="relative group w-full h-full rounded-[20px] overflow-hidden transition-transform duration-300">
 
-                    <img src="dashboard/<?= htmlspecialchars($project['image_path']) ?>" 
+                    <img src="erp.r4xn.com/<?= htmlspecialchars($project['image_path']) ?>" 
                          alt="<?= htmlspecialchars($project['title']) ?>" 
                          class="w-full h-full object-cover rounded-[20px] group-hover:scale-105 transition-transform duration-500">
 
@@ -258,10 +291,10 @@
                             <span class="absolute left-0 bottom-[-4px] w-0 h-[2px] bg-white transition-all duration-500 group-hover:w-full"></span>
                         </span>
                     </div>
-
                 </a>
             <?php endforeach; ?>
         </div>
+    <?php endif; ?>
     </section>
 
     <?php include 'footer.php';?>

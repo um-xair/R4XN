@@ -17,16 +17,29 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0 , user-scalable=no">
 <title>R4XN</title>
 <link rel="icon" href="assets/r4xn-black.png" type="image/png" sizes="32x32">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@200,300,400,500,600,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+        darkMode: 'class',
+        theme: {
+            extend: {
+                fontFamily: {
+                    'poppins': ['Poppins', 'sans-serif'],
+                    'roboto': ['Roboto', 'sans-serif'],
+                    'clash-grotesk': ['Clash Grotesk', 'sans-serif']
+                }
+            }
+        }
+    }
+</script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
@@ -34,13 +47,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
 <style>
     body {
-        font-family: "Poppins", sans-serif;
-        background-color: #080808;
+        font-family: 'Clash Grotesk', sans-serif;
+        background-color: #f4f4f4;
     }
     html{
         overflow-x: hidden;
     }
-    .customfont {
+    .{
         font-family: "Roboto", sans-serif;
     }
     ::-webkit-scrollbar {
@@ -48,7 +61,7 @@
     }
     body::before {
         --size: 45px;
-        --line: rgba(255, 255, 255, 0.115);
+        --line: rgba(0, 0, 0, 0.1);
         content: '';
         position: fixed;
         inset: 0;
@@ -59,6 +72,16 @@
         pointer-events: none;
         z-index: -1;
     }
+    
+    /* Dark mode styles */
+    .dark body {
+        background-color: #080808;
+    }
+    
+    .dark body::before {
+        --line: rgba(255, 255, 255, 0.42);
+    }
+    
     .wrapper {
         display: flex;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
@@ -80,12 +103,12 @@
 </style>
 </head>
 
-<body class="max-w-screen overflow-x-hidden">
+<body class="max-w-screen overflow-x-hidden bg-[#f4f4f4] dark:bg-[#080808]">
 
     <?php include 'header.php';?>
 
     <section class="min-h-screen px-6 py-10 md:px-32 md:py-10 flex items-center justify-start w-full">
-        <h1 id="animatedText" class="max-w-4xl text-transparent bg-gradient-to-t from-gray-400 to-white bg-clip-text leading-[1] font-bold text-6xl md:text-[8rem] lg:text-[10rem]">
+        <h1 id="animatedText" class="max-w-4xl text-transparent bg-gradient-to-t from-gray-600 to-black dark:from-gray-400 dark:to-white bg-clip-text leading-[1] font-bold text-6xl md:text-[8rem] lg:text-[10rem]">
             R4XN Projects & Solutions.
         </h1>
     </section>
@@ -176,46 +199,46 @@
         }
     </style>
 
-    <section class="min-h-screen px-6 py-10 flex flex-col items-center justify-center text-center w-full">
-        <h2 id="revealText" class="max-w-4xl text-2xl md:text-5xl font-semibold text-white mb-16 leading-tight">
-            We transform your idea<br>into reality—designed,<br>implemented, and marketed with transparency and<br>efficiency at every step
+    <section class="min-h-screen px-6 py-10 flex flex-col items-center justify-center text-center w-full space-y-20">
+        <h2 id="revealText" class="max-w-5xl text-2xl md:text-5xl font-medium text-black dark:text-white">
+            We transform your ideas into <br>powerful digital experiences—designed with purpose, built with precision, and marketed with transparency, efficiency, and measurable impact at every step of the journey.
         </h2>
         <div class="flex flex-col lg:flex-row gap-10 justify-center w-full max-w-6xl">
             <div class="flex flex-col gap-8 md:gap-14">
-                <div class="box left-box bg-[#080808] relative p-8 md:px-10 rounded-[30px] shadow-lg flex flex-col justify-center max-w-[550px] md:aspect-[2/1] mx-auto overflow-hidden">
+                <div class="box left-box bg-white dark:bg-[#080808] relative p-8 md:px-10 rounded-[30px] shadow-lg flex flex-col justify-center max-w-[550px] md:aspect-[2/1] mx-auto overflow-hidden">
                     <div class="absolute inset-0 rounded-[30px] border-[2.5px] border-transparent pointer-events-none animate-border"></div>
                     <div class="relative z-10">
-                        <h3 class="customfont text-left text-4xl md:text-[4rem] text-white leading-tight">5+ Years</h3>
-                        <p class="text-sm md:text-lg text-[#737373] text-left mt-2">
+                        <h3 class="text-left text-4xl md:text-[4rem] text-black dark:text-white leading-tight">5+ Years</h3>
+                        <p class="text-sm md:text-xl text-gray-600 dark:text-[#737373] text-left">
                             Practical experience in developing and optimizing front-end and back-end systems.
                         </p>
                     </div>
                 </div>
-                <div class="box left-box bg-[#080808] relative p-8 md:px-10 rounded-[30px] shadow-lg flex flex-col justify-center max-w-[550px] md:aspect-[2/1] mx-auto overflow-hidden">
+                <div class="box left-box bg-white dark:bg-[#080808] relative p-8 md:px-10 rounded-[30px] shadow-lg flex flex-col justify-center max-w-[550px] md:aspect-[2/1] mx-auto overflow-hidden">
                     <div class="absolute inset-0 rounded-[30px] border-[2.5px] border-transparent pointer-events-none animate-border"></div>
                     <div class="relative z-10">
-                        <h3 class="customfont text-left text-4xl md:text-[4rem] text-white leading-tight">120+ Interfaces</h3>
-                        <p class="text-sm md:text-lg text-[#737373] text-left mt-2">
+                        <h3 class="text-left text-4xl md:text-[4rem] text-black dark:text-white leading-tight">120+ Interfaces</h3>
+                        <p class="text-sm md:text-xl text-gray-600 dark:text-[#737373] text-left">
                             Developed and optimized 120+ responsive user interfaces.
                         </p>
                     </div>
                 </div>
             </div>
             <div class="flex flex-col gap-14 lg:mt-32">
-                <div class="box right-box bg-[#080808] relative p-8 md:px-10 rounded-[30px] shadow-lg flex flex-col justify-center max-w-[550px] md:aspect-[2/1] mx-auto overflow-hidden">
+                <div class="box right-box bg-white dark:bg-[#080808] relative p-8 md:px-10 rounded-[30px] shadow-lg flex flex-col justify-center max-w-[550px] md:aspect-[2/1] mx-auto overflow-hidden">
                     <div class="absolute inset-0 rounded-[30px] border-[2.5px] border-transparent pointer-events-none animate-border"></div>
                     <div class="relative z-10">
-                        <h3 class="customfont text-left text-4xl md:text-[4rem] text-white leading-tight">10+ Technology</h3>
-                        <p class="text-sm md:text-lg text-[#737373] text-left mt-2">
+                        <h3 class="text-left text-4xl md:text-[4rem] text-black dark:text-white leading-tight">10+ Technology</h3>
+                        <p class="text-sm md:text-xl text-gray-600 dark:text-[#737373] text-left">
                             Adaptable to a variety of modern tools and frameworks, ensuring seamless project execution.
                         </p>
                     </div>
                 </div>                
-                <div class="box right-box bg-[#080808] relative p-8 md:px-10 rounded-[30px] shadow-lg flex flex-col justify-center max-w-[550px] md:aspect-[2/1] mx-auto overflow-hidden">
+                <div class="box right-box bg-white dark:bg-[#080808] relative p-8 md:px-10 rounded-[30px] shadow-lg flex flex-col justify-center max-w-[550px] md:aspect-[2/1] mx-auto overflow-hidden">
                     <div class="absolute inset-0 rounded-[30px] border-[2.5px] border-transparent pointer-events-none animate-border"></div>
                     <div class="relative z-10">
-                        <h3 class="customfont text-left text-4xl md:text-[4rem] text-white leading-tight">99% Feedback</h3>
-                        <p class="text-sm md:text-lg text-[#737373] text-left mt-2">
+                        <h3 class="text-left text-4xl md:text-[4rem] text-black dark:text-white leading-tight">99% Feedback</h3>
+                        <p class="text-sm md:text-xl text-gray-600 dark:text-[#737373] text-left">
                             Maintained a 99% approval rating by consistently meeting deadlines and project goals.
                         </p>
                     </div>
@@ -287,11 +310,11 @@
     });
     </script>
 
-    <section class="min-h-screen px-6 py-10 flex flex-col items-center justify-center text-center w-full text-white">
-        <h2 id="projectTitle" class="max-w-5xl text-2xl md:text-6xl font-semibold mb-4 leading-tight opacity-0 translate-y-20">
+    <section class="min-h-screen px-6 py-10 flex flex-col items-center justify-center text-center w-full space-y-12">
+        <h2 id="projectTitle" class="max-w-7xl text-4xl md:text-7xl font-semibold leading-tight opacity-0 translate-y-20 text-black dark:text-white">
             Behind the Code<br>A Peek Into My Present Creation.
         </h2>
-        <p id="projectDesc" class="text-sm md:text-lg max-w-2xl mb-12 leading-tight text-[#737373] opacity-0 translate-y-20">
+        <p id="projectDesc" class="text-sm md:text-xl max-w-4xl leading-tight text-gray-600 dark:text-[#737373] opacity-0 translate-y-20">
             Our latest project focuses on building a seamless, user-friendly platform that prioritizes efficiency and transparency.
         </p>
         <?php if ($image_path && $link_url): ?>
@@ -347,53 +370,65 @@
         });
     </script>
 
-    <section class="min-h-screen px-6 py-10 flex flex-col items-center justify-center text-center w-full text-white">
-        <h2 id="servicesTitle" class="text-2xl md:text-[10rem] font-semibold mb-4 leading-tight opacity-0 translate-y-10">
+    <section class="min-h-screen px-6 py-10 flex flex-col items-center justify-center text-center w-full space-y-16">
+        <h2 id="servicesTitle" class="text-4xl md:text-[10rem] font-semibold leading-tight opacity-0 translate-y-10 text-black dark:text-white">
             Services
         </h2>
-        <p id="shortDesc" class="text-sm md:text-lg max-w-2xl mb-8 text-[#737373] opacity-0 translate-y-10">
+        <p id="shortDesc" class="text-sm md:text-xl max-w-2xl text-gray-600 dark:text-[#737373] opacity-0 translate-y-10">
             Explore the services we provide, crafted to bring your ideas to life with precision and innovation.
         </p>
-        <div id="verticalLine" class="h-80 w-0.5 bg-white mb-12 opacity-0 scale-y-0"></div>
-        <p id="longDesc" class="text-lg md:text-3xl max-w-2xl mb-16 opacity-0 translate-y-10">
+        <div id="verticalLine" class="h-80 w-0.5 bg-black dark:bg-white opacity-0 scale-y-0"></div>
+        <p id="longDesc" class="text-lg md:text-3xl max-w-2xl opacity-0 translate-y-10 text-black dark:text-white">
             We go beyond simple requests like 'I need a website.' Our process starts by understanding your true objective—whether it's gaining organic users or driving conversions—and delivering a complete solution from A to Z.
         </p>
         <div id="servicesGrid" class="flex flex-wrap gap-8 w-full max-w-6xl mx-auto">
-            <div id="section-1" class="flex-1 min-w-full sm:min-w-[48%] md:basis-[48%] rounded-[30px] bg-[#121212] shadow-lg pb-10 md:pb-20 order-1">
-                <div class="px-6 pt-10 md:px-16 md:pt-20">
-                    <h3 class="text-3xl sm:text-4xl md:text-6xl font-semibold mb-4">Website</h3>
-                    <p class="text-sm text-[#737373]">
+            <div id="section-1" class="flex-1 min-w-full sm:min-w-[48%] md:basis-[48%] rounded-[30px] bg-gray-100 dark:bg-[#121212] shadow-lg pb-10 md:pb-20 order-1 relative overflow-hidden">
+                <div class="absolute inset-0 rounded-[30px] border-[2.5px] border-transparent pointer-events-none animate-border"></div>
+                <div class="relative z-10 px-6 pt-10 md:px-16 md:pt-20 space-y-4">
+                    <h3 class="text-4xl md:text-6xl font-semibold text-black dark:text-white">Website</h3>
+                    <p class="text-sm md:text-xl text-gray-600 dark:text-[#737373]">
                         We create more than just websites—we design powerful, results-driven platforms that consistently deliver strong sales and marketing outcomes.
                     </p>
                 </div>
-                <img src="assets/laptop.png" alt="Website Showcase" class="bg-transparent mx-auto w-4/5 sm:w-3/5 h-auto">
+                <div class="relative z-10">
+                    <img src="assets/laptop.png" alt="Website Showcase" class="bg-transparent mx-auto w-4/5 sm:w-3/5 h-auto">
+                </div>
             </div>
-            <div id="section-2" class="flex-1 min-w-full sm:min-w-[48%] md:basis-[48%] rounded-[30px] bg-[#121212] shadow-lg pb-10 md:pb-20 order-2">
-                <div class="px-6 pt-10 md:px-16 md:pt-20">
-                    <h3 class="text-3xl sm:text-4xl md:text-6xl font-semibold mb-4">Mobile Apps</h3>
-                    <p class="text-sm text-[#737373]">
+            <div id="section-2" class="flex-1 min-w-full sm:min-w-[48%] md:basis-[48%] rounded-[30px] bg-gray-100 dark:bg-[#121212] shadow-lg pb-10 md:pb-20 order-2 relative overflow-hidden">
+                <div class="absolute inset-0 rounded-[30px] border-[2.5px] border-transparent pointer-events-none animate-border"></div>
+                <div class="relative z-10 px-6 pt-10 md:px-16 md:pt-20 space-y-4">
+                    <h3 class="text-4xl md:text-6xl font-semibold text-black dark:text-white">Mobile Apps</h3>
+                    <p class="text-sm md:text-xl text-gray-600 dark:text-[#737373]">
                         Our expertise in UX and user engagement ensures mobile applications that offer intuitive, smooth, and memorable user experiences.
                     </p>
                 </div>
-                <img src="assets/phone.png" alt="Mobile App Showcase" class="bg-transparent mx-auto w-4/5 sm:w-3/5 h-auto">
+                <div class="relative z-10">
+                    <img src="assets/phone.png" alt="Mobile App Showcase" class="bg-transparent mx-auto w-4/5 sm:w-3/5 h-auto">
+                </div>
             </div>
-            <div id="section-3" class="flex-1 min-w-full sm:min-w-[48%] md:basis-[48%] rounded-[30px] bg-[#121212] shadow-lg pb-10 md:pb-20 order-3">
-                <div class="px-6 pt-10 md:px-16 md:pt-20">
-                    <h3 class="text-3xl sm:text-4xl md:text-6xl font-semibold mb-4">Development</h3>
-                    <p class="text-sm text-[#737373]">
-                        From concept to execution, we handle your product’s development with precision—optimizing resources and ensuring smooth, scalable performance.
+            <div id="section-3" class="flex-1 min-w-full sm:min-w-[48%] md:basis-[48%] rounded-[30px] bg-gray-100 dark:bg-[#121212] shadow-lg pb-10 md:pb-20 order-3 relative overflow-hidden">
+                <div class="absolute inset-0 rounded-[30px] border-[2.5px] border-transparent pointer-events-none animate-border"></div>
+                <div class="relative z-10 px-6 pt-10 md:px-16 md:pt-20 space-y-4">
+                    <h3 class="text-4xl md:text-6xl font-semibold text-black dark:text-white">Development</h3>
+                    <p class="text-sm md:text-xl text-gray-600 dark:text-[#737373]">
+                        From concept to execution, we handle your product's development with precision—optimizing resources and ensuring smooth, scalable performance.
                     </p>
                 </div>
-                <img src="assets/development.png" alt="Development Showcase" class="bg-transparent mx-auto w-4/5 sm:w-3/5 h-auto">
+                <div class="relative z-10">
+                    <img src="assets/development.png" alt="Development Showcase" class="bg-transparent mx-auto w-4/5 sm:w-3/5 h-auto">
+                </div>
             </div>
-            <div id="section-4" class="flex-1 min-w-full sm:min-w-[48%] md:basis-[48%] rounded-[30px] bg-[#121212] shadow-lg pb-10 md:pb-20 order-4">
-                <div class="px-6 pt-10 md:px-16 md:pt-20">
-                    <h3 class="text-3xl sm:text-4xl md:text-6xl font-semibold mb-4">Strategy</h3>
-                    <p class="text-sm text-[#737373]">
+            <div id="section-4" class="flex-1 min-w-full sm:min-w-[48%] md:basis-[48%] rounded-[30px] bg-gray-100 dark:bg-[#121212] shadow-lg pb-10 md:pb-20 order-4 relative overflow-hidden">
+                <div class="absolute inset-0 rounded-[30px] border-[2.5px] border-transparent pointer-events-none animate-border"></div>
+                <div class="relative z-10 px-6 pt-10 md:px-16 md:pt-20 space-y-4">
+                    <h3 class="text-4xl md:text-6xl font-semibold text-black dark:text-white">Strategy</h3>
+                    <p class="text-sm md:text-xl text-gray-600 dark:text-[#737373]">
                         We design end-to-end strategies that turn innovative ideas into thriving digital products—driving market relevance and sustainable growth.
                     </p>
                 </div>
-                <img src="assets/strategy.png" alt="Strategy Showcase" class="bg-transparent mx-auto w-4/5 sm:w-3/5 h-auto">
+                <div class="relative z-10">
+                    <img src="assets/strategy.png" alt="Strategy Showcase" class="bg-transparent mx-auto w-4/5 sm:w-3/5 h-auto">
+                </div>
             </div>
         </div>        
     </section>
@@ -477,17 +512,17 @@
         });
     </script>
 
-    <section class="min-h-screen flex items-center justify-center w-full text-white">
+    <section class="min-h-screen flex items-center justify-center w-full">
         <div id="innovateSection" class="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-6 sm:px-12">
-            <div id="innovateText" class="p-6 sm:p-12 opacity-0 translate-y-10">
-                <h2 class="text-4xl sm:text-6xl lg:text-8xl font-bold mb-6 leading-tight">
+            <div id="innovateText" class="p-6 sm:p-12 opacity-0 translate-y-10 space-y-8">
+                <h2 class="text-4xl sm:text-6xl lg:text-8xl font-bold leading-tight text-black dark:text-white">
                     Build Beyond Limits
                 </h2>
-                <p class="text-sm sm:text-lg text-[#737373] mb-8 leading-relaxed">
-                    Transform ideas into powerful digital experiences that inspire and engage. Let’s build the future together.
+                <p class="text-lg sm:text-xl text-gray-600 dark:text-[#737373] leading-relaxed">
+                    Transform ideas into powerful digital experiences that inspire and engage. Let's build the future together.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
-                    <a href="mailto:r4xntech@gmail.com" class="px-8 py-4 w-full sm:w-60 text-center bg-white text-black text-lg rounded-full hover:bg-gray-300 transition duration-300">
+                    <a href="mailto:r4xntech@gmail.com" class="px-8 py-4 w-full sm:w-60 text-center bg-black dark:bg-white text-white dark:text-black text-lg rounded-full hover:bg-gray-800 dark:hover:bg-gray-300 transition duration-300">
                         Start Building
                     </a>
                 </div>

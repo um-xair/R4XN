@@ -3,7 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0 , user-scalable=no">
-<title>R4XN</title>
+<title>About R4XN – Your Full‑Stack Web & IoT Tech Partner</title>
+<meta name="description" content="R4XN is a tech collaboration between RAWZEENS TECH and DEVXAIR—delivering modern web development, IoT, and system design with 5+ years of experience." />
+<meta name="keywords" content="About R4XN, R4XN team, RAWZEENS TECH, DEVXAIR, tech partnership, full stack developer Malaysia, IoT development team" />
+<link rel="canonical" href="https://r4xn.com/about.php" />
+<meta property="og:title" content="About R4XN – A Powerful Tech Collaboration" />
+<meta property="og:description" content="Meet the team behind R4XN—a combination of full-stack and front-end talent dedicated to building impactful digital experiences." />
+<meta property="og:url" content="https://r4xn.com/about.php" />
+<meta property="og:image" content="https://r4xn.com/about-preview.jpg" />
 <link rel="icon" href="assets/r4xn-black.png" type="image/png" sizes="32x32">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -59,7 +66,7 @@
         </div>       
 
         <?php
-            include 'dashboard/config.php';
+            include 'erp.r4xn.com/config.php';
             $devs = $conn->query("SELECT * FROM developers ORDER BY created_at DESC");
     
             $counter = 1;
@@ -67,7 +74,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl w-full">
             <?php while ($d = $devs->fetch_assoc()): ?>
-                <div id="dev<?= $counter ?>" class="developer-card relative group rounded-[30px] overflow-hidden flex h-96 bg-cover bg-center" style="background-image: url('dashboard/<?= htmlspecialchars($d['image_path']) ?>');">
+                <div id="dev<?= $counter ?>" class="developer-card relative group rounded-[30px] overflow-hidden flex h-96 bg-cover bg-center" style="background-image: url('erp.r4xn.com/<?= htmlspecialchars($d['image_path']) ?>');">
                     <div class="w-20 bg-black/60 p-4 flex flex-col justify-around items-center">
                         <?php foreach (str_split($d['name']) as $ch): ?>
                             <span class="customfont text-4xl font-extrabold"><?= htmlspecialchars($ch) ?></span>
