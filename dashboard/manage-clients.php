@@ -1,5 +1,17 @@
 <?php
-    session_start();
+    // Set session configuration for cross-subdomain access
+    ini_set('session.cookie_domain', '.r4xn.com');
+    ini_set('session.cookie_path', '/');
+    ini_set('session.cookie_secure', false);
+    ini_set('session.cookie_httponly', false);
+    ini_set('session.cookie_samesite', 'None');
+
+    // Use custom session name to avoid conflicts
+    session_name('erp_session');
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    
     if (!isset($_SESSION['user_id'])) {
         header("Location: index.php");
         exit;
