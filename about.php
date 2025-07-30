@@ -1,21 +1,235 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0 , user-scalable=no">
-<title>About R4XN – Your Full‑Stack Web & IoT Tech Partner</title>
-<meta name="description" content="R4XN is a tech collaboration between RAWZEENS TECH and DEVXAIR—delivering modern web development, IoT, and system design with 5+ years of experience." />
-<meta name="keywords" content="About R4XN, R4XN team, RAWZEENS TECH, DEVXAIR, tech partnership, full stack developer Malaysia, IoT development team" />
-<link rel="canonical" href="https://r4xn.com/about.php" />
-<meta property="og:title" content="About R4XN – A Powerful Tech Collaboration" />
-<meta property="og:description" content="Meet the team behind R4XN—a combination of full-stack and front-end talent dedicated to building impactful digital experiences." />
-<meta property="og:url" content="https://r4xn.com/about.php" />
-<meta property="og:image" content="https://r4xn.com/about-preview.jpg" />
-<link rel="icon" href="assets/r4xn-black.png" type="image/png" sizes="32x32">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Google Site Verification -->
+<meta name="google-site-verification" content="fQ9POhOfPTtny4LONlGJkPiB_io5ZfEuHUao3jcUQ-8" />
+
+<!-- Bing Webmaster Tools -->
+<meta name="msvalidate.01" content="391F96B8287DC1F160473A94CFE46296" />
+
+<!-- Yandex Webmaster -->
+<meta name="yandex-verification" content="eb3fdd51857fccb3" />
+
+<!-- Primary Meta Tags -->
+<title>About R4XN - Meet Our Team & Values | Full-Stack Web & IoT Solutions | Malaysia</title>
+<meta name="description" content="Meet the R4XN team - a powerful collaboration between RAWZEENS TECH and DEVXAIR. 5+ years experience, 120+ interfaces, 99% client satisfaction. Discover our values and mission." />
+<meta name="keywords" content="About R4XN, R4XN team, RAWZEENS TECH, DEVXAIR, tech partnership, full stack developer Malaysia, IoT development team, web development team, Malaysia tech company, developer values, team collaboration" />
+<meta name="author" content="R4XN Team" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<meta name="googlebot" content="index, follow" />
+<meta name="bingbot" content="index, follow" />
+<link rel="canonical" href="https://r4xn.com/about" />
+
+<!-- Language and Region -->
+<meta name="language" content="English" />
+<meta name="geo.region" content="MY" />
+<meta name="geo.placename" content="Malaysia" />
+<meta name="geo.position" content="3.1390;101.6869" />
+<meta name="ICBM" content="3.1390, 101.6869" />
+
+<!-- Favicon and App Icons -->
+<link rel="icon" type="image/png" href="/r4xn-favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/r4xn-favicon/favicon.svg" />
+<link rel="shortcut icon" href="/r4xn-favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/r4xn-favicon/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="R4XN" />
+<link rel="manifest" href="/r4xn-favicon/site.webmanifest" />
+
+<!-- Open Graph Meta Tags (Facebook, LinkedIn) -->
+<meta property="og:site_name" content="R4XN" />
+<meta property="og:title" content="About R4XN - Meet Our Team & Values | Full-Stack Web & IoT Solutions" />
+<meta property="og:description" content="Meet the R4XN team - a powerful collaboration between RAWZEENS TECH and DEVXAIR. 5+ years experience, 120+ interfaces, 99% client satisfaction. Discover our values and mission." />
+<meta property="og:url" content="https://r4xn.com/about" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://r4xn.com/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="About R4XN Team and Values" />
+<meta property="og:locale" content="en_US" />
+<meta property="fb:app_id" content="1778052509499669" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@R4XN" />
+<meta name="twitter:creator" content="@rawxair" />
+<meta name="twitter:title" content="About R4XN - Meet Our Team & Values | Full-Stack Web & IoT Solutions" />
+<meta name="twitter:description" content="Meet the R4XN team - a powerful collaboration between RAWZEENS TECH and DEVXAIR. 5+ years experience, 99% client satisfaction." />
+<meta name="twitter:image" content="https://r4xn.com/og-image.png" />
+<meta name="twitter:image:alt" content="About R4XN Team and Values" />
+
+<!-- Additional Meta Tags -->
+<meta name="format-detection" content="telephone=no" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="R4XN" />
+
+<!-- Preconnect to external domains for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://www.googletagmanager.com" />
+<link rel="preconnect" href="https://www.google-analytics.com" />
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+
+<!-- DNS Prefetch for performance -->
+<link rel="dns-prefetch" href="//api.fontshare.com" />
+<link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+
+<!-- Enhanced JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "R4XN",
+  "url": "https://r4xn.com/",
+  "logo": "https://r4xn.com/assets/logo.png",
+  "description": "R4XN provides full-stack development, mobile apps, UI/UX, and IoT solutions with over 5 years of experience and 99% client satisfaction.",
+  "foundingDate": "2019",
+  "numberOfEmployees": "5-10",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "MY",
+    "addressRegion": "Malaysia"
+  },
+  "contactPoint": [{
+    "@type": "ContactPoint",
+    "email": "walkers287@gmail.com",
+    "contactType": "customer support",
+    "areaServed": "MY",
+    "availableLanguage": "English"
+  }],
+  "sameAs": [
+    "https://dribbble.com/R4XN",
+    "https://github.com/um-xair",
+    "https://www.tiktok.com/@rawxair"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "R4XN Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Team Collaboration",
+          "description": "Powerful collaboration between RAWZEENS TECH and DEVXAIR"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Developer Values",
+          "description": "Reliability, solution-oriented approach, and excellence in development"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Full-Stack Development",
+          "description": "Comprehensive web and IoT development services"
+        }
+      }
+    ]
+  }
+}
+</script>
+
+<!-- Local Business Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "R4XN",
+  "description": "Full-Stack Web & IoT Solutions for Modern Brands",
+  "url": "https://r4xn.com/",
+  "telephone": "+60-XX-XXXX-XXXX",
+  "email": "walkers287@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "MY"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "3.1390",
+    "longitude": "101.6869"
+  },
+  "openingHours": "Mo-Fr 09:00-18:00",
+  "priceRange": "$$",
+  "currenciesAccepted": "MYR, USD",
+  "paymentAccepted": "Credit Card, Bank Transfer",
+  "areaServed": "MY",
+  "serviceArea": {
+    "@type": "Country",
+    "name": "Malaysia"
+  }
+}
+</script>
+
+<!-- WebSite Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "R4XN",
+  "url": "https://r4xn.com/",
+  "description": "Full-Stack Web & IoT Solutions for Modern Brands",
+  "publisher": {
+    "@type": "Organization",
+    "name": "R4XN"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://r4xn.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CD69HEJBPY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CD69HEJBPY', {
+    'page_title': 'About R4XN',
+    'page_location': 'https://r4xn.com/about'
+  });
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PHGQ3WPG');</script>
+<!-- End Google Tag Manager -->
+
+<link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@200,300,400,500,600,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+        darkMode: 'class',
+        theme: {
+            extend: {
+                fontFamily: {
+                    'clash-grotesk': ['Clash Grotesk', 'sans-serif'],
+                    'press-start': ['Press Start 2P', 'sans-serif']
+                }
+            }
+        }
+    }
+</script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
@@ -23,8 +237,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
 <style>
     body {
-        font-family: "Poppins", sans-serif;
-        background-color: #080808;
+        font-family: "Clash Grotesk", sans-serif;
+        background-color: #f4f4f4;
+        color: #111;
     }
     html{
         overflow-x: hidden;
@@ -37,7 +252,7 @@
     }
     body::before {
         --size: 45px;
-        --line: rgba(255, 255, 255, 0.115);
+        --line: rgba(0, 0, 0, 0.1);
         content: '';
         position: fixed;
         inset: 0;
@@ -48,22 +263,35 @@
         pointer-events: none;
         z-index: -1;
     }
+    .dark body {
+        background-color: #080808;
+        color: #fff;
+    }
+    .dark body::before {
+        --line: rgba(255, 255, 255, 0.42);
+    }
 </style>
 </head>
 
-<body class="max-w-screen overflow-x-hidden">
+<body class="max-w-screen overflow-x-hidden bg-[#f4f4f4] dark:bg-[#080808] text-black dark:text-white" itemscope itemtype="https://schema.org/WebPage">
+
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PHGQ3WPG"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
     <?php include 'header.php';?>
 
-    <section id="developersSection" class="min-h-screen px-6 py-32 flex flex-col items-center justify-center text-white">
-        <div class="text-center mb-16">
-            <h2 class="text-transparent bg-gradient-to-t from-gray-400 to-white bg-clip-text font-bold text-5xl md:text-7xl">
-                Meet Our Developers
-            </h2>
-            <p class="text-gray-400 mt-4 mx-auto text-lg">
-                Our passionate team brings creativity, innovation, and dedication to every line of code.
-            </p>
-        </div>       
+    <main>
+        <section id="developersSection" class="min-h-screen px-6 py-32 flex flex-col items-center justify-center text-black dark:text-white" role="region" aria-label="Meet Our Developers" itemscope itemtype="https://schema.org/Organization">
+            <div class="text-center mb-16">
+                <h1 class="text-transparent bg-gradient-to-t from-gray-600 to-black dark:from-gray-400 dark:to-white bg-clip-text font-bold text-5xl md:text-7xl" itemprop="name">
+                    Meet Our Developers
+                </h1>
+                <p class="text-gray-600 dark:text-gray-400 mt-4 mx-auto text-lg md:text-2xl" itemprop="description">
+                    Our passionate team brings creativity, innovation, and dedication to every line of code.
+                </p>
+            </div>       
 
         <?php
             include 'erp.r4xn.com/config.php';
@@ -72,24 +300,25 @@
             $counter = 1;
         ?>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl w-full">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl w-full" role="list">
             <?php while ($d = $devs->fetch_assoc()): ?>
-                <div id="dev<?= $counter ?>" class="developer-card relative group rounded-[30px] overflow-hidden flex h-96 bg-cover bg-center" style="background-image: url('erp.r4xn.com/<?= htmlspecialchars($d['image_path']) ?>');">
-                    <div class="w-20 bg-black/60 p-4 flex flex-col justify-around items-center">
+                <article id="dev<?= $counter ?>" class="developer-card relative group rounded-[30px] overflow-hidden flex h-96 bg-cover bg-center bg-white dark:bg-[#121212]" style="background-image: url('erp.r4xn.com/<?= htmlspecialchars($d['image_path']) ?>');" role="listitem" itemscope itemtype="https://schema.org/Person">
+                    <div class="w-20 bg-black/60 dark:bg-white/60 p-4 flex flex-col justify-around items-center">
                         <?php foreach (str_split($d['name']) as $ch): ?>
-                            <span class="customfont text-4xl font-extrabold"><?= htmlspecialchars($ch) ?></span>
+                            <span class="customfont text-4xl font-extrabold text-white dark:text-black"><?= htmlspecialchars($ch) ?></span>
                         <?php endforeach; ?>
                     </div>
-                    <a href="<?= htmlspecialchars($d['link']) ?>" target="_blank"
-                         class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black text-white px-6 py-3 rounded-full flex items-center gap-2">
+                    <a href="<?= htmlspecialchars($d['link']) ?>" target="_blank" rel="noopener noreferrer"
+                         class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black dark:bg-white text-white dark:text-black px-6 py-3 rounded-full flex items-center gap-2" itemprop="url" aria-label="View <?= htmlspecialchars($d['name']) ?>'s Portfolio">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor"
-                             stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                             stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M13 5H19V11"/>
                             <path d="M19 5L5 19"/>
                         </svg>
                         View Portfolio
                     </a>
-                </div>
+                    <meta itemprop="name" content="<?= htmlspecialchars($d['name']) ?>">
+                </article>
                 <?php $counter++; ?>
             <?php endwhile; ?>
         </div>
@@ -135,15 +364,15 @@
     <!-- Alpine.js CDN for interactivity -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
-    <section class="min-h-screen px-6 py-32 flex flex-col items-center justify-center text-white">
-        <div id="values-header" class="text-center max-w-3xl mx-auto mb-16">
-            <h2 class="text-transparent bg-gradient-to-t from-gray-400 to-white bg-clip-text font-bold text-5xl md:text-6xl">
-                Our Values
-            </h2>
-            <p class="text-gray-400 mt-4 text-lg">
-                These are the principles that shape who we are and what we do.
-            </p>
-        </div>
+        <section class="min-h-screen px-6 py-32 flex flex-col items-center justify-center text-black dark:text-white" role="region" aria-label="Our Values">
+            <div id="values-header" class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-transparent bg-gradient-to-t from-gray-600 to-black dark:from-gray-400 dark:to-white bg-clip-text font-bold text-5xl md:text-6xl" itemprop="description">
+                    Our Values
+                </h2>
+                <p class="text-gray-600 dark:text-gray-400 mt-4 text-lg md:text-2xl">
+                    These are the principles that shape who we are and what we do.
+                </p>
+            </div>
 
         <div
             x-data="{
@@ -170,14 +399,14 @@
                   :id="'value-card-' + index"
                   @mouseenter="active = index"
                   @mouseleave="active = null"
-                  class="group relative border border-white rounded-[20px] overflow-hidden transition-all duration-500 cursor-pointer"
+                  class="group relative border border-gray-300 dark:border-gray-600 rounded-[20px] overflow-hidden transition-all duration-500 cursor-pointer bg-white dark:bg-[#121212]"
                   :class="active === index ? 'w-80 h-96' : 'w-20 h-96'">
                   <!-- Card Content -->
                     <div
                       class="flex flex-col h-full transition-all duration-500 p-4 relative"
                       :class="active === index ? 'justify-start items-start' : 'items-center justify-end'">
                         <!-- Vertical Title in Collapsed State -->
-                        <h3 class="absolute left-1/2 top-10 transform -translate-x-1/2 text-2xl text-gray-200 font-extrabold tracking-wide"
+                        <h3 class="absolute left-1/2 top-10 transform -translate-x-1/2 text-2xl text-gray-600 dark:text-gray-200 font-extrabold tracking-wide"
                             :class="active === index ? 'opacity-0' : '[writing-mode:vertical-rl]'"
                             x-text="value.title"></h3>
                             
@@ -186,7 +415,7 @@
                             class="transition-all duration-500 p-4"
                             x-show="active === index"
                             x-transition.opacity>
-                            <h3 class="text-2xl text-gray-200 font-extrabold tracking-wide" x-text="value.title"></h3>
+                            <h3 class="text-2xl text-gray-600 dark:text-gray-200 font-extrabold tracking-wide" x-text="value.title"></h3>
                         </div>
                       
                         <!-- Icon + Description -->
@@ -290,7 +519,7 @@
                                 </svg>
                             </template>
                             <p
-                            class="text-sm text-gray-400"
+                            class="text-sm text-gray-600 dark:text-gray-400"
                             x-show="active === index"
                             x-text="value.description"></p>
                         </div>
@@ -333,6 +562,7 @@
             if (header) observer.observe(header);
         });
     </script>
+    </main>
     
     <?php include 'footer.php';?>
 

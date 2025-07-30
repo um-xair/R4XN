@@ -1,0 +1,48 @@
+User-agent: *
+Allow: /
+
+# Allow all search engines to crawl the site
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Disallow admin and private areas
+Disallow: /dashboard/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /config/
+Disallow: /uploads/
+Disallow: /assets/dev/
+Disallow: /assets/frontend/
+Disallow: /assets/iot/
+Disallow: /assets/system/
+
+# Allow important assets
+Allow: /assets/
+Allow: /assets/*.png
+Allow: /assets/*.jpg
+Allow: /assets/*.jpeg
+Allow: /assets/*.gif
+Allow: /assets/*.svg
+Allow: /assets/*.css
+Allow: /assets/*.js
+
+# Sitemap location
+Sitemap: https://r4xn.com/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1 

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Homepage - Main landing page -->
+  <url>
+    <loc>https://r4xn.com/</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Test/Projects Page - Main portfolio showcase -->
+  <url>
+    <loc>https://r4xn.com/test</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Projects - Detailed project portfolio -->
+  <url>
+    <loc>https://r4xn.com/project</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Frontend Development Services -->
+  <url>
+    <loc>https://r4xn.com/frontend</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- System Design Services -->
+  <url>
+    <loc>https://r4xn.com/system</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- IoT Solutions Services -->
+  <url>
+    <loc>https://r4xn.com/iot</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- About Us - Team and company information -->
+  <url>
+    <loc>https://r4xn.com/about</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Discover - Technology stack and solutions -->
+  <url>
+    <loc>https://r4xn.com/discover</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Additional Important Pages -->
+  
+  <!-- Contact Information (if you have a contact page) -->
+  <!-- <url>
+    <loc>https://r4xn.com/contact</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url> -->
+
+  <!-- Services Overview (if you have a services page) -->
+  <!-- <url>
+    <loc>https://r4xn.com/services</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url> -->
+
+  <!-- Blog/News (if you have a blog) -->
+  <!-- <url>
+    <loc>https://r4xn.com/blog</loc>
+    <lastmod>2025-01-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url> -->
+
+</urlset> 
