@@ -285,62 +285,62 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Main Project Portfolio Section -->
     <main>
         <section class="min-h-screen px-6 py-32 flex flex-col items-center justify-center text-black dark:text-white" role="region" aria-label="Project Portfolio Showcase">
-            <div class="space-y-16">
+        <div class="space-y-16">
                 <h1 class="text-transparent bg-gradient-to-t from-gray-600 to-black dark:from-gray-400 dark:to-white bg-clip-text leading-tight font-bold text-4xl md:text-8xl text-center" itemprop="headline">
-                    <div>Our Digital Showcase</div>
+                <div>Our Digital Showcase</div>
                 </h1>
                 <div id="projectCards" class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl w-full" role="list">
                     <article class="group card-link" role="listitem" itemscope itemtype="https://schema.org/CreativeWork">
                         <a href="frontend.php" class="block">
-                            <div class="flex flex-col bg-white dark:bg-[#121212] p-10 space-y-8 rounded-3xl hover:bg-gray-200 dark:hover:bg-white hover:text-black transition duration-300 h-full">
-                                <span class="text-sm text-gray-600 dark:text-gray-400 group-hover:text-black">/ 01</span>
-                                <div>
+                <div class="flex flex-col bg-white dark:bg-[#121212] p-10 space-y-8 rounded-3xl hover:bg-gray-200 dark:hover:bg-white hover:text-black transition duration-300 h-full">
+                    <span class="text-sm text-gray-600 dark:text-gray-400 group-hover:text-black">/ 01</span>
+                    <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 group-hover:stroke-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                        <circle cx="17" cy="4" r="2"/>
-                                        <path d="M15.59 5.41 5.41 15.59"/>
-                                        <circle cx="4" cy="17" r="2"/>
-                                        <path d="M12 22s-4-9-1.5-11.5S22 12 22 12"/>
-                                    </svg>
-                                </div>
+                            <circle cx="17" cy="4" r="2"/>
+                            <path d="M15.59 5.41 5.41 15.59"/>
+                            <circle cx="4" cy="17" r="2"/>
+                            <path d="M12 22s-4-9-1.5-11.5S22 12 22 12"/>
+                        </svg>
+                    </div>
                                 <h2 class="text-2xl md:text-4xl font-bold group-hover:text-black" itemprop="name">Frontend Projects</h2>
                                 <p class="text-gray-600 dark:text-gray-400 text-xl group-hover:text-black" itemprop="description">Bringing ideas to life through engaging, user-first frontend experiences.</p>
-                            </div>
-                        </a>
+                </div>
+            </a>
                     </article>
                     <article class="group card-link" role="listitem" itemscope itemtype="https://schema.org/CreativeWork">
                         <a href="system.php" class="block">
-                            <div class="flex flex-col bg-white dark:bg-[#121212] p-10 space-y-8 rounded-3xl hover:bg-gray-200 dark:hover:bg-white hover:text-black transition duration-300 h-full">
-                                <span class="text-sm text-gray-600 dark:text-gray-400 group-hover:text-black">/ 02</span>
-                                <div>
+                <div class="flex flex-col bg-white dark:bg-[#121212] p-10 space-y-8 rounded-3xl hover:bg-gray-200 dark:hover:bg-white hover:text-black transition duration-300 h-full">
+                    <span class="text-sm text-gray-600 dark:text-gray-400 group-hover:text-black">/ 02</span>
+                    <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 group-hover:stroke-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                        <rect width="18" height="12" x="3" y="4" rx="2" ry="2"/>
-                                        <line x1="2" x2="22" y1="20" y2="20"/>
-                                    </svg>
-                                </div>
+                            <rect width="18" height="12" x="3" y="4" rx="2" ry="2"/>
+                            <line x1="2" x2="22" y1="20" y2="20"/>
+                        </svg>
+                    </div>
                                 <h2 class="text-2xl md:text-4xl font-bold group-hover:text-black" itemprop="name">System Design</h2>
                                 <p class="text-gray-600 dark:text-gray-400 text-xl group-hover:text-black" itemprop="description">Merging aesthetics with logic to deliver high-performing systems.</p>
-                            </div>
-                        </a>
+                </div>
+            </a>
                     </article>
                     <article class="group card-link" role="listitem" itemscope itemtype="https://schema.org/CreativeWork">
                         <a href="iot.php" class="block">
-                            <div class="flex flex-col bg-white dark:bg-[#121212] p-10 space-y-8 rounded-3xl hover:bg-gray-200 dark:hover:bg-white hover:text-black transition duration-300 h-full">
-                                <span class="text-sm text-gray-600 dark:text-gray-400 group-hover:text-black">/ 03</span>
-                                <div>
+                <div class="flex flex-col bg-white dark:bg-[#121212] p-10 space-y-8 rounded-3xl hover:bg-gray-200 dark:hover:bg-white hover:text-black transition duration-300 h-full">
+                    <span class="text-sm text-gray-600 dark:text-gray-400 group-hover:text-black">/ 03</span>
+                    <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 group-hover:stroke-black" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                        <path d="M12 20v2"/><path d="M12 2v2"/><path d="M17 20v2"/><path d="M17 2v2"/><path d="M2 12h2"/><path d="M2 17h2"/><path d="M2 7h2"/><path d="M20 12h2"/><path d="M20 17h2"/><path d="M20 7h2"/><path d="M7 20v2"/><path d="M7 2v2"/>
-                                        <rect x="4" y="4" width="16" height="16" rx="2"/>
-                                        <rect x="8" y="8" width="8" height="8" rx="1"/>
-                                    </svg>
-                                </div>
+                            <path d="M12 20v2"/><path d="M12 2v2"/><path d="M17 20v2"/><path d="M17 2v2"/><path d="M2 12h2"/><path d="M2 17h2"/><path d="M2 7h2"/><path d="M20 12h2"/><path d="M20 17h2"/><path d="M20 7h2"/><path d="M7 20v2"/><path d="M7 2v2"/>
+                            <rect x="4" y="4" width="16" height="16" rx="2"/>
+                            <rect x="8" y="8" width="8" height="8" rx="1"/>
+                        </svg>
+                    </div>
                                 <h2 class="text-2xl md:text-4xl font-bold group-hover:text-black" itemprop="name">IoT Smart Solutions</h2>
                                 <p class="text-gray-600 dark:text-gray-400 text-xl group-hover:text-black" itemprop="description">Connecting the physical and digital worlds through intelligent automation.</p>
                             </div>
                         </a>
                     </article>
                 </div>
-            </div>
-        </section>
+        </div>
+    </section>
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>

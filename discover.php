@@ -305,37 +305,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <main>
         <section class="min-h-screen px-6 py-10 md:px-32 md:py-10 flex flex-col items-center justify-center text-center" role="region" aria-label="About R4XN" itemscope itemtype="https://schema.org/Organization">
-            <svg width="0" height="0">
-                <defs>
-                    <linearGradient id="gradientText" x1="0%" y1="100%" x2="0%" y2="0%">
-                        <stop offset="0%" stop-color="#4B5563" />
-                        <stop offset="100%" stop-color="#000000" />
-                    </linearGradient>
-                    <linearGradient id="gradientTextDark" x1="0%" y1="100%" x2="0%" y2="0%">
-                        <stop offset="0%" stop-color="#9CA3AF" />
-                        <stop offset="100%" stop-color="#FFFFFF" />
-                    </linearGradient>
-                </defs>
-            </svg>
-            <div class="relative flex flex-col md:flex-row items-center md:items-center md:gap-10 gap-4 mb-3 text-3xl md:text-5xl font-bold uppercase text-center md:text-left text-black dark:text-white">
-                <div class="relative flex justify-center icon-group">
+        <svg width="0" height="0">
+            <defs>
+                <linearGradient id="gradientText" x1="0%" y1="100%" x2="0%" y2="0%">
+                    <stop offset="0%" stop-color="#4B5563" />
+                    <stop offset="100%" stop-color="#000000" />
+                </linearGradient>
+                <linearGradient id="gradientTextDark" x1="0%" y1="100%" x2="0%" y2="0%">
+                    <stop offset="0%" stop-color="#9CA3AF" />
+                    <stop offset="100%" stop-color="#FFFFFF" />
+                </linearGradient>
+            </defs>
+        </svg>
+        <div class="relative flex flex-col md:flex-row items-center md:items-center md:gap-10 gap-4 mb-3 text-3xl md:text-5xl font-bold uppercase text-center md:text-left text-black dark:text-white">
+        <div class="relative flex justify-center icon-group">
                     <svg class="main-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="4em" width="4em" fill="none" stroke="url(#gradientText)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="m18 16 4-4-4-4" />
-                        <path d="m6 8-4 4 4 4" />
-                        <path d="m14.5 4-5 16" />
-                    </svg>
-                </div>
+            <path d="m18 16 4-4-4-4" />
+            <path d="m6 8-4 4 4 4" />
+            <path d="m14.5 4-5 16" />
+            </svg>
+        </div>
                 <h1 class="heading max-w-4xl text-transparent bg-gradient-to-t from-gray-600 to-black dark:from-gray-400 dark:to-white bg-clip-text leading-[1] font-bold text-6xl lg:text-[8rem]" itemprop="name">
-                    About R4XN
-                </h1>
-            </div>
+            About R4XN
+        </h1>
+        </div>
             <p class="description max-w-6xl text-xl md:text-2xl mt-4 text-gray-600 dark:text-gray-400" itemprop="description">
-                R4XN is a technology company established in 2023, formed through a collaboration between 
-                <span class="px-2 py-1 rounded bg-gradient-to-tr from-[#1E1130] via-[#5D3D89] to-[#1E1130] text-white font-semibold">@Rawzeens</span> and 
-                <span class="px-2 py-1 rounded bg-gradient-to-tr from-[#1E1130] via-[#5D3D89] to-[#1E1130] text-white font-semibold">@Umxair</span>. 
-                Operating under the registered entity Rawzeens Tech Enterprise (SSM-registered), the company specializes in IoT solutions, mobile and web app development, and API integration.
-            </p>
-        </section>
+            R4XN is a technology company established in 2023, formed through a collaboration between 
+            <span class="px-2 py-1 rounded bg-gradient-to-tr from-[#1E1130] via-[#5D3D89] to-[#1E1130] text-white font-semibold">@Rawzeens</span> and 
+            <span class="px-2 py-1 rounded bg-gradient-to-tr from-[#1E1130] via-[#5D3D89] to-[#1E1130] text-white font-semibold">@Umxair</span>. 
+            Operating under the registered entity Rawzeens Tech Enterprise (SSM-registered), the company specializes in IoT solutions, mobile and web app development, and API integration.
+        </p>
+    </section>
     </main>
 
     <script>
@@ -367,9 +367,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <section class="min-h-screen px-6 py-10 md:px-32 md:py-10 flex flex-col items-center justify-center text-center text-black dark:text-white" role="region" aria-label="Technologies We Work With">
             <h2 id="tech-heading" class="text-transparent bg-gradient-to-t from-gray-600 to-black dark:from-gray-400 dark:to-white bg-clip-text leading-tight font-bold text-4xl lg:text-8xl mb-16 text-center" itemprop="description">
-                <div>Technologies</div>
-                <div class="text-4xl lg:text-8xl mt-2">We Work With</div>
-            </h2>
+            <div>Technologies</div>
+            <div class="text-4xl lg:text-8xl mt-2">We Work With</div>
+        </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 w-full max-w-5xl" role="list">
             <article id="card1" class="tech-card group relative rounded-2xl p-10 transition duration-300 ease-in-out hover:shadow-xl cursor-pointer h-60 flex items-center justify-center bg-white dark:bg-[#121212] overflow-hidden" role="listitem" itemscope itemtype="https://schema.org/Technology">
                 <div class="absolute inset-0 rounded-2xl border-[2.5px] border-transparent pointer-events-none animate-border"></div>
