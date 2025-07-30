@@ -1,17 +1,5 @@
 <?php
-    // Set session configuration for cross-subdomain access
-    ini_set('session.cookie_domain', '.r4xn.com');
-    ini_set('session.cookie_path', '/');
-    ini_set('session.cookie_secure', false);
-    ini_set('session.cookie_httponly', false);
-    ini_set('session.cookie_samesite', 'None');
-
-    // Use custom session name to avoid conflicts
-    session_name('erp_session');
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
-    
+    session_start();
     if (!isset($_SESSION['user_id'])) {
         header("Location: index.php");
         exit;
@@ -40,9 +28,7 @@
                     $errors[] = "Client name is required";
                 }
                 
-                if (empty($email)) {
-                    $errors[] = "Email is required";
-                } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $errors[] = "Please enter a valid email address";
                 }
                 
@@ -96,9 +82,7 @@
                     $errors[] = "Client name is required";
                 }
                 
-                if (empty($email)) {
-                    $errors[] = "Email is required";
-                } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $errors[] = "Please enter a valid email address";
                 }
                 
@@ -430,19 +414,19 @@
                             <table class="w-full">
                                 <thead class="bg-black">
                                     <tr>
-                                        <th class="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">
+                                        <th class="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider w-1/5">
                                             Client Information
                                         </th>
-                                        <th class="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">
+                                        <th class="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider w-1/4">
                                             Services
                                         </th>
-                                        <th class="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">
+                                        <th class="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider w-1/4">
                                             Financial Details
                                         </th>
-                                        <th class="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">
+                                        <th class="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider w-1/6">
                                             Status
                                         </th>
-                                        <th class="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider">
+                                        <th class="px-6 py-4 text-left text-xs font-semibold text-white uppercase tracking-wider w-1/6">
                                             Actions
                                         </th>
                                     </tr>
@@ -521,14 +505,14 @@
                                                 </div>
                                             </td>
                                             <td class="px-6 py-5">
-                                                <div class="flex items-center space-x-3">
+                                                <div class="flex flex-col space-y-2">
                                                     <button onclick="editClient(<?= $client['id'] ?>)" 
-                                                           class="inline-flex items-center px-3 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition-colors">
+                                                           class="inline-flex items-center px-6 py-3 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black transition-colors">
                                                         <i class="fas fa-edit mr-1"></i>
                                                         Edit
                                                     </button>
                                                     <a href="manage-clients.php?delete=<?= $client['id'] ?>" 
-                                                       class="inline-flex items-center px-3 py-2 border border-red-300 rounded-md text-sm font-medium text-red-700 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors"
+                                                       class="inline-flex items-center px-6 py-3 border border-red-300 rounded-md text-sm font-medium text-red-700 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors"
                                                        onclick="return confirm('Are you sure you want to delete this client? This action cannot be undone.')">
                                                         <i class="fas fa-trash mr-1"></i>
                                                         Delete
@@ -580,7 +564,7 @@
                     
                     <div>
                         <label class="block mb-1 font-medium">Email</label>
-                        <input type="email" id="email" name="email" required placeholder="Enter client email"
+                        <input type="email" id="email" name="email" placeholder="Enter client email"
                                class="border border-gray-300 rounded-md px-4 py-3 w-full">
                     </div>
                     
