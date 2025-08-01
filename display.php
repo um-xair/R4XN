@@ -468,6 +468,137 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
         </section>
 
+        <!-- Second Featured Project -->
+        <section id="second-featured-project" class="min-h-screen px-6 py-10 md:px-32 md:py-10 flex flex-col items-center justify-center text-black dark:text-white" role="region" aria-label="Second Featured Project">
+            <div class="container mx-auto max-w-7xl space-y-16">
+                <h2 class="text-transparent bg-gradient-to-t from-gray-600 to-black dark:from-gray-400 dark:to-white bg-clip-text font-bold text-5xl md:text-7xl text-center" data-aos="fade-up" data-aos-duration="1000">
+                    Another Featured Project
+                </h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
+                    <!-- Project Details (Left Column) -->
+                    <div class="space-y-8" data-aos="fade-right" data-aos-duration="1000">
+                        <div class="space-y-8">
+                            <div class="space-y-4">
+                                <h3 class="text-3xl font-bold">AI-Powered Analytics Dashboard</h3>
+                                <p class="text-lg text-gray-600 dark:text-gray-300">
+                                    An intelligent analytics platform that leverages machine learning to provide real-time insights, 
+                                    predictive analytics, and automated reporting for enterprise-level decision making.
+                                </p>
+                            </div>
+                            <!-- Project Stats -->
+                            <div class="space-y-4">
+                                <h4 class="text-xl font-semibold">Project Details</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="space-y-4">
+                                        <div class="grid grid-cols-[auto_1fr] gap-x-3 mb-4">
+                                            <div class="flex items-start pt-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+                                                    <circle cx="12" cy="4.5" r="2.5"/>
+                                                    <path d="m10.2 6.3-3.9 3.9"/>
+                                                    <circle cx="4.5" cy="12" r="2.5"/>
+                                                    <path d="M7 12h10"/>
+                                                    <circle cx="19.5" cy="12" r="2.5"/>
+                                                    <path d="m13.8 17.7 3.9-3.9"/>
+                                                    <circle cx="12" cy="19.5" r="2.5"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <span class="text-lg text-gray-500 dark:text-gray-400 font-medium">Project</span>
+                                                <div class="text-sm font-semibold mt-1">Analytics Platform</div>
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-[auto_1fr] gap-x-3 mb-4">
+                                            <div class="flex items-start pt-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M12 16h.01"/>
+                                                    <path d="M16 16h.01"/>
+                                                    <path d="M3 19a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5a.5.5 0 0 0-.769-.422l-4.462 2.844A.5.5 0 0 1 15 10.5v-2a.5.5 0 0 0-.769-.422L9.77 10.922A.5.5 0 0 1 9 10.5V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2z"/>
+                                                    <path d="M8 16h.01"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <span class="text-lg text-gray-500 dark:text-gray-400 font-medium">Industry</span>
+                                                <div class="text-sm font-semibold mt-1">Technology</div>
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-[auto_1fr] gap-x-3 mb-4">
+                                            <div class="flex items-start pt-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-purple-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/><circle cx="12" cy="12" r="10"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <span class="text-lg text-gray-500 dark:text-gray-400 font-medium">Client</span>
+                                                <div class="text-sm font-semibold mt-1">TechCorp</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="space-y-4">
+                                        <div class="grid grid-cols-[auto_1fr] gap-x-3 mb-4">
+                                            <div class="flex items-start pt-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <circle cx="12" cy="12" r="10"/>
+                                                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <span class="text-lg text-gray-500 dark:text-gray-400 font-medium">Website</span>
+                                                <div class="text-sm font-semibold mt-1">analytics.techcorp.com</div>
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-[auto_1fr] gap-x-3 mb-4">
+                                            <div class="flex items-start pt-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-yellow-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <line x1="10" x2="14" y1="2" y2="2"/>
+                                                    <line x1="12" x2="15" y1="14" y2="11"/>
+                                                    <circle cx="12" cy="14" r="8"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <span class="text-lg text-gray-500 dark:text-gray-400 font-medium">Timeline</span>
+                                                <div class="text-sm font-semibold mt-1">12 Weeks</div>
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-[auto_1fr] gap-x-3 mb-4">
+                                            <div class="flex items-start pt-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <span class="text-lg text-gray-500 dark:text-gray-400 font-medium">Status</span>
+                                                <div class="text-sm font-semibold mt-1">Completed</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- CTA Buttons -->
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <a href="mailto:walkers287@gmail.com?subject=Project Inquiry - AI Analytics Dashboard" 
+                                   class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300 text-center">
+                                    Get Pricing Now
+                                </a>
+                                <a href="#"
+                                   class="inline-block border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300 text-center">
+                                    View Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project Image (Right Column) -->
+                    <div class="space-y-6" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                        <div class="relative overflow-hidden rounded-2xl h-full">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" 
+                                 alt="AI Analytics Dashboard" 
+                                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                                 loading="lazy" decoding="async">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Project Gallery -->
         <section class="min-h-screen px-6 py-10 md:px-32 md:py-10 flex flex-col items-center justify-center text-black dark:text-white" role="region" aria-label="Project Gallery">
             <div class="container mx-auto max-w-7xl space-y-16">
