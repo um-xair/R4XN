@@ -1,17 +1,3 @@
-<?php
-// Database connection for fetching projects
-include 'dashboard/config.php';
-
-if ($conn->connect_error) {
-    die("DB connection error: " . $conn->connect_error);
-}
-
-// Fetch active projects from database
-$result = $conn->query("SELECT * FROM client_projects WHERE status = 'active' ORDER BY featured DESC, sort_order ASC, created_at DESC");
-$projects = $result->fetch_all(MYSQLI_ASSOC);
-
-$conn->close();
-?>
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
@@ -298,11 +284,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     
     .project-card:hover {
         transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     }
     
     .dark .project-card:hover {
-        box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
     }
     
     .tech-stack-item {
@@ -321,109 +305,67 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
+    <?php 
+    // Database connection for services
+    include 'dashboard/config.php';
+    
+    // Get active services from database
+    $services_query = "SELECT * FROM services WHERE status = 'active' ORDER BY sort_order";
+    $services_result = $conn->query($services_query);
+    ?>
+    
     <?php include 'header.php';?>
 
     <main>
-        <!-- Hero Section -->
-        <section class="min-h-screen px-6 py-20 flex items-center justify-center text-black dark:text-white relative" role="region" aria-label="Project Display Overview">
-            <div class="container mx-auto px-4 max-w-7xl text-center space-y-6 flex flex-col items-center justify-center mt-10" data-aos="fade-up" data-aos-duration="1000">
-                <h1 class="text-transparent bg-gradient-to-t from-gray-600 to-black dark:from-gray-400 dark:to-white bg-clip-text font-bold text-5xl md:text-7xl"
-                    itemprop="name">
-                    Projects We're Proud Of
-                </h1>
-                <p class="text-gray-600 dark:text-gray-400 mx-auto text-lg md:text-2xl"
-                   itemprop="description" data-aos-delay="200">
-                    Dive into our latest creations â€” real projects for real people, crafted with love, vibes, and a whole lot of creative energy.
-                    From slick, responsive websites to bold, unforgettable branding, every piece is a reflection of our passion and purpose.
-                    Whether you're here for inspiration or collaboration, there's always something fresh and exciting waiting below.
-                </p>
-                <p class="text-gray-600 dark:text-gray-400 mx-auto text-lg md:text-2xl"
-                   data-aos-delay="300">
-                   We don't just build â€” we listen, explore, and solve. Every project is a collaboration that begins with a vision and ends with something meaningful. So take your time, scroll through, and discover how we turn ideas into experiences worth sharing.
-                </p>
-                <div class="pt-8 flex justify-center">
-                    <button id="scrollDownBtn" 
-                            class="group w-16 h-16 flex items-center justify-center
-                                   bg-white dark:bg-[#121212]
-                                   rounded-full shadow-lg hover:shadow-xl
-                                   transition-all duration-300 animate-bounce
-                                   border-2 border-gray-200 dark:border-gray-600"
-                            aria-label="Scroll to next section">
-                        <i class="fas fa-chevron-down text-2xl"></i>
-                    </button>
+        <!-- Services Section -->
+        <section class="min-h-screen px-6 py-20 flex flex-col items-center justify-center text-black dark:text-white relative mt-0 lg:mt-20 " role="region" aria-label="Our Services">
+            <div class="container mx-auto px-4 max-w-7xl text-center space-y-16">
+                <!-- Header -->
+                <div class="space-y-6" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="flex justify-center items-center" data-aos-delay="400">
+                        <span class="text-lg text-gray-500">Select Your Project Type</span>
+                    </div>
+                    <h1 class="text-transparent bg-gradient-to-t from-gray-600 to-black dark:from-gray-400 dark:to-white bg-clip-text font-bold text-5xl md:text-7xl"
+                        itemprop="name">
+                        Our Services
+                    </h1>
+                    <p class="text-gray-600 dark:text-gray-400 mx-auto text-lg md:text-2xl max-w-4xl"
+                       itemprop="description" data-aos-delay="200">
+                        Explore our diverse portfolio across different project types. From e-commerce solutions to corporate identity design, 
+                        we've got the expertise to bring your vision to life.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <?php 
+                    $delay = 100;
+                    while ($service = $services_result->fetch_assoc()): 
+                    ?>
+                    <div class="project-card bg-white dark:bg-[#121212] rounded-3xl p-12 border-2 border-gray-200 dark:border-gray-700 relative group" data-aos="fade-up" data-aos-duration="800" data-aos-delay="<?php echo $delay; ?>">
+                        <div class="space-y-8">
+                            <div class="relative overflow-hidden rounded-2xl">
+                                <img src="<?php echo !empty($service['image_url']) && !filter_var($service['image_url'], FILTER_VALIDATE_URL) ? htmlspecialchars($service['image_url']) : htmlspecialchars($service['image_url']); ?>" 
+                                     alt="<?php echo htmlspecialchars($service['name']); ?>" 
+                                     class="w-full h-64 object-cover"
+                                     loading="lazy" decoding="async">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            </div>
+                            <div class="space-y-6">
+                                <h3 class="text-3xl font-semibold"><?php echo htmlspecialchars($service['name']); ?></h3>
+                                <p class="text-lg text-gray-600 dark:text-gray-300"><?php echo htmlspecialchars($service['description']); ?></p>
+                                <a href="service-dynamic.php?service=<?php echo htmlspecialchars($service['slug']); ?>" class="inline-block w-full bg-black dark:bg-white text-white dark:text-black font-semibold py-4 px-8 rounded-xl transition-colors duration-300 text-center text-lg hover:bg-gray-800 dark:hover:bg-gray-200">
+                                    View Projects
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php 
+                    $delay += 100;
+                    endwhile; 
+                    ?>
                 </div>
             </div>
         </section>
-
-        <section id="featured-project" class="min-h-screen px-6 py-20 text-black dark:text-white" role="region" aria-label="Project Details">
-            <div class="container mx-auto max-w-7xl space-y-10">
-
-                <?php if (empty($projects)): ?>
-                    <!-- No projects message -->
-                    <div class="text-center py-20">
-                        <div class="mb-6 flex justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rocket-icon lucide-rocket text-gray-400 dark:text-white">
-                                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
-                                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
-                                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
-                                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
-                            </svg>
-                        </div>
-                        <h2 class="text-3xl font-bold mb-4">Coming Soon!</h2>
-                        <p class="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-                            We're working on some amazing projects that will be showcased here soon. 
-                            Check back later to see our latest work and creative solutions.
-                        </p>
-                    </div>
-                <?php else: ?>
-                    <!-- Display projects from database -->
-                    <?php foreach ($projects as $project): ?>
-                        <div class="grid md:grid-cols-2 gap-12 items-center bg-white dark:bg-[#121212] rounded-2xl p-20 border border-gray-200 dark:border-gray-700" data-aos="fade-up" data-aos-duration="1000">
-                            <div class="w-full">
-                                <img src="<?= htmlspecialchars('dashboard/' . $project['image_path']) ?>" 
-                                     alt="<?= htmlspecialchars($project['title']) ?>" 
-                                     class="rounded-2xl shadow w-full h-auto object-cover"
-                                     onerror="this.src='dashboard/index-assets/project-1.png'">
-                            </div>
-                            <div class="space-y-6">
-                                <h2 class="text-3xl md:text-4xl font-bold"><?= htmlspecialchars($project['title']) ?></h2>
-
-                                <p class="text-gray-700 dark:text-gray-300 text-lg">
-                                    <?= htmlspecialchars($project['description']) ?>
-                                </p>
-                                <div class="grid sm:grid-cols-2 gap-6">
-                                    <div class="bg-gray-100 dark:bg-[#1e1e1e] rounded-xl p-4 shadow-sm">
-                                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Website Type</p>
-                                        <p class="font-semibold text-lg text-black dark:text-white"><?= htmlspecialchars($project['website_type']) ?></p>
-                                    </div>
-                                    <div class="bg-gray-100 dark:bg-[#1e1e1e] rounded-xl p-4 shadow-sm">
-                                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Client</p>
-                                        <p class="font-semibold text-lg text-black dark:text-white"><?= htmlspecialchars($project['client_name']) ?></p>
-                                    </div>
-                                    <div class="bg-gray-100 dark:bg-[#1e1e1e] rounded-xl p-4 shadow-sm">
-                                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Timeline</p>
-                                        <p class="font-semibold text-lg text-black dark:text-white"><?= htmlspecialchars($project['timeline']) ?></p>
-                                    </div>
-                                    <div class="bg-gray-100 dark:bg-[#1e1e1e] rounded-xl p-4 shadow-sm">
-                                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-1">Website</p>
-                                        <div class="flex flex-wrap items-center gap-4">
-                                            <a href="<?= htmlspecialchars($project['website_url']) ?>" 
-                                               target="_blank" 
-                                               class="text-blue-600 text-lg dark:text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-300 transition font-medium">
-                                                <?= htmlspecialchars(parse_url($project['website_url'], PHP_URL_HOST) ?: $project['website_url']) ?>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-
-            </div>
-        </section>
-
-        
 
     </main>
 

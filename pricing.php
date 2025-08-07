@@ -335,6 +335,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <?php include 'header.php';?>
 
+    <?php
+    // Database connection for fetching pricing data
+    include 'dashboard/config.php';
+    
+    // Fetch active pricing plans
+    $plans_query = "SELECT * FROM pricing_plans WHERE status = 'active' ORDER BY sort_order, name";
+    $plans_result = $conn->query($plans_query);
+    
+    // Fetch active service pricing
+    $services_query = "SELECT * FROM service_pricing WHERE status = 'active' ORDER BY sort_order, service_name";
+    $services_result = $conn->query($services_query);
+    ?>
+
     <main>
         <!-- Hero Section -->
         <section class="min-h-screen px-6 py-32 flex flex-col items-center justify-center text-black dark:text-white" role="region" aria-label="Pricing Overview">
@@ -353,110 +366,146 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="py-20 px-4" role="region" aria-label="Pricing Plans">
                 <div class="container mx-auto max-w-7xl">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        <!-- Basic Plan -->
-                        <article class="pricing-card bg-white dark:bg-[#121212] rounded-2xl p-8 border border-gray-200 dark:border-gray-700 relative" itemscope itemtype="https://schema.org/Offer" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
-                            <div class="absolute inset-0 rounded-2xl border-[2.5px] border-transparent pointer-events-none animate-border"></div>
-                            <div class="relative z-10 space-y-8">
-                                <div class="text-center space-y-4">
-                                    <h3 class="text-2xl font-bold" itemprop="name">Basic</h3>
-                                    <div class="space-y-1">
-                                        <span class="text-4xl font-bold" id="basic-price">RM 2,500</span>
-                                        <span class="text-gray-500 dark:text-gray-400">/project</span>
-                                    </div>
-                                    <p class="text-gray-600 dark:text-gray-300">Perfect for small businesses and startups</p>
-                                </div>
-                                <div class="text-center">
-                                    <a href="mailto:walkers287@gmail.com?subject=Basic Plan Inquiry" 
-                                       class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300"
-                                       itemprop="url">
-                                        Get Started
-                                    </a>
-                                </div>
-                                <ul class="feature-list space-y-4" itemprop="description">
-                                    <li>Responsive Website Design</li>
-                                    <li>Up to 5 Pages</li>
-                                    <li>Basic SEO Optimization</li>
-                                    <li>Contact Form Integration</li>
-                                    <li>Mobile-First Design</li>
-                                    <li>2 Revisions</li>
-                                    <li>Basic Analytics Setup</li>
-                                    <li>1 Month Support</li>
-                                </ul>
-                            </div>
-                        </article>
-
-                        <!-- Professional Plan -->
-                        <article class="pricing-card bg-gradient-to-br from-blue-600 to-purple-600 text-white rounded-2xl p-8 border-2 border-blue-500 relative transform scale-105 space-y-4" itemscope itemtype="https://schema.org/Offer" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
-                            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                                <span class="bg-yellow-400 text-black px-6 py-3 rounded-full text-sm font-semibold">Most Popular</span>
-                            </div>
-                            <div class="space-y-8">
-                                <div class="text-center space-y-4">
-                                    <h3 class="text-2xl font-bold" itemprop="name">Professional</h3>
-                                    <div class="space-y-1">
-                                        <div>
-                                            <span class="text-4xl font-bold" id="pro-price">RM 5,000</span>
-                                            <span class="text-blue-200">/project</span>
+                        <?php if ($plans_result && $plans_result->num_rows > 0): ?>
+                            <?php while ($plan = $plans_result->fetch_assoc()): ?>
+                                <article class="pricing-card <?= $plan['is_popular'] ? 'bg-gradient-to-br from-blue-600 to-purple-600 text-white transform scale-105' : 'bg-white dark:bg-[#121212]' ?> rounded-2xl p-8 border border-gray-200 dark:border-gray-700 relative" itemscope itemtype="https://schema.org/Offer" data-aos="fade-up" data-aos-duration="800" data-aos-delay="<?= $plan['sort_order'] * 100 ?>">
+                                    <?php if ($plan['is_popular']): ?>
+                                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
+                                            <span class="bg-yellow-400 text-black px-6 py-3 rounded-full text-sm font-semibold">Most Popular</span>
                                         </div>
-                                        <p class="text-blue-200">Ideal for growing businesses and e-commerce</p>
+                                    <?php endif; ?>
+                                    <div class="absolute inset-0 rounded-2xl border-[2.5px] border-transparent pointer-events-none animate-border"></div>
+                                    <div class="relative z-10 space-y-8">
+                                        <div class="text-center space-y-4">
+                                            <h3 class="text-2xl font-bold" itemprop="name"><?= htmlspecialchars($plan['name']) ?></h3>
+                                            <div class="space-y-1">
+                                                <span class="text-4xl font-bold" id="<?= strtolower($plan['name']) ?>-price">RM <?= number_format($plan['price'], 2) ?></span>
+                                                <span class="<?= $plan['is_popular'] ? 'text-blue-200' : 'text-gray-500 dark:text-gray-400' ?>">/project</span>
+                                            </div>
+                                            <p class="<?= $plan['is_popular'] ? 'text-blue-200' : 'text-gray-600 dark:text-gray-300' ?>"><?= htmlspecialchars($plan['description']) ?></p>
+                                        </div>
+                                        <div class="text-center">
+                                            <a href="mailto:walkers287@gmail.com?subject=<?= urlencode($plan['name']) ?> Plan Inquiry" 
+                                               class="inline-block <?= $plan['is_popular'] ? 'bg-white text-blue-600 hover:bg-gray-100' : 'bg-blue-600 hover:bg-blue-700 text-white' ?> font-semibold py-3 px-8 rounded-lg transition-colors duration-300"
+                                               itemprop="url">
+                                                Get Started
+                                            </a>
+                                        </div>
+                                        <ul class="feature-list space-y-4 <?= $plan['is_popular'] ? 'text-white' : '' ?>" itemprop="description">
+                                            <?php 
+                                            $features = explode(',', $plan['features']);
+                                            foreach ($features as $feature): ?>
+                                                <li><?= htmlspecialchars(trim($feature)) ?></li>
+                                            <?php endforeach; ?>
+                                        </ul>
                                     </div>
-                                </div>
-                                <div class="text-center">
-                                    <a href="mailto:walkers287@gmail.com?subject=Professional Plan Inquiry" 
-                                       class="inline-block bg-white text-blue-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-colors duration-300"
-                                       itemprop="url">
-                                        Get Started
-                                    </a>
-                                </div>
-                                <ul class="feature-list space-y-4 text-white" itemprop="description">
-                                    <li>Everything in Basic</li>
-                                    <li>Up to 15 Pages</li>
-                                    <li>Advanced SEO Optimization</li>
-                                    <li>E-commerce Integration</li>
-                                    <li>Custom CMS Development</li>
-                                    <li>Payment Gateway Setup</li>
-                                    <li>Advanced Analytics</li>
-                                    <li>3 Months Support</li>
-                                    <li>Performance Optimization</li>
-                                    <li>Security Implementation</li>
-                                </ul>
-                            </div>
-                        </article>
-                        <!-- Enterprise Plan -->
-                        <article class="pricing-card bg-white dark:bg-[#121212] rounded-2xl p-8 border border-gray-200 dark:border-gray-700 relative" itemscope itemtype="https://schema.org/Offer" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
-                            <div class="absolute inset-0 rounded-2xl border-[2.5px] border-transparent pointer-events-none animate-border"></div>
-                            <div class="relative z-10 space-y-8">
-                                <div class="text-center space-y-4">
-                                    <h3 class="text-2xl font-bold" itemprop="name">Enterprise</h3>
-                                    <div class="space-y-1">
-                                        <span class="text-4xl font-bold" id="enterprise-price">RM 12,000</span>
-                                        <span class="text-gray-500 dark:text-gray-400">/project</span>
+                                </article>
+                            <?php endwhile; ?>
+                        <?php else: ?>
+                            <!-- Fallback pricing plans if no database data -->
+                            <article class="pricing-card bg-white dark:bg-[#121212] rounded-2xl p-8 border border-gray-200 dark:border-gray-700 relative" itemscope itemtype="https://schema.org/Offer" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                                <div class="absolute inset-0 rounded-2xl border-[2.5px] border-transparent pointer-events-none animate-border"></div>
+                                <div class="relative z-10 space-y-8">
+                                    <div class="text-center space-y-4">
+                                        <h3 class="text-2xl font-bold" itemprop="name">Basic</h3>
+                                        <div class="space-y-1">
+                                            <span class="text-4xl font-bold" id="basic-price">RM 2,500</span>
+                                            <span class="text-gray-500 dark:text-gray-400">/project</span>
+                                        </div>
+                                        <p class="text-gray-600 dark:text-gray-300">Perfect for small businesses and startups</p>
                                     </div>
-                                    <p class="text-gray-600 dark:text-gray-300">For large-scale applications and custom solutions</p>
+                                    <div class="text-center">
+                                        <a href="mailto:walkers287@gmail.com?subject=Basic Plan Inquiry" 
+                                           class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300"
+                                           itemprop="url">
+                                            Get Started
+                                        </a>
+                                    </div>
+                                    <ul class="feature-list space-y-4" itemprop="description">
+                                        <li>Responsive Website Design</li>
+                                        <li>Up to 5 Pages</li>
+                                        <li>Basic SEO Optimization</li>
+                                        <li>Contact Form Integration</li>
+                                        <li>Mobile-First Design</li>
+                                        <li>2 Revisions</li>
+                                        <li>Basic Analytics Setup</li>
+                                        <li>1 Month Support</li>
+                                    </ul>
                                 </div>
-                                <div class="text-center">
-                                    <a href="mailto:walkers287@gmail.com?subject=Enterprise Plan Inquiry" 
-                                       class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300"
-                                       itemprop="url">
-                                        Get Started
-                                    </a>
+                            </article>
+
+                            <article class="pricing-card bg-gradient-to-br from-blue-600 to-purple-600 text-white rounded-2xl p-8 border-2 border-blue-500 relative transform scale-105 space-y-4" itemscope itemtype="https://schema.org/Offer" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                                    <span class="bg-yellow-400 text-black px-6 py-3 rounded-full text-sm font-semibold">Most Popular</span>
                                 </div>
-                                <ul class="feature-list space-y-4" itemprop="description">
-                                    <li>Everything in Professional</li>
-                                    <li>Unlimited Pages</li>
-                                    <li>Custom Web Application</li>
-                                    <li>IoT Integration</li>
-                                    <li>Advanced Security</li>
-                                    <li>API Development</li>
-                                    <li>Database Design</li>
-                                    <li>Cloud Infrastructure</li>
-                                    <li>6 Months Support</li>
-                                    <li>Priority Support</li>
-                                    <li>Performance Monitoring</li>
-                                    <li>Custom Integrations</li>
-                                </ul>
-                            </div>
-                        </article>
+                                <div class="space-y-8">
+                                    <div class="text-center space-y-4">
+                                        <h3 class="text-2xl font-bold" itemprop="name">Professional</h3>
+                                        <div class="space-y-1">
+                                            <div>
+                                                <span class="text-4xl font-bold" id="pro-price">RM 5,000</span>
+                                                <span class="text-blue-200">/project</span>
+                                            </div>
+                                            <p class="text-blue-200">Ideal for growing businesses and e-commerce</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <a href="mailto:walkers287@gmail.com?subject=Professional Plan Inquiry" 
+                                           class="inline-block bg-white text-blue-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg transition-colors duration-300"
+                                           itemprop="url">
+                                            Get Started
+                                        </a>
+                                    </div>
+                                    <ul class="feature-list space-y-4 text-white" itemprop="description">
+                                        <li>Everything in Basic</li>
+                                        <li>Up to 15 Pages</li>
+                                        <li>Advanced SEO Optimization</li>
+                                        <li>E-commerce Integration</li>
+                                        <li>Custom CMS Development</li>
+                                        <li>Payment Gateway Setup</li>
+                                        <li>Advanced Analytics</li>
+                                        <li>3 Months Support</li>
+                                        <li>Performance Optimization</li>
+                                        <li>Security Implementation</li>
+                                    </ul>
+                                </div>
+                            </article>
+
+                            <article class="pricing-card bg-white dark:bg-[#121212] rounded-2xl p-8 border border-gray-200 dark:border-gray-700 relative" itemscope itemtype="https://schema.org/Offer" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+                                <div class="absolute inset-0 rounded-2xl border-[2.5px] border-transparent pointer-events-none animate-border"></div>
+                                <div class="relative z-10 space-y-8">
+                                    <div class="text-center space-y-4">
+                                        <h3 class="text-2xl font-bold" itemprop="name">Enterprise</h3>
+                                        <div class="space-y-1">
+                                            <span class="text-4xl font-bold" id="enterprise-price">RM 12,000</span>
+                                            <span class="text-gray-500 dark:text-gray-400">/project</span>
+                                        </div>
+                                        <p class="text-gray-600 dark:text-gray-300">For large-scale applications and custom solutions</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <a href="mailto:walkers287@gmail.com?subject=Enterprise Plan Inquiry" 
+                                           class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-300"
+                                           itemprop="url">
+                                            Get Started
+                                        </a>
+                                    </div>
+                                    <ul class="feature-list space-y-4" itemprop="description">
+                                        <li>Everything in Professional</li>
+                                        <li>Unlimited Pages</li>
+                                        <li>Custom Web Application</li>
+                                        <li>IoT Integration</li>
+                                        <li>Advanced Security</li>
+                                        <li>API Development</li>
+                                        <li>Database Design</li>
+                                        <li>Cloud Infrastructure</li>
+                                        <li>6 Months Support</li>
+                                        <li>Priority Support</li>
+                                        <li>Performance Monitoring</li>st
+                                        <li>Custom Integrations</li>
+                                    </ul>
+                                </div>
+                            </article>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -464,76 +513,110 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <!-- Service-Specific Pricing -->
         <section class="py-20 px-4" role="region" aria-label="Service-Specific Pricing">
-            <div class="container mx-auto max-w-6xl space-y-16 text-center">
-                <h2 class="text-transparent bg-gradient-to-t from-gray-600 to-black dark:from-gray-400 dark:to-white bg-clip-text font-bold text-5xl md:text-7xl" data-aos="fade-up" data-aos-duration="1000">Service-Specific Pricing</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Frontend Development -->
-                    <div class="bg-white dark:bg-[#121212] rounded-2xl p-8 border-2 border-gray-200 dark:border-gray-700 relative space-y-8 flex flex-col items-center" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
-                        <div class="space-y-4 flex flex-col items-center">
-                            <i class="fas fa-code text-4xl text-blue-600"></i>
-                            <h3 class="text-xl font-bold">Frontend Development</h3>
-                            <p class="text-gray-600 dark:text-gray-300 text-center">Responsive interfaces and modern web apps</p>
-                        </div>
-                        <div class="space-y-3 w-full">
-                            <div class="flex justify-between">
-                                <span>Single Page App</span>
-                                <span class="font-semibold">RM 1,500</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Multi-Page Website</span>
-                                <span class="font-semibold">RM 3,000</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>E-commerce Frontend</span>
-                                <span class="font-semibold">RM 4,500</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- System Design -->
-                    <div class="bg-white dark:bg-[#121212] rounded-2xl p-8 border-2 border-gray-200 dark:border-gray-700 relative space-y-8 flex flex-col items-center" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
-                        <div class="space-y-4 flex flex-col items-center">
-                            <i class="fas fa-sitemap text-4xl text-purple-600"></i>
-                            <h3 class="text-xl font-bold">System Design</h3>
-                            <p class="text-gray-600 dark:text-gray-300 text-center">UI/UX architecture and system planning</p>
-                        </div>
-                        <div class="space-y-3 w-full">
-                            <div class="flex justify-between">
-                                <span>UI/UX Design</span>
-                                <span class="font-semibold">RM 2,000</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>System Architecture</span>
-                                <span class="font-semibold">RM 3,500</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Full System Design</span>
-                                <span class="font-semibold">RM 5,000</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- IoT Solutions -->
-                    <div class="bg-white dark:bg-[#121212] rounded-2xl p-8 border-2 border-gray-200 dark:border-gray-700 relative space-y-8 flex flex-col items-center" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
-                        <div class="space-y-4 flex flex-col items-center">
-                            <i class="fas fa-microchip text-4xl text-green-600"></i>
-                            <h3 class="text-xl font-bold">IoT Solutions</h3>
-                            <p class="text-gray-600 dark:text-gray-300 text-center">Smart automation and connected systems</p>
-                        </div>
-                        <div class="space-y-3 w-full">
-                            <div class="flex justify-between">
-                                <span>IoT Consultation</span>
-                                <span class="font-semibold">RM 1,000</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Smart Device Integration</span>
-                                <span class="font-semibold">RM 3,500</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Full IoT Platform</span>
-                                <span class="font-semibold">RM 8,000</span>
-                            </div>
-                        </div>
-                    </div>
+            <div class="container mx-auto max-w-7xl space-y-16 text-center">
+                <div class="space-y-6" data-aos="fade-up" data-aos-duration="1000">
+                    <h2 class="text-transparent bg-gradient-to-t from-gray-600 to-black dark:from-gray-400 dark:to-white bg-clip-text font-bold text-5xl md:text-7xl">Service-Specific Pricing</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">Choose from our specialized services tailored to your specific needs. Each service includes comprehensive features and dedicated support.</p>
                 </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <?php if ($services_result && $services_result->num_rows > 0): ?>
+                        <?php while ($service = $services_result->fetch_assoc()): ?>
+                            <?php
+                            // Fetch pricing items for this service
+                            $items_query = "SELECT * FROM service_pricing_items WHERE service_id = ? AND status = 'active' ORDER BY sort_order";
+                            $stmt = $conn->prepare($items_query);
+                            $stmt->bind_param("i", $service['id']);
+                            $stmt->execute();
+                            $items_result = $stmt->get_result();
+                            
+                            // Fetch features for this service
+                            $features_query = "SELECT * FROM service_features WHERE service_id = ? AND status = 'active' ORDER BY sort_order";
+                            $stmt = $conn->prepare($features_query);
+                            $stmt->bind_param("i", $service['id']);
+                            $stmt->execute();
+                            $features_result = $stmt->get_result();
+                            ?>
+                            
+                            <div class="bg-white dark:bg-[#121212] rounded-2xl p-8 border-2 border-gray-200 dark:border-gray-700 relative space-y-8 flex flex-col items-center group hover:shadow-2xl hover:scale-105 transition-all duration-300" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="<?= $service['sort_order'] * 100 ?>">
+                                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r <?= $service['color_gradient'] ?> rounded-t-2xl"></div>
+                                <div class="space-y-4 flex flex-col items-center">
+                                    <div class="w-16 h-16 bg-gradient-to-br <?= $service['color_gradient'] ?> rounded-full flex items-center justify-center">
+                                        <i class="<?= $service['icon_class'] ?> text-2xl text-white"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold"><?= htmlspecialchars($service['service_name']) ?></h3>
+                                    <p class="text-gray-600 dark:text-gray-300 text-center"><?= htmlspecialchars($service['service_description']) ?></p>
+                                </div>
+                                <div class="space-y-4 w-full">
+                                    <?php if ($items_result && $items_result->num_rows > 0): ?>
+                                        <?php while ($item = $items_result->fetch_assoc()): ?>
+                                            <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                                                <span class="text-sm"><?= htmlspecialchars($item['item_name']) ?></span>
+                                                <span class="font-bold text-blue-600">RM <?= number_format($item['price'], 2) ?></span>
+                                            </div>
+                                        <?php endwhile; ?>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="space-y-3 w-full">
+                                    <h4 class="font-semibold text-left">Includes:</h4>
+                                    <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-2 text-left">
+                                        <?php if ($features_result && $features_result->num_rows > 0): ?>
+                                            <?php while ($feature = $features_result->fetch_assoc()): ?>
+                                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i><?= htmlspecialchars($feature['feature_name']) ?></li>
+                                            <?php endwhile; ?>
+                                        <?php endif; ?>
+                                    </ul>
+                                </div>
+                                <a href="#contact" class="w-full bg-gradient-to-r <?= $service['color_gradient'] ?> hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 text-center">
+                                    Get Quote
+                                </a>
+                            </div>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <!-- Fallback service pricing if no database data -->
+                        <div class="bg-white dark:bg-[#121212] rounded-2xl p-8 border-2 border-gray-200 dark:border-gray-700 relative space-y-8 flex flex-col items-center group hover:shadow-2xl hover:scale-105 transition-all duration-300" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-t-2xl"></div>
+                            <div class="space-y-4 flex flex-col items-center">
+                                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-code text-2xl text-white"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold">Frontend Development</h3>
+                                <p class="text-gray-600 dark:text-gray-300 text-center">Responsive interfaces and modern web applications with cutting-edge technologies</p>
+                            </div>
+                            <div class="space-y-4 w-full">
+                                <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                                    <span class="text-sm">Single Page App</span>
+                                    <span class="font-bold text-blue-600">RM 1,500</span>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                                    <span class="text-sm">Multi-Page Website</span>
+                                    <span class="font-bold text-blue-600">RM 3,000</span>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                                    <span class="text-sm">E-commerce Frontend</span>
+                                    <span class="font-bold text-blue-600">RM 4,500</span>
+                                </div>
+                                <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                                    <span class="text-sm">Progressive Web App</span>
+                                    <span class="font-bold text-blue-600">RM 6,000</span>
+                                </div>
+                            </div>
+                            <div class="space-y-3 w-full">
+                                <h4 class="font-semibold text-left">Includes:</h4>
+                                <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-2 text-left">
+                                    <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Responsive Design</li>
+                                    <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Cross-browser Compatibility</li>
+                                    <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>Performance Optimization</li>
+                                    <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i>SEO Optimization</li>
+                                </ul>
+                            </div>
+                            <a href="#contact" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 text-center">
+                                Get Quote
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                </div>
+
             </div>
         </section>
 

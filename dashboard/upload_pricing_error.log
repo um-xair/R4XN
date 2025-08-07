@@ -1,0 +1,213 @@
+[06-Aug-2025 09:58:03 UTC] Pricing upload request started at 2025-08-06 09:58:03
+[06-Aug-2025 09:58:03 UTC] Updating pricing plan
+[06-Aug-2025 09:58:03 UTC] Pricing plan updated successfully: ID 1
+[06-Aug-2025 09:58:19 UTC] Pricing upload request started at 2025-08-06 09:58:19
+[06-Aug-2025 09:58:19 UTC] Updating pricing plan
+[06-Aug-2025 09:58:19 UTC] Pricing plan updated successfully: ID 1
+[06-Aug-2025 10:00:09 UTC] Pricing upload request started at 2025-08-06 10:00:09
+[06-Aug-2025 10:00:09 UTC] Updating pricing plan
+[06-Aug-2025 10:00:09 UTC] Pricing plan updated successfully: ID 1
+[06-Aug-2025 10:00:18 UTC] Pricing upload request started at 2025-08-06 10:00:18
+[06-Aug-2025 10:00:18 UTC] Updating pricing plan
+[06-Aug-2025 10:00:18 UTC] Pricing plan updated successfully: ID 1
+[06-Aug-2025 10:01:48 UTC] Pricing upload request started at 2025-08-06 10:01:48
+[06-Aug-2025 10:01:48 UTC] Updating pricing plan
+[06-Aug-2025 10:01:48 UTC] POST data received: Array
+(
+    [action] => update_plan
+    [plan_id] => 1
+    [status] => active
+    [name] => Basic
+    [price] => 1500.00
+    [description] => Perfect for small businesses and startups
+    [features] => Responsive Website Design,Up to 5 Pages,Basic SEO Optimization,Contact Form Integration,Mobile-First Design,2 Revisions,Basic Analytics Setup,1 Month Support
+)
+
+[06-Aug-2025 10:01:48 UTC] Status from POST: active
+[06-Aug-2025 10:01:48 UTC] Update plan - Status being set: active
+[06-Aug-2025 10:01:48 UTC] Update plan - Plan ID: 1
+[06-Aug-2025 10:01:48 UTC] Pricing plan updated successfully: ID 1
+[06-Aug-2025 10:01:51 UTC] Pricing upload request started at 2025-08-06 10:01:51
+[06-Aug-2025 10:01:51 UTC] Updating pricing plan
+[06-Aug-2025 10:01:51 UTC] POST data received: Array
+(
+    [action] => update_plan
+    [plan_id] => 1
+    [status] => active
+    [name] => Basic
+    [price] => 2500.00
+    [description] => Perfect for small businesses and startups
+    [features] => Responsive Website Design,Up to 5 Pages,Basic SEO Optimization,Contact Form Integration,Mobile-First Design,2 Revisions,Basic Analytics Setup,1 Month Support
+)
+
+[06-Aug-2025 10:01:51 UTC] Status from POST: active
+[06-Aug-2025 10:01:51 UTC] Update plan - Status being set: active
+[06-Aug-2025 10:01:51 UTC] Update plan - Plan ID: 1
+[06-Aug-2025 10:01:51 UTC] Pricing plan updated successfully: ID 1
+[06-Aug-2025 10:02:24 UTC] Pricing upload request started at 2025-08-06 10:02:24
+[06-Aug-2025 10:02:24 UTC] Updating pricing plan
+[06-Aug-2025 10:02:24 UTC] POST data received: Array
+(
+    [action] => update_plan
+    [plan_id] => 3
+    [status] => active
+    [name] => Enterprise
+    [price] => 10000.00
+    [description] => For large-scale applications and custom solutions
+    [features] => Everything in Professional,Unlimited Pages,Custom Web Application,IoT Integration,Advanced Security,API Development,Database Design,Cloud Infrastructure,6 Months Support,Priority Support,Performance Monitoring,Custom Integrations
+)
+
+[06-Aug-2025 10:02:24 UTC] Status from POST: active
+[06-Aug-2025 10:02:24 UTC] Update plan - Status being set: active
+[06-Aug-2025 10:02:24 UTC] Update plan - Plan ID: 3
+[06-Aug-2025 10:02:24 UTC] Status after update: 
+[06-Aug-2025 10:02:24 UTC] Pricing plan updated successfully: ID 3
+[06-Aug-2025 10:04:52 UTC] Pricing upload request started at 2025-08-06 10:04:52
+[06-Aug-2025 10:04:52 UTC] Updating pricing plan
+[06-Aug-2025 10:04:52 UTC] POST data received: Array
+(
+    [action] => update_plan
+    [plan_id] => 3
+    [status] => active
+    [name] => Enterprise
+    [price] => 100000.00
+    [description] => For large-scale applications and custom solutions
+    [features] => Everything in Professional,Unlimited Pages,Custom Web Application,IoT Integration,Advanced Security,API Development,Database Design,Cloud Infrastructure,6 Months Support,Priority Support,Performance Monitoring,Custom Integrations
+)
+
+[06-Aug-2025 10:04:52 UTC] Current status from DB: active
+[06-Aug-2025 10:04:52 UTC] Status from POST: active
+[06-Aug-2025 10:04:52 UTC] Final status to use: active
+[06-Aug-2025 10:04:52 UTC] Binding parameters: name='Enterprise', price='100000.00', description='For large-scale applications and custom solutions', features='Everything in Professional,Unlimited Pages,Custom Web Application,IoT Integration,Advanced Security,API Development,Database Design,Cloud Infrastructure,6 Months Support,Priority Support,Performance Monitoring,Custom Integrations', is_popular='0', status='active', plan_id='3'
+[06-Aug-2025 10:04:52 UTC] Update plan - Status being set: active
+[06-Aug-2025 10:04:52 UTC] Update plan - Plan ID: 3
+[06-Aug-2025 10:04:52 UTC] Status after update: 
+[06-Aug-2025 10:04:52 UTC] Pricing plan updated successfully: ID 3
+[06-Aug-2025 10:04:57 UTC] Pricing upload request started at 2025-08-06 10:04:57
+[06-Aug-2025 10:04:57 UTC] Updating pricing plan
+[06-Aug-2025 10:04:57 UTC] POST data received: Array
+(
+    [action] => update_plan
+    [plan_id] => 3
+    [status] => active
+    [name] => Enterprise
+    [price] => 10000.00
+    [description] => For large-scale applications and custom solutions
+    [features] => Everything in Professional,Unlimited Pages,Custom Web Application,IoT Integration,Advanced Security,API Development,Database Design,Cloud Infrastructure,6 Months Support,Priority Support,Performance Monitoring,Custom Integrations
+)
+
+[06-Aug-2025 10:04:57 UTC] Current status from DB: active
+[06-Aug-2025 10:04:57 UTC] Status from POST: active
+[06-Aug-2025 10:04:57 UTC] Final status to use: active
+[06-Aug-2025 10:04:57 UTC] Binding parameters: name='Enterprise', price='10000.00', description='For large-scale applications and custom solutions', features='Everything in Professional,Unlimited Pages,Custom Web Application,IoT Integration,Advanced Security,API Development,Database Design,Cloud Infrastructure,6 Months Support,Priority Support,Performance Monitoring,Custom Integrations', is_popular='0', status='active', plan_id='3'
+[06-Aug-2025 10:04:57 UTC] Update plan - Status being set: active
+[06-Aug-2025 10:04:57 UTC] Update plan - Plan ID: 3
+[06-Aug-2025 10:04:57 UTC] Status after update: 
+[06-Aug-2025 10:04:57 UTC] Pricing plan updated successfully: ID 3
+[06-Aug-2025 10:21:41 UTC] Pricing upload request started at 2025-08-06 10:21:41
+[06-Aug-2025 10:21:41 UTC] Updating pricing plan
+[06-Aug-2025 10:21:41 UTC] POST data received: Array
+(
+    [action] => update_plan
+    [plan_id] => 1
+    [status] => active
+    [name] => Basic
+    [price] => 2500.00
+    [description] => Perfect for small businesses and startups
+    [features] => Responsive Website Design,Up to 5 Pages,Basic SEO Optimization,Contact Form Integration,Mobile-First Design,2 Revisions,Basic Analytics Setup,1 Month Support,test
+)
+
+[06-Aug-2025 10:21:41 UTC] Current status from DB: active
+[06-Aug-2025 10:21:41 UTC] Status from POST: active
+[06-Aug-2025 10:21:41 UTC] Final status to use: active
+[06-Aug-2025 10:21:41 UTC] Binding parameters: name='Basic', price='2500.00', description='Perfect for small businesses and startups', features='Responsive Website Design,Up to 5 Pages,Basic SEO Optimization,Contact Form Integration,Mobile-First Design,2 Revisions,Basic Analytics Setup,1 Month Support,test', is_popular='0', status='active', plan_id='1'
+[06-Aug-2025 10:21:41 UTC] Update plan - Status being set: active
+[06-Aug-2025 10:21:41 UTC] Update plan - Plan ID: 1
+[06-Aug-2025 10:21:41 UTC] Status after update: 
+[06-Aug-2025 10:21:41 UTC] Pricing plan updated successfully: ID 1
+[06-Aug-2025 10:21:50 UTC] Pricing upload request started at 2025-08-06 10:21:50
+[06-Aug-2025 10:21:50 UTC] Updating pricing plan
+[06-Aug-2025 10:21:50 UTC] POST data received: Array
+(
+    [action] => update_plan
+    [plan_id] => 1
+    [status] => active
+    [name] => Basic
+    [price] => 2500.00
+    [description] => Perfect for small businesses and startups
+    [features] => Responsive Website Design,Up to 5 Pages,Basic SEO Optimization,Contact Form Integration,Mobile-First Design,2 Revisions,Basic Analytics Setup,1 Month Support
+)
+
+[06-Aug-2025 10:21:50 UTC] Current status from DB: active
+[06-Aug-2025 10:21:50 UTC] Status from POST: active
+[06-Aug-2025 10:21:50 UTC] Final status to use: active
+[06-Aug-2025 10:21:50 UTC] Binding parameters: name='Basic', price='2500.00', description='Perfect for small businesses and startups', features='Responsive Website Design,Up to 5 Pages,Basic SEO Optimization,Contact Form Integration,Mobile-First Design,2 Revisions,Basic Analytics Setup,1 Month Support', is_popular='0', status='active', plan_id='1'
+[06-Aug-2025 10:21:50 UTC] Update plan - Status being set: active
+[06-Aug-2025 10:21:50 UTC] Update plan - Plan ID: 1
+[06-Aug-2025 10:21:50 UTC] Status after update: 
+[06-Aug-2025 10:21:50 UTC] Pricing plan updated successfully: ID 1
+[06-Aug-2025 10:30:08 UTC] Pricing upload request started at 2025-08-06 10:30:08
+[06-Aug-2025 10:30:08 UTC] Updating pricing plan
+[06-Aug-2025 10:30:08 UTC] POST data received: Array
+(
+    [action] => update_plan
+    [plan_id] => 1
+    [name] => Basic
+    [price] => 2500.00
+    [description] => Perfect for small businesses and startups
+    [features] => Responsive Website Design,Up to 5 Pages,Basic SEO Optimization,Contact Form Integration,Mobile-First Design,2 Revisions,Basic Analytics Setup,1 Month Support,hi
+)
+
+[06-Aug-2025 10:30:08 UTC] Update plan - Plan ID: 1
+[06-Aug-2025 10:30:08 UTC] Binding parameters: name='Basic', price='2500.00', description='Perfect for small businesses and startups', features='Responsive Website Design,Up to 5 Pages,Basic SEO Optimization,Contact Form Integration,Mobile-First Design,2 Revisions,Basic Analytics Setup,1 Month Support,hi', is_popular='0', plan_id='1'
+[06-Aug-2025 10:30:08 UTC] Pricing plan updated successfully: ID 1
+[07-Aug-2025 06:48:34 UTC] Pricing upload request started at 2025-08-07 06:48:34
+[07-Aug-2025 06:48:34 UTC] Adding new pricing plan
+[07-Aug-2025 06:48:34 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in C:\wamp64\www\R4XN\dashboard\upload-pricing.php:70
+Stack trace:
+#0 C:\wamp64\www\R4XN\dashboard\upload-pricing.php(70): mysqli_stmt->bind_param('sdssi', 'test', '10', 'test', 'test', 0, 4)
+#1 C:\wamp64\www\R4XN\dashboard\upload-pricing.php(19): handleAddPlan(Object(mysqli))
+#2 {main}
+  thrown in C:\wamp64\www\R4XN\dashboard\upload-pricing.php on line 70
+[07-Aug-2025 06:49:46 UTC] Pricing upload request started at 2025-08-07 06:49:46
+[07-Aug-2025 06:49:46 UTC] Updating pricing plan
+[07-Aug-2025 06:49:46 UTC] POST data received: Array
+(
+    [action] => update_plan
+    [plan_id] => 1
+    [name] => Basic
+    [price] => 200.00
+    [description] => Perfect for small businesses and startups
+    [features] => Responsive Website Design,Up to 5 Pages,Basic SEO Optimization,Contact Form Integration,Mobile-First Design,2 Revisions,Basic Analytics Setup,1 Month Support,hi
+)
+
+[07-Aug-2025 06:49:46 UTC] Update plan - Plan ID: 1
+[07-Aug-2025 06:49:46 UTC] Binding parameters: name='Basic', price='200.00', description='Perfect for small businesses and startups', features='Responsive Website Design,Up to 5 Pages,Basic SEO Optimization,Contact Form Integration,Mobile-First Design,2 Revisions,Basic Analytics Setup,1 Month Support,hi', is_popular='0', plan_id='1'
+[07-Aug-2025 06:49:46 UTC] Pricing plan updated successfully: ID 1
+[07-Aug-2025 06:49:57 UTC] Pricing upload request started at 2025-08-07 06:49:57
+[07-Aug-2025 06:49:57 UTC] Updating pricing plan
+[07-Aug-2025 06:49:57 UTC] POST data received: Array
+(
+    [action] => update_plan
+    [plan_id] => 1
+    [name] => Basic
+    [price] => 2500.00
+    [description] => Perfect for small businesses and startups
+    [features] => Responsive Website Design,Up to 5 Pages,Basic SEO Optimization,Contact Form Integration,Mobile-First Design,2 Revisions,Basic Analytics Setup,1 Month Support,hi
+)
+
+[07-Aug-2025 06:49:57 UTC] Update plan - Plan ID: 1
+[07-Aug-2025 06:49:57 UTC] Binding parameters: name='Basic', price='2500.00', description='Perfect for small businesses and startups', features='Responsive Website Design,Up to 5 Pages,Basic SEO Optimization,Contact Form Integration,Mobile-First Design,2 Revisions,Basic Analytics Setup,1 Month Support,hi', is_popular='0', plan_id='1'
+[07-Aug-2025 06:49:57 UTC] Pricing plan updated successfully: ID 1
+[07-Aug-2025 06:51:16 UTC] Pricing upload request started at 2025-08-07 06:51:16
+[07-Aug-2025 06:51:16 UTC] Updating service pricing
+[07-Aug-2025 06:51:16 UTC] Service pricing updated successfully: ID 1
+[07-Aug-2025 06:51:27 UTC] Pricing upload request started at 2025-08-07 06:51:27
+[07-Aug-2025 06:51:27 UTC] Updating service pricing
+[07-Aug-2025 06:51:27 UTC] Service pricing updated successfully: ID 1
+[07-Aug-2025 06:52:43 UTC] Pricing upload request started at 2025-08-07 06:52:43
+[07-Aug-2025 06:52:43 UTC] Adding new service pricing
+[07-Aug-2025 06:52:43 UTC] Service pricing added successfully: test
+[07-Aug-2025 06:53:08 UTC] Pricing upload request started at 2025-08-07 06:53:08
+[07-Aug-2025 06:53:08 UTC] Adding new pricing plan
+[07-Aug-2025 06:53:08 UTC] Pricing plan added successfully: a

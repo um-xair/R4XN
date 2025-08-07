@@ -4,28 +4,43 @@
         <nav class="hidden md:flex space-x-10 items-center text-lg">
             <a href="project.php" class="hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-300">Projects</a>
             <a href="discover.php" class="hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-300">Discover</a>
-            <div class="relative">
-                <button id="desktop-resources-toggle" class="flex items-center hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-300 focus:outline-none">
-                    Resources
+            <div class="relative group">
+                <a href="services.php" class="flex items-center hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-300 focus:outline-none">
+                    Services
                     <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
                     </svg>
-                </button>
-                <div id="desktop-resources-menu" class="absolute top-full right-0 mt-2 bg-gray-200 dark:bg-[#111] rounded-md hidden z-50 p-6 space-x-2 w-max flex transition-all duration-300">
-                    <a href="frontend.php" class="w-56 hover:bg-gray-300 dark:hover:bg-[#1b1b1b] p-3 rounded-md block transition-colors duration-300">
-                        <div class="text-black dark:text-white font-semibold mb-1">Front End Project</div>
-                        <div class="text-sm text-gray-600 dark:text-gray-400">UI/UX focused web apps using modern frameworks.</div>
-                    </a>
-                    <a href="system.php" class="w-56 hover:bg-gray-300 dark:hover:bg-[#1b1b1b] p-3 rounded-md block transition-colors duration-300">
-                        <div class="text-black dark:text-white font-semibold mb-1">System Design</div>
-                        <div class="text-sm text-gray-600 dark:text-gray-400">Architecture, scalability, and real-world systems.</div>
-                    </a>
-                    <a href="iot.php" class="w-56 hover:bg-gray-300 dark:hover:bg-[#1b1b1b] p-3 rounded-md block transition-colors duration-300">
-                        <div class="text-black dark:text-white font-semibold mb-1">IoT Solution</div>
-                        <div class="text-sm text-gray-600 dark:text-gray-400">Connected devices and smart system integrations.</div>
-                    </a>
+                </a>
+                <div id="desktop-resources-menu" class="absolute top-full right-0 mt-2 bg-gray-200 dark:bg-[#111] rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible z-50 p-6 w-max transition-all duration-300">
+                    <div class="grid grid-cols-3 gap-6">
+                        <a href="?category=ecommerce" class="w-72 hover:bg-gray-300 dark:hover:bg-[#1b1b1b] p-4 rounded-md block transition-colors duration-300">
+                            <div class="text-black dark:text-white font-semibold mb-2">E-commerce Website</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Complete online shopping solutions with payment processing.</div>
+                        </a>
+                        <a href="?category=services" class="w-72 hover:bg-gray-300 dark:hover:bg-[#1b1b1b] p-4 rounded-md block transition-colors duration-300">
+                            <div class="text-black dark:text-white font-semibold mb-2">Services Appointment</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Professional booking and scheduling systems.</div>
+                        </a>
+                        <a href="?category=storytelling" class="w-72 hover:bg-gray-300 dark:hover:bg-[#1b1b1b] p-4 rounded-md block transition-colors duration-300">
+                            <div class="text-black dark:text-white font-semibold mb-2">Interactive Storytelling</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Engaging narrative experiences and multimedia content.</div>
+                        </a>
+                        <a href="?category=product" class="w-72 hover:bg-gray-300 dark:hover:bg-[#1b1b1b] p-4 rounded-md block transition-colors duration-300">
+                            <div class="text-black dark:text-white font-semibold mb-2">Product Showcase</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Comprehensive product catalog websites.</div>
+                        </a>
+                        <a href="?category=corporate" class="w-72 hover:bg-gray-300 dark:hover:bg-[#1b1b1b] p-4 rounded-md block transition-colors duration-300">
+                            <div class="text-black dark:text-white font-semibold mb-2">Corporate Identity</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Professional corporate websites and brand solutions.</div>
+                        </a>
+                        <a href="?category=others" class="w-72 hover:bg-gray-300 dark:hover:bg-[#1b1b1b] p-4 rounded-md block transition-colors duration-300">
+                            <div class="text-black dark:text-white font-semibold mb-2">Custom Solutions</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-400">Innovative custom solutions and mobile applications.</div>
+                        </a>
+                    </div>
                 </div>
             </div>
+            <a href="pricing.php" class="hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-300">Pricing</a>
             <a href="about.php" class="hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-300">About</a>
             
             <!-- Theme Toggle Button -->
@@ -62,27 +77,40 @@
         <a href="project.php" class="block p-3 transition-colors duration-300">Projects</a>
         <a href="discover.php" class="block p-3 transition-colors duration-300">Discover</a>
         <div>
-            <button id="submenu-toggle" class="w-full text-left flex justify-between items-center p-3 rounded-md hover:bg-gray-200 dark:hover:bg-[#1c1c1c] focus:outline-none transition-colors duration-300">
-                Resources
+            <a href="services.php" class="w-full text-left flex justify-between items-center p-3 rounded-md hover:bg-gray-200 dark:hover:bg-[#1c1c1c] focus:outline-none transition-colors duration-300">
+                Services
                 <svg class="w-4 h-4 transform transition-transform duration-300" id="submenu-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
                 </svg>
-            </button>
+            </a>
             <div id="submenu" class="ml-4 mt-3 hidden space-y-2 transition-all duration-300">
-                <a href="frontend.php" class="block hover:bg-gray-200 dark:hover:bg-[#1b1b1b] p-3 rounded-md transition-colors duration-300">
-                    <div class="text-black dark:text-white font-semibold">Front End Project</div>
-                    <div class="text-sm text-gray-600 dark:text-gray-400">UI/UX focused web apps using modern frameworks.</div>
+                <a href="?category=ecommerce" class="block hover:bg-gray-200 dark:hover:bg-[#1b1b1b] p-3 rounded-md transition-colors duration-300">
+                    <div class="text-black dark:text-white font-semibold">E-commerce Website</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400">Complete online shopping solutions with payment processing.</div>
                 </a>
-                <a href="system.php" class="block hover:bg-gray-200 dark:hover:bg-[#1b1b1b] p-3 rounded-md transition-colors duration-300">
-                    <div class="text-black dark:text-white font-semibold">System Design</div>
-                    <div class="text-sm text-gray-600 dark:text-gray-400">Architecture, scalability, and real-world systems.</div>
+                <a href="?category=services" class="block hover:bg-gray-200 dark:hover:bg-[#1b1b1b] p-3 rounded-md transition-colors duration-300">
+                    <div class="text-black dark:text-white font-semibold">Services Appointment</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400">Professional booking and scheduling systems.</div>
                 </a>
-                <a href="iot.php" class="block hover:bg-gray-200 dark:hover:bg-[#1b1b1b] p-3 rounded-md transition-colors duration-300">
-                    <div class="text-black dark:text-white font-semibold">IoT Solution</div>
-                    <div class="text-sm text-gray-600 dark:text-gray-400">Connected devices and smart system integrations.</div>
+                <a href="?category=storytelling" class="block hover:bg-gray-200 dark:hover:bg-[#1b1b1b] p-3 rounded-md transition-colors duration-300">
+                    <div class="text-black dark:text-white font-semibold">Interactive Storytelling</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400">Engaging narrative experiences and multimedia content.</div>
+                </a>
+                <a href="?category=product" class="block hover:bg-gray-200 dark:hover:bg-[#1b1b1b] p-3 rounded-md transition-colors duration-300">
+                    <div class="text-black dark:text-white font-semibold">Product Showcase</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400">Comprehensive product catalog websites.</div>
+                </a>
+                <a href="?category=corporate" class="block hover:bg-gray-200 dark:hover:bg-[#1b1b1b] p-3 rounded-md transition-colors duration-300">
+                    <div class="text-black dark:text-white font-semibold">Corporate Identity</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400">Professional corporate websites and brand solutions.</div>
+                </a>
+                <a href="?category=others" class="block hover:bg-gray-200 dark:hover:bg-[#1b1b1b] p-3 rounded-md transition-colors duration-300">
+                    <div class="text-black dark:text-white font-semibold">Custom Solutions</div>
+                    <div class="text-sm text-gray-600 dark:text-gray-400">Innovative custom solutions and mobile applications.</div>
                 </a>
             </div>
         </div>
+        <a href="pricing.php" class="block p-3 transition-colors duration-300">Pricing</a>
         <a href="about.php" class="block p-3 transition-colors duration-300">About</a>
         
         <!-- Mobile Theme Toggle -->
@@ -97,11 +125,9 @@
     <script>
         const toggleBtn = document.getElementById("mobile-toggle");
         const menu = document.getElementById("mobile-menu");
-        const submenuToggle = document.getElementById("submenu-toggle");
         const submenu = document.getElementById("submenu");
         const submenuIcon = document.getElementById("submenu-icon");
 
-        const desktopResourcesToggle = document.getElementById("desktop-resources-toggle");
         const desktopResourcesMenu = document.getElementById("desktop-resources-menu");
 
         // Theme toggle elements
@@ -111,7 +137,6 @@
         const mobileThemeToggle = document.getElementById("mobile-theme-toggle");
         const mobileDarkIcon = document.getElementById("mobile-dark-icon");
 
-        let desktopMenuOpen = false;
         let isDarkMode = true; // Default to dark mode
 
         // Initialize theme on page load
@@ -177,27 +202,20 @@
             document.getElementById("icon-menu").classList.toggle("hidden");
             document.getElementById("icon-close").classList.toggle("hidden");
         });
-        
 
-        submenuToggle.addEventListener("click", () => {
-            submenu.classList.toggle("hidden");
-            submenuIcon.classList.toggle("rotate-180");
-        });
-
-        // Toggle desktop submenu on click
-        desktopResourcesToggle.addEventListener("click", (e) => {
-            e.stopPropagation(); // Prevent bubbling
-            desktopResourcesMenu.classList.toggle("hidden");
-            desktopMenuOpen = !desktopMenuOpen;
-        });
-
-        // Close desktop submenu when clicking outside
-        document.addEventListener("click", (e) => {
-            if (desktopMenuOpen && !desktopResourcesMenu.contains(e.target) && !desktopResourcesToggle.contains(e.target)) {
-                desktopResourcesMenu.classList.add("hidden");
-                desktopMenuOpen = false;
-            }
-        });
+        // Add hover functionality for mobile submenu
+        const servicesLink = document.querySelector('a[href="services.php"]');
+        if (servicesLink) {
+            servicesLink.addEventListener('mouseenter', () => {
+                submenu.classList.remove("hidden");
+                submenuIcon.classList.add("rotate-180");
+            });
+            
+            servicesLink.addEventListener('mouseleave', () => {
+                submenu.classList.add("hidden");
+                submenuIcon.classList.remove("rotate-180");
+            });
+        }
 
         let lastScroll = 0;
         const header = document.getElementById('main-header');

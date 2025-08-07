@@ -85,6 +85,27 @@ if (session_status() === PHP_SESSION_NONE) {
                 </svg>
                 <span class="link-label">Manage Clients</span>
             </button>
+            <button onclick="window.location.href='manage-client-project.php'" class="flex items-center gap-3 py-3 px-4 rounded-md hover:bg-[#2b2b2b] hover:text-white transition w-full text-white">
+                <svg class="w-6 h-6 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-briefcase-icon lucide-briefcase">
+                    <rect width="20" height="14" x="2" y="7" rx="2" ry="2"/>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                </svg>
+                <span class="link-label">Client Projects</span>
+            </button>
+            <button onclick="window.location.href='manage-pricing.php'" class="flex items-center gap-3 py-3 px-4 rounded-md hover:bg-[#2b2b2b] hover:text-white transition w-full text-white">
+                <svg class="w-6 h-6 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag-icon lucide-tag">
+                    <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.002 2.002 0 0 0 2.828 0l7.172-7.172a2 2 0 0 0 0-2.828z"/>
+                    <circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/>
+                </svg>
+                <span class="link-label">Manage Pricing</span>
+            </button>
+            <button onclick="window.location.href='manage-services.php'" class="flex items-center gap-3 py-3 px-4 rounded-md hover:bg-[#2b2b2b] hover:text-white transition w-full text-white">
+                <svg class="w-6 h-6 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings-icon lucide-settings">
+                    <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+                <span class="link-label">Manage Services</span>
+            </button>
             <form method="POST" action="logout.php" class="block lg:hidden w-full">
                 <button type="submit" class="flex items-center gap-3 py-3 px-4 rounded-md hover:bg-[#2b2b2b] hover:text-white transition w-full text-white">
                     <svg class="w-6 h-6 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out-icon lucide-log-out">
@@ -125,11 +146,11 @@ if (session_status() === PHP_SESSION_NONE) {
         <!-- Right Section: User Info + Logout -->
         <div class="flex flex-wrap items-center gap-4 justify-end w-full lg:w-auto mt-4 lg:mt-0">
             <div onclick="window.location.href='profile.php'" class="flex items-center gap-3 cursor-pointer w-full sm:w-auto">
-                <img src="<?= htmlspecialchars($_SESSION['user_image'] ?: 'https://i.pinimg.com/736x/a2/61/ad/a261ad5056339af1980926d291cf4183.jpg') ?>"
+                <img src="<?= htmlspecialchars(isset($_SESSION['user_image']) ? $_SESSION['user_image'] : 'https://i.pinimg.com/736x/a2/61/ad/a261ad5056339af1980926d291cf4183.jpg') ?>"
                      class="w-12 h-12 rounded-full border-2 border-gray-400 object-cover" />
                 <div class="flex flex-col text-sm leading-tight">
-                    <span class="font-semibold text-black"><?= htmlspecialchars($_SESSION['user_name']) ?></span>
-                    <span class="text-gray-400 text-xs"><?= htmlspecialchars($_SESSION['user_email']) ?></span>
+                    <span class="font-semibold text-black"><?= htmlspecialchars(isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'User') ?></span>
+                    <span class="text-gray-400 text-xs"><?= htmlspecialchars(isset($_SESSION['user_email']) ? $_SESSION['user_email'] : 'user@example.com') ?></span>
                 </div>
             </div>
 

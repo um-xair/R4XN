@@ -84,3 +84,217 @@ CREATE TABLE clients (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+-- Client Projects table for detailed project management
+CREATE TABLE client_projects (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    website_type VARCHAR(100) NOT NULL,
+    client_name VARCHAR(255) NOT NULL,
+    timeline VARCHAR(100) NOT NULL,
+    website_url VARCHAR(255) NOT NULL,
+    image_path VARCHAR(255) NOT NULL,
+    status ENUM('active', 'inactive') DEFAULT 'active',
+    featured BOOLEAN DEFAULT FALSE,
+    sort_order INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Pricing Plans Table
+CREATE TABLE IF NOT EXISTS `pricing_plans` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `description` text,
+  `features` text,
+  `status` enum('active','inactive') DEFAULT 'active',
+  `is_popular` tinyint(1) DEFAULT 0,
+  `sort_order` int(11) DEFAULT 0,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Service-Specific Pricing Table
+CREATE TABLE IF NOT EXISTS `service_pricing` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `service_name` varchar(100) NOT NULL,
+  `service_description` text,
+  `icon_class` varchar(100) DEFAULT 'fas fa-code',
+  `color_gradient` varchar(100) DEFAULT 'from-blue-500 to-purple-600',
+  `status` enum('active','inactive') DEFAULT 'active',
+  `sort_order` int(11) DEFAULT 0,
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Service Pricing Items Table
+CREATE TABLE IF NOT EXISTS `service_pricing_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `service_id` int(11) NOT NULL,
+  `item_name` varchar(100) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `description` text,
+  `sort_order` int(11) DEFAULT 0,
+  `status` enum('active','inactive') DEFAULT 'active',
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `service_id` (`service_id`),
+  CONSTRAINT `fk_service_pricing_items_service` FOREIGN KEY (`service_id`) REFERENCES `service_pricing` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Service Features Table
+CREATE TABLE IF NOT EXISTS `service_features` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `service_id` int(11) NOT NULL,
+  `feature_name` varchar(100) NOT NULL,
+  `sort_order` int(11) DEFAULT 0,
+  `status` enum('active','inactive') DEFAULT 'active',
+  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `service_id` (`service_id`),
+  CONSTRAINT `fk_service_features_service` FOREIGN KEY (`service_id`) REFERENCES `service_pricing` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Insert sample data for testing
+INSERT INTO client_projects (title, description, website_type, client_name, timeline, website_url, image_path, featured, sort_order, status) VALUES
+('E-Commerce Platform', 'A comprehensive e-commerce solution with advanced features including payment processing, inventory management, and customer analytics. Built with modern technologies for optimal performance and user experience.', 'E-Commerce', 'TechCorp Solutions', 'Jan 2025 – Mar 2025', 'https://techcorp.com', 'index-assets/project-1.png', TRUE, 1, 'active'),
+('Corporate Website', 'A professional corporate website showcasing company services, team profiles, and client testimonials. Features responsive design and SEO optimization for maximum online visibility.', 'Corporate', 'Global Enterprises', 'Feb 2025 – Apr 2025', 'https://globalenterprises.com', 'index-assets/project-2.png', TRUE, 2, 'active'),
+('Portfolio Website', 'A creative portfolio website for a design agency featuring project galleries, client testimonials, and contact forms. Built with modern animations and interactive elements.', 'Portfolio', 'Creative Studio', 'Mar 2025 – May 2025', 'https://creativestudio.com', 'index-assets/project-3.png', FALSE, 3, 'inactive'),
+('Blog Platform', 'A content management system for a lifestyle blog with user authentication, comment system, and social media integration. Features responsive design and fast loading times.', 'Blog', 'Lifestyle Magazine', 'Apr 2025 – Jun 2025', 'https://lifestylemag.com', 'index-assets/project-4.png', FALSE, 4, 'active'),
+('Restaurant Website', 'A restaurant website with online ordering system, menu management, and reservation booking. Features mobile-first design and real-time order tracking.', 'Restaurant', 'Fine Dining Co.', 'May 2025 – Jul 2025', 'https://finedining.com', 'index-assets/project-5.png', TRUE, 5, 'inactive');
+
+-- Insert sample pricing plans
+INSERT INTO `pricing_plans` (`name`, `price`, `description`, `features`, `status`, `is_popular`, `sort_order`) VALUES
+('Basic', 2500.00, 'Perfect for small businesses and startups', 'Responsive Website Design,Up to 5 Pages,Basic SEO Optimization,Contact Form Integration,Mobile-First Design,2 Revisions,Basic Analytics Setup,1 Month Support', 'active', 0, 1),
+('Professional', 5000.00, 'Ideal for growing businesses and e-commerce', 'Everything in Basic,Up to 15 Pages,Advanced SEO Optimization,E-commerce Integration,Custom CMS Development,Payment Gateway Setup,Advanced Analytics,3 Months Support,Performance Optimization,Security Implementation', 'active', 1, 2),
+('Enterprise', 12000.00, 'For large-scale applications and custom solutions', 'Everything in Professional,Unlimited Pages,Custom Web Application,IoT Integration,Advanced Security,API Development,Database Design,Cloud Infrastructure,6 Months Support,Priority Support,Performance Monitoring,Custom Integrations', 'active', 0, 3);
+
+-- Insert sample service pricing
+INSERT INTO `service_pricing` (`service_name`, `service_description`, `icon_class`, `color_gradient`, `status`, `sort_order`) VALUES
+('Frontend Development', 'Responsive interfaces and modern web applications with cutting-edge technologies', 'fas fa-code', 'from-blue-500 to-purple-600', 'active', 1),
+('IoT Solutions', 'Smart automation and connected systems for modern businesses', 'fas fa-microchip', 'from-orange-500 to-red-600', 'active', 2),
+('Mobile Development', 'Native and cross-platform mobile applications for iOS and Android', 'fas fa-mobile-alt', 'from-indigo-500 to-blue-600', 'active', 3);
+
+-- Insert sample service pricing items
+INSERT INTO `service_pricing_items` (`service_id`, `item_name`, `price`, `description`, `sort_order`) VALUES
+(1, 'Single Page App', 1500.00, 'Single page application with modern framework', 1),
+(1, 'Multi-Page Website', 3000.00, 'Multi-page responsive website', 2),
+(1, 'E-commerce Frontend', 4500.00, 'E-commerce website frontend', 3),
+(1, 'Progressive Web App', 6000.00, 'Progressive web application', 4),
+(2, 'IoT Consultation', 1000.00, 'IoT consultation and planning', 1),
+(2, 'Smart Device Integration', 3500.00, 'Smart device integration services', 2),
+(2, 'Full IoT Platform', 8000.00, 'Complete IoT platform development', 3),
+(2, 'Industrial IoT System', 15000.00, 'Industrial IoT system development', 4),
+(3, 'Cross-platform App', 4000.00, 'Cross-platform mobile application', 1),
+(3, 'Native iOS App', 6000.00, 'Native iOS application', 2),
+(3, 'Native Android App', 5500.00, 'Native Android application', 3),
+(3, 'Full Mobile Suite', 12000.00, 'Complete mobile application suite', 4);
+
+-- Insert sample service features
+INSERT INTO `service_features` (`service_id`, `feature_name`, `sort_order`) VALUES
+(1, 'Responsive Design', 1),
+(1, 'Cross-browser Compatibility', 2),
+(1, 'Performance Optimization', 3),
+(1, 'SEO Optimization', 4),
+(2, 'Device Integration', 1),
+(2, 'Real-time Monitoring', 2),
+(2, 'Data Analytics', 3),
+(2, 'Security Protocols', 4),
+(3, 'App Store Deployment', 1),
+(3, 'Push Notifications', 2),
+(3, 'Offline Functionality', 3),
+(3, 'Performance Optimization', 4);
+
+-- Services and Case Studies Management Tables
+
+-- Services table
+CREATE TABLE IF NOT EXISTS `services` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `name` varchar(255) NOT NULL,
+    `slug` varchar(255) NOT NULL UNIQUE,
+    `description` text NOT NULL,
+    `image_url` varchar(500) DEFAULT NULL,
+    `status` enum('active','inactive') DEFAULT 'active',
+    `sort_order` int(11) DEFAULT 0,
+    `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Projects table (for each service)
+CREATE TABLE IF NOT EXISTS `projects` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `service_id` int(11) NOT NULL,
+    `name` varchar(255) NOT NULL,
+    `description` text NOT NULL,
+    `image_url` varchar(500) DEFAULT NULL,
+    `project_url` varchar(500) DEFAULT NULL,
+    `case_study_url` varchar(500) DEFAULT NULL,
+    `status` enum('active','inactive') DEFAULT 'active',
+    `sort_order` int(11) DEFAULT 0,
+    `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`service_id`) REFERENCES `services`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Case Studies table
+CREATE TABLE IF NOT EXISTS `case_studies` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `project_id` int(11) NOT NULL,
+    `title` varchar(255) NOT NULL,
+    `description` text NOT NULL,
+    `hero_image_url` varchar(500) DEFAULT NULL,
+    `preview_button_text` varchar(100) DEFAULT 'Preview Project',
+    `preview_button_url` varchar(500) DEFAULT NULL,
+    `status` enum('active','inactive') DEFAULT 'active',
+    `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`project_id`) REFERENCES `projects`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Features table (for case studies)
+CREATE TABLE IF NOT EXISTS `case_study_features` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `case_study_id` int(11) NOT NULL,
+    `feature_name` varchar(255) NOT NULL,
+    `color_class` varchar(100) DEFAULT 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200',
+    `sort_order` int(11) DEFAULT 0,
+    `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`case_study_id`) REFERENCES `case_studies`(`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Insert default services
+INSERT INTO `services` (`name`, `slug`, `description`, `image_url`, `sort_order`) VALUES
+('E-commerce Website', 'ecommerce', 'Complete online shopping solutions with payment processing, inventory management, and customer analytics. Perfect for retail businesses looking to expand their online presence.', 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80', 1),
+('Services Appointment', 'services', 'Professional booking and scheduling systems for service-based businesses with advanced calendar integration and automated reminders.', 'https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80', 2),
+('Interactive Storytelling', 'storytelling', 'Engaging narrative experiences that captivate audiences through multimedia content, interactive elements, and immersive storytelling techniques.', 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80', 3),
+('Product Showcase', 'product', 'Comprehensive product catalog websites with detailed specifications, interactive features, and optimized user experience for product discovery.', 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80', 4),
+('Corporate Identity', 'corporate', 'Professional corporate websites with comprehensive brand guidelines, company information, and business solutions designed for enterprise clients.', 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80', 5),
+('Custom Solutions', 'custom', 'Innovative custom solutions, mobile applications, IoT projects, and cutting-edge digital experiences tailored to unique business requirements.', 'https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80', 6);
+
+-- Insert sample projects for E-commerce service
+INSERT INTO `projects` (`service_id`, `name`, `description`, `image_url`, `project_url`, `case_study_url`, `sort_order`) VALUES
+(1, 'TechCorp E-commerce Platform', 'A comprehensive e-commerce solution with advanced features including payment processing, inventory management, and customer analytics. Built with modern technologies for optimal performance and user experience.', 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80', '#', 'case-study.php?project=techcorp', 1),
+(1, 'Fashion Store Online', 'Modern fashion e-commerce website with product catalog, shopping cart, and secure payment gateway integration. Features responsive design and advanced filtering options.', 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80', '#', 'case-study.php?project=fashion', 2);
+
+-- Insert sample case study for TechCorp project
+INSERT INTO `case_studies` (`project_id`, `title`, `description`, `hero_image_url`, `preview_button_text`, `preview_button_url`) VALUES
+(1, 'TechCorp E-commerce Platform', 'A comprehensive e-commerce solution with advanced features including payment processing, inventory management, and customer analytics. Built with modern technologies for optimal performance and user experience.', 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80', 'Preview Project', 'case-study-detail.php?project=techcorp');
+
+-- Insert sample features for the case study
+INSERT INTO `case_study_features` (`case_study_id`, `feature_name`, `color_class`, `sort_order`) VALUES
+(1, 'Payment Processing', 'bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200', 1),
+(1, 'Inventory Management', 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200', 2),
+(1, 'Customer Analytics', 'bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-200', 3),
+(1, 'Responsive Design', 'bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-200', 4),
+(1, 'Shopping Cart', 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200', 5),
+(1, 'Order Tracking', 'bg-pink-100 dark:bg-pink-900/30 text-pink-800 dark:text-pink-200', 6);
