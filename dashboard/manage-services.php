@@ -43,35 +43,6 @@ $services_result = $conn->query($services_query);
         <?php include 'sidebar.php'; ?>
         
         <main class="flex-1 p-6 w-full overflow-y-auto min-w-0 relative">
-            <!-- Success/Error Messages -->
-            <?php if (isset($_SESSION['success'])): ?>
-                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-                    <div class="flex">
-                        <div class="flex-shrink-0">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <div class="ml-3">
-                            <p class="text-sm"><?php echo htmlspecialchars($_SESSION['success']); ?></p>
-                        </div>
-                    </div>
-                </div>
-                <?php unset($_SESSION['success']); ?>
-            <?php endif; ?>
-
-            <?php if (isset($_SESSION['error'])): ?>
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-                    <div class="flex">
-                        <div class="flex-shrink-0">
-                            <i class="fas fa-exclamation-circle"></i>
-                        </div>
-                        <div class="ml-3">
-                            <p class="text-sm"><?php echo htmlspecialchars($_SESSION['error']); ?></p>
-                        </div>
-                    </div>
-                </div>
-                <?php unset($_SESSION['error']); ?>
-            <?php endif; ?>
-
             <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6 gap-3 sm:gap-0 px-2 sm:px-0">
                 <div class="max-w-full sm:max-w-[60%]">
                     <h1 class="text-2xl font-bold mb-1">Manage Services</h1>
@@ -91,11 +62,6 @@ $services_result = $conn->query($services_query);
                             <img src="<?php echo !empty($service['image_url']) && !filter_var($service['image_url'], FILTER_VALIDATE_URL) ? htmlspecialchars($service['image_url']) : htmlspecialchars($service['image_url']); ?>" 
                                  alt="<?php echo htmlspecialchars($service['name']); ?>" 
                                  class="w-full h-48 object-cover rounded-md">
-                            <div class="absolute top-4 right-4">
-                                <span class="px-3 py-1 rounded-full text-xs font-semibold <?php echo $service['status'] === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'; ?>">
-                                    <?php echo ucfirst($service['status']); ?>
-                                </span>
-                            </div>
                         </div>
                         
                         <div class="flex-grow py-4">
@@ -110,21 +76,55 @@ $services_result = $conn->query($services_query);
                                 <span><?php echo $service['project_count']; ?> Projects</span>
                                 <span>Slug: <?php echo htmlspecialchars($service['slug']); ?></span>
                             </div>
+                            
+                            <?php
+                            // Get feature count for this service
+                            $feature_count_query = "SELECT COUNT(*) as feature_count FROM service_features WHERE service_id = ?";
+                            $feature_count_stmt = $conn->prepare($feature_count_query);
+                            $feature_count_stmt->bind_param("i", $service['id']);
+                            $feature_count_stmt->execute();
+                            $feature_count_result = $feature_count_stmt->get_result();
+                            $feature_count = $feature_count_result->fetch_assoc();
+                            ?>
+                            <div class="flex items-center justify-between mb-4 text-sm text-gray-500">
+                                <span><?php echo $feature_count['feature_count']; ?> Features</span>
+                            </div>
                         </div>
                         
-                        <div class="grid grid-cols-3 gap-2">
-                            <button onclick="viewProjects(<?php echo $service['id']; ?>)" 
-                                    class="bg-gray-100 text-gray-700 px-4 py-3 rounded-md text-sm font-medium hover:bg-gray-200 transition-colors">
-                                <i class="fas fa-folder mr-2"></i>Projects
-                            </button>
-                            <button onclick="editService(<?php echo $service['id']; ?>)" 
-                                    class="bg-blue-100 text-blue-700 px-4 py-3 rounded-md text-sm font-medium hover:bg-blue-200 transition-colors">
-                                <i class="fas fa-edit mr-2"></i>Edit
-                            </button>
-                            <button onclick="deleteService(<?php echo $service['id']; ?>)" 
-                                    class="bg-red-100 text-red-700 px-4 py-3 rounded-md text-sm font-medium hover:bg-red-200 transition-colors">
-                                <i class="fas fa-trash mr-2"></i>Delete
-                            </button>
+                        <div>
+                            <div class="grid grid-cols-3 gap-2 pt-3 border-t border-gray-100">
+                                <button onclick="viewProjects(<?php echo $service['id']; ?>)" 
+                                    class="bg-gradient-to-br from-blue-500 to-blue-600 text-white py-3 rounded-md flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-folder-icon lucide-folder">
+                                        <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/>
+                                    </svg>
+                                    Projects
+                                </button>
+                                <button onclick="viewFeatures(<?php echo $service['id']; ?>)" 
+                                    class="bg-gradient-to-br from-yellow-500 to-yellow-600 text-white py-3 rounded-md flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star">
+                                        <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/>
+                                    </svg>
+                                    Features
+                                </button>
+                                <button type="button" onclick="editService(<?php echo $service['id']; ?>)" class="bg-black text-white py-3 rounded-md flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                    </svg>
+                                    Edit
+                                </button>
+                            </div>
+                            
+                            <!-- Delete Form -->
+                            <form action="delete-service.php" method="GET" onsubmit="return confirm('Are you sure you want to delete this service? This will also delete all associated projects and case studies.')" class="mt-2">
+                                <input type="hidden" name="id" value="<?php echo $service['id']; ?>">
+                                <button type="submit" class="w-full border border-gray-400 text-black py-3 rounded-md text-center flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1-1H8a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                    Delete
+                                </button>
+                            </form>
                         </div>
                     </div>
                     <?php endwhile; ?>
@@ -278,6 +278,9 @@ $services_result = $conn->query($services_query);
         </div>
     </div>
 
+    <!-- Toast Message -->
+    <div id="toast" class="fixed top-5 right-5 z-50 px-6 py-3 rounded-md shadow-lg text-white flex items-center gap-2 pointer-events-none opacity-0 transition-opacity duration-300"></div>
+
     <script>
         function openAddServiceModal() {
             document.getElementById('addServiceModal').classList.remove('hidden');
@@ -296,6 +299,10 @@ $services_result = $conn->query($services_query);
         
         function viewProjects(serviceId) {
             window.location.href = `manage-projects.php?service_id=${serviceId}`;
+        }
+        
+        function viewFeatures(serviceId) {
+            window.location.href = `manage-service-features.php?service_id=${serviceId}`;
         }
         
         function editService(serviceId) {
@@ -395,6 +402,42 @@ $services_result = $conn->query($services_query);
                 uploadBox.classList.remove('hidden');
             }
         }
+
+        // Toast message functions
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const icon = type === 'success' ? '✓' : '✕';
+            const bgColor = type === 'success' ? 'bg-green-500' : 'bg-red-500';
+            
+            toast.innerHTML = `<span class="text-lg">${icon}</span><span>${message}</span>`;
+            toast.className = `fixed top-5 right-5 z-50 px-6 py-3 rounded-md shadow-lg text-white flex items-center gap-2 pointer-events-none opacity-0 transition-opacity duration-300 ${bgColor}`;
+            
+            // Show toast
+            setTimeout(() => {
+                toast.classList.remove('opacity-0');
+                toast.classList.add('opacity-100');
+            }, 100);
+            
+            // Hide toast after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+            }, 3000);
+        }
+
+        // Show toast on page load if there are session messages
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for session messages and show toast
+            <?php if (isset($_SESSION['success'])): ?>
+                showToast('<?php echo addslashes($_SESSION['success']); ?>', 'success');
+                <?php unset($_SESSION['success']); ?>
+            <?php endif; ?>
+            
+            <?php if (isset($_SESSION['error'])): ?>
+                showToast('<?php echo addslashes($_SESSION['error']); ?>', 'error');
+                <?php unset($_SESSION['error']); ?>
+            <?php endif; ?>
+        });
     </script>
 </body>
 </html>

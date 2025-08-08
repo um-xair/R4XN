@@ -250,7 +250,7 @@ $projects_result = $stmt->get_result();
                        itemprop="description" data-aos-delay="200">
                         <?php echo htmlspecialchars($service['description']); ?>
                     </p>
-                </div>
+                </div> 
                 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12" id="projects-grid">
                     <?php while ($project = $projects_result->fetch_assoc()): ?>
@@ -283,6 +283,47 @@ $projects_result = $stmt->get_result();
                 </div>
             </div>
         </section>
+
+        <?php
+        // Get features for this service
+        $features_query = "SELECT * FROM service_features WHERE service_id = ? ORDER BY sort_order";
+        $stmt = $conn->prepare($features_query);
+        $stmt->bind_param("i", $service['id']);
+        $stmt->execute();
+        $features_result = $stmt->get_result();
+        
+        if ($features_result->num_rows > 0):
+        ?>
+        <section class="px-6 py-20" role="region" aria-label="<?php echo htmlspecialchars($service['name']); ?> Features">
+            <div class="container mx-auto max-w-7xl">
+                <div class="text-center mb-20" data-aos="fade-up" data-aos-duration="1000">
+                    <h2 class="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-gray-800 to-gray-600 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+                        <?php echo htmlspecialchars($service['name']); ?> Features
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-400 text-xl max-w-4xl mx-auto leading-relaxed">
+                        Our <?php echo htmlspecialchars($service['name']); ?> solutions come with comprehensive features designed to maximize your business success and drive growth.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <?php while ($feature = $features_result->fetch_assoc()): ?>
+                    <div class="group bg-white dark:bg-[#121212] rounded-3xl p-8 border-2 border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                        <div class="space-y-6">
+                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-400 dark:to-blue-500 rounded-xl flex items-center justify-center">
+                                <?php echo $feature['icon_svg'] ?: '<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>'; ?>
+                            </div>
+                            <div class="space-y-4">
+                                <h3 class="text-2xl font-bold text-gray-800 dark:text-white"><?php echo htmlspecialchars($feature['feature_name']); ?></h3>
+                                <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+                                    <?php echo htmlspecialchars($feature['feature_description']); ?>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endwhile; ?>
+                </div>
+            </div>
+        </section>
+        <?php endif; ?>
     </main>
 
     <script>

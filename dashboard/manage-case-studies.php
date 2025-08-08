@@ -65,48 +65,26 @@ $case_studies_result = $case_studies_stmt->get_result();
         <?php include 'sidebar.php'; ?>
         
         <main class="flex-1 p-6 w-full overflow-y-auto min-w-0 relative">
-            <!-- Success/Error Messages -->
-            <?php if (isset($_SESSION['success'])): ?>
-                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-                    <div class="flex">
-                        <div class="flex-shrink-0">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <div class="ml-3">
-                            <p class="text-sm"><?php echo htmlspecialchars($_SESSION['success']); ?></p>
-                        </div>
-                    </div>
-                </div>
-                <?php unset($_SESSION['success']); ?>
-            <?php endif; ?>
+            <!-- Toast Message -->
+            <div id="toast" class="fixed top-5 right-5 z-50 px-6 py-3 rounded-md shadow-lg text-white flex items-center gap-2 pointer-events-none opacity-0 transition-opacity duration-300"></div>
 
-            <?php if (isset($_SESSION['error'])): ?>
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-                    <div class="flex">
-                        <div class="flex-shrink-0">
-                            <i class="fas fa-exclamation-circle"></i>
-                        </div>
-                        <div class="ml-3">
-                            <p class="text-sm"><?php echo htmlspecialchars($_SESSION['error']); ?></p>
-                        </div>
-                    </div>
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4 sm:gap-0 px-2 sm:px-0">
+                <div>
+                    <h1 class="text-2xl font-bold mb-1">
+                        Manage Case Studies – <?php echo htmlspecialchars($project['name']); ?>
+                    </h1>
+                    <p class="text-xs text-gray-400">
+                        Add and manage case studies for <?php echo htmlspecialchars($project['name']); ?> project
+                    </p>
                 </div>
-                <?php unset($_SESSION['error']); ?>
-            <?php endif; ?>
-
-            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6 gap-3 sm:gap-0 px-2 sm:px-0">
-                <div class="max-w-full sm:max-w-[60%]">
-                    <div class="flex items-center gap-4 mb-2">
-                        <button onclick="window.location.href='manage-projects.php?service_id=<?php echo $project['service_id']; ?>'" class="text-gray-500 hover:text-gray-700">
-                            <i class="fas fa-arrow-left mr-2"></i>Back to Projects
-                        </button>
-                    </div>
-                    <h1 class="text-2xl font-bold mb-1">Manage Case Studies - <?php echo htmlspecialchars($project['name']); ?></h1>
-                    <p class="text-xs text-gray-400">Add and manage case studies for <?php echo htmlspecialchars($project['name']); ?> project</p>
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                    <button onclick="window.location.href='manage-projects.php?service_id=<?php echo $project['service_id']; ?>'" class="bg-transparent border border-black text-black px-6 py-3 rounded-md">
+                        Back to Projects
+                    </button>
+                    <button onclick="openAddCaseStudyModal()" class="bg-black text-white px-6 py-3 rounded-md" type="button">
+                        <i class="fas fa-plus mr-2"></i>Add New Case Study
+                    </button>
                 </div>
-                <button onclick="openAddCaseStudyModal()" class="bg-black text-white px-6 py-3 rounded-md max-w-full shrink-0" type="button">
-                    <i class="fas fa-plus mr-2"></i>Add New Case Study
-                </button>
             </div>
 
             <!-- Case Studies Grid -->
@@ -118,11 +96,6 @@ $case_studies_result = $case_studies_stmt->get_result();
                             <img src="<?php echo !empty($case_study['hero_image_url']) && !filter_var($case_study['hero_image_url'], FILTER_VALIDATE_URL) ? htmlspecialchars($case_study['hero_image_url']) : htmlspecialchars($case_study['hero_image_url']); ?>" 
                                  alt="<?php echo htmlspecialchars($case_study['title']); ?>" 
                                  class="w-full h-48 object-cover rounded-md">
-                            <div class="absolute top-4 right-4">
-                                <span class="px-3 py-1 rounded-full text-xs font-semibold <?php echo $case_study['status'] === 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'; ?>">
-                                    <?php echo ucfirst($case_study['status']); ?>
-                                </span>
-                            </div>
                         </div>
                         
                         <div class="flex-grow py-4">
@@ -145,12 +118,18 @@ $case_studies_result = $case_studies_stmt->get_result();
                         
                         <div class="grid grid-cols-2 gap-2">
                             <button onclick="editCaseStudy(<?php echo $case_study['id']; ?>)" 
-                                    class="bg-blue-100 text-blue-700 px-4 py-3 rounded-md text-sm font-medium hover:bg-blue-200 transition-colors">
-                                <i class="fas fa-edit mr-2"></i>Edit
+                                    class="bg-black text-white py-3 rounded-md flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                                Edit
                             </button>
                             <button onclick="deleteCaseStudy(<?php echo $case_study['id']; ?>)" 
-                                    class="bg-red-100 text-red-700 px-4 py-3 rounded-md text-sm font-medium hover:bg-red-200 transition-colors">
-                                <i class="fas fa-trash mr-2"></i>Delete
+                                    class="border border-gray-400 text-black py-3 rounded-md flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1-1H8a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                                Delete
                             </button>
                         </div>
                     </div>
@@ -435,6 +414,42 @@ $case_studies_result = $case_studies_stmt->get_result();
                 uploadBox.classList.remove('hidden');
             }
         }
+
+        // Toast message functions
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const icon = type === 'success' ? '✓' : '✕';
+            const bgColor = type === 'success' ? 'bg-green-500' : 'bg-red-500';
+            
+            toast.innerHTML = `<span class="text-lg">${icon}</span><span>${message}</span>`;
+            toast.className = `fixed top-5 right-5 z-50 px-6 py-3 rounded-md shadow-lg text-white flex items-center gap-2 pointer-events-none opacity-0 transition-opacity duration-300 ${bgColor}`;
+            
+            // Show toast
+            setTimeout(() => {
+                toast.classList.remove('opacity-0');
+                toast.classList.add('opacity-100');
+            }, 100);
+            
+            // Hide toast after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+            }, 3000);
+        }
+
+        // Show toast on page load if there are session messages
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for session messages and show toast
+            <?php if (isset($_SESSION['success'])): ?>
+                showToast('<?php echo addslashes($_SESSION['success']); ?>', 'success');
+                <?php unset($_SESSION['success']); ?>
+            <?php endif; ?>
+            
+            <?php if (isset($_SESSION['error'])): ?>
+                showToast('<?php echo addslashes($_SESSION['error']); ?>', 'error');
+                <?php unset($_SESSION['error']); ?>
+            <?php endif; ?>
+        });
     </script>
 </body>
 </html>
