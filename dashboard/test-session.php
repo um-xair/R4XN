@@ -7,3 +7,4 @@ echo "<p>User Name: " . (isset($_SESSION['user_name']) ? $_SESSION['user_name'] 
 echo "<p>All Session Data:</p>";
 echo "<pre>" . print_r($_SESSION, true) . "</pre>";
 ?>
+
